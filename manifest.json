@@ -3,7 +3,6 @@
   "lang": "en",
   "name": "First Progressive Web App | Shanu Saini",
   "scope": "/",
-  "display": true,
   "start_url": "/",
   "short_name": "First PWA",
   "theme_color": "#4285f4",
@@ -14,9 +13,9 @@
   "prefer_related_applications": false,
   "icons": [
     {
-      "src": "https://shanusaini.github.io/img/ico.png",
+      "src": "https://shanusaini.github.io/img/ico-small.png",
       "type": "image/png",
-      "sizes": "100x100"
+      "sizes": "50x50"
     },
     {
       "src": "https://shanusaini.github.io/img/ico.png",
