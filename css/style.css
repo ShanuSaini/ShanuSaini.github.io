@@ -4,4 +4,9 @@
 
 .navbar-inverse{
 	background-color: #4285f4;
+	border-color: #4285f4;
+}
+
+.navbar-inverse .navbar-brand{
+	color: #fff;
 }

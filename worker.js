@@ -1,4 +1,4 @@
-var cacheName = 'offlineRocks1';
+var cacheName = 'offlineRocks2';
 
 self.addEventListener("install", function(event){
 	event.waitUntil(
@@ -32,8 +32,33 @@ self.addEventListener("activate", function(event){
 
 self.addEventListener("fetch", function(event){
 	event.respondWith(
-		caches.open(cacheName).then(function(cache){
-			return cache.match(event.request)
+		// caches.open(cacheName).then(function(cache){
+		// 	return cache.match(event.request)
+		// })
+		caches.match(event.request).then(function(response){
+				if(response){
+					console.log("[ServiceWorker] found in cache ", event.request.url);
+					return response;
+				}
+				var requestClone = event.request.clone();
+
+				fetch(requsetClone).then(function(response){
+					if(!response){
+						console.log("sv no response from fetch");
+						return response;
+					}
+
+					var responseClone = response.clone();
+
+					caches.open(cacheName).then(function(cache){
+						console.log("New Data New ", event.request.url);
+						cache.put(event.request, responseClone);
+						return response;
+					});
+				})
+				.catch(function(err){
+					console.log("error", err);
+				})
 		})
 	);
 });
