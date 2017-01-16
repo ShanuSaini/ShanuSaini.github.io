@@ -6,10 +6,10 @@
   "display": true,
   "start_url": "/",
   "short_name": "First PWA",
-  "theme_color": "transparent",
+  "theme_color": "#4285f4",
   "description": "Progressive Web App Example by Shanu Saini",
   "orientation": "any",
-  "background_color": "transparent",
+  "background_color": "#eeeeee",
   "related_applications": [],
   "prefer_related_applications": false,
   "icons": [
