@@ -1,10 +1,11 @@
-var cacheName = 'offlineRocks2';
+var cacheName = 'offlineRocks3';
 
 self.addEventListener("install", function(event){
 	event.waitUntil(
 		caches.open(cacheName).then(function(cache){
 			return cache.addAll([
 				"/index.html",
+				"/manifest.json",
 				"/img/ico.png",
 				"/css/style.css",
 				"/css/bootstrap.min.css",
@@ -32,28 +33,25 @@ self.addEventListener("activate", function(event){
 
 self.addEventListener("fetch", function(event){
 	event.respondWith(
-		// caches.open(cacheName).then(function(cache){
-		// 	return cache.match(event.request)
-		// })
-		caches.match(event.request).then(function(response){
-				if(response){
+		caches.match(event.request).then(function(reponse){
+				if(reponse){
 					console.log("[ServiceWorker] found in cache ", event.request.url);
-					return response;
+					return reponse;
 				}
 				var requestClone = event.request.clone();
 
-				fetch(requsetClone).then(function(response){
-					if(!response){
+				fetch(requsetClone).then(function(reponse){
+					if(!reponse){
 						console.log("sv no response from fetch");
 						return response;
 					}
 
-					var responseClone = response.clone();
+					var reponseClone = reponse.clone();
 
 					caches.open(cacheName).then(function(cache){
 						console.log("New Data New ", event.request.url);
-						cache.put(event.request, responseClone);
-						return response;
+						cache.put(event.request, reponseClone);
+						return reponse;
 					});
 				})
 				.catch(function(err){
