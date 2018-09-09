@@ -1,0 +1,705 @@
+/*! HTML5 Boilerplate v5.3.0 | MIT License | https://html5boilerplate.com/ */
+
+/*
+ * What follows is the result of much research on cross-browser styling.
+ * Credit left inline and big thanks to Nicolas Gallagher, Jonathan Neal,
+ * Kroc Camen, and the H5BP dev community and team.
+ */
+
+/* ==========================================================================
+   Base styles: opinionated defaults
+   ========================================================================== */
+
+@font-face {
+  font-family: 'icomoon';
+  src:  url('../fonts/icomoonfb7f.eot?cygtn7');
+  src:  url('../fonts/icomoonfb7f.eot?cygtn7#iefix') format('embedded-opentype'),
+    url('../fonts/icomoonfb7f.ttf?cygtn7') format('truetype'),
+    url('../fonts/icomoonfb7f.woff?cygtn7') format('woff'),
+    url('../fonts/icomoonfb7f.svg?cygtn7#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-bike:before {
+  content: "\f0a3";
+}
+.icon-check:before {
+  content: "\f12c";
+}
+.icon-google-controller:before {
+  content: "\f2b4";
+}
+.icon-motorbike:before {
+  content: "\f37c";
+}
+
+html {
+    color: #222;
+    font-size: 1em;
+    line-height: 1.4;
+    box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+/*
+ * Remove text-shadow in selection highlight:
+ * https://twitter.com/miketaylr/status/12228805301
+ *
+ * These selection rule sets have to be separate.
+ * Customize the background color to match your design.
+ */
+
+::-moz-selection {
+    background: #222;
+    text-shadow: none;
+    color: #fff;
+}
+
+::selection {
+    background: #222;
+    text-shadow: none;
+    color: #fff;
+}
+
+/* For page loader */
+.loading.page-loader{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: 444444;
+    background-color: #111;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    transform: scale(1);
+}
+.loading.page-loader .lode{
+    width: 60px;
+    height: 60px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+}
+
+/*
+ * A better looking default horizontal rule
+ */
+
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1em 0;
+    padding: 0;
+}
+
+/*
+ * Remove the gap between audio, canvas, iframes,
+ * images, videos and the bottom of their containers:
+ * https://github.com/h5bp/html5-boilerplate/issues/440
+ */
+
+audio,
+canvas,
+iframe,
+img,
+svg,
+video {
+    vertical-align: middle;
+}
+
+/*
+ * Remove default fieldset styles.
+ */
+
+fieldset {
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+
+/*
+ * Allow only vertical resizing of textareas.
+ */
+
+textarea {
+    resize: vertical;
+}
+
+/* ==========================================================================
+   Browser Upgrade Prompt
+   ========================================================================== */
+
+.browserupgrade {
+    margin: 0.2em 0;
+    background: #ccc;
+    color: #000;
+    padding: 0.2em 0;
+}
+
+/* ==========================================================================
+   Author's custom styles
+   ========================================================================== */
+
+body,html{
+    width: 100%;
+    height: 100%;
+}
+
+html.wf-active body{
+    font-family: "Work Sans", Helvetica, Arial, sans-serif;
+}
+
+body{ 
+    background-color: #fff;
+    margin: 0;
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+/* ========================== Nav section ========================== */
+.load-container{
+    position: fixed;
+    top: 6px;
+    right: 6px;
+    height: 100px;
+    width: 100px;
+    background-color: rgba(0,0,0,0.9);
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 250;
+    box-shadow: inset 0 0 60px #000;
+    transform: scale(0.8);
+}
+.nav-close{
+    height: 30px;
+    top: 35px;
+}
+.load-container:hover .nav-close{
+    height: 40px;
+    top: 30px;
+}
+.nav-close .step-1, .nav-close .step-2, .nav-close .step-3, .nav-close .step-4, .nav-close .step-5{
+    width: 40px;
+}
+.nav-close .step-1, .nav-close .step-5{ right: 10px; }
+.nav-close .step-3,.nav-close .step-4{ left: 10px; }
+.nav .step-1{ 
+    transform: rotate(-45deg);
+    top: 18px;
+    right: 4px; 
+}
+.nav .step-2{
+    opacity: 0;
+    transform: rotate(225deg);
+}
+.nav .step-3{ 
+    transform: rotate(-45deg);
+    bottom: 18px;
+    left: 4px;
+}
+.nav .step-4{
+    transform: rotate(45deg);
+    top: 18px;
+    left: 4px;
+}
+.nav .step-5{
+    transform: rotate(45deg);
+    bottom: 18px;
+    right: 4px;
+}
+.loading .step-2{ 
+    -webkit-animation: rotate-1 2s infinite; 
+    animation: rotate-1 2s infinite;
+}
+.loading .step-4,.loading .step-5{ 
+    -webkit-animation: rotate-13 2s infinite; 
+    animation: rotate-13 2s infinite;
+}
+.loading .step-1,.loading .step-3{
+    -webkit-animation: rotate-13 2s infinite;
+    animation: rotate-13 2s infinite;
+}
+
+.nav-section{
+    position: fixed;
+    width: 100%;
+    min-width: 300px;
+    height: 100%;
+    overflow: hidden;
+    z-index: 200;
+    right: 0;
+    background-color: rgba(0,0,0,0.9);
+    transform: translateX(100%);
+    transition: -webkit-transform 750ms cubic-bezier(0.19, 1, 0.22, 1) 0ms;
+    transition: transform 750ms cubic-bezier(0.19, 1, 0.22, 1) 0ms;
+}
+
+.nav-section.open{
+    transform: translateX(0%);
+}
+
+.nav-mask .links{
+    list-style: none;
+    padding-left: 0;
+    display: block;
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.nav-section .links li{
+    -webkit-transform: translateX(100px);
+    transform: translateX(100px);
+    opacity: 0;
+    transition: -webkit-transform 0ms cubic-bezier(0.19, 1, 0.22, 1) 1000ms, opacity 0ms cubic-bezier(0.19, 1, 0.22, 1) 1000ms;
+    transition: transform 0ms cubic-bezier(0.19, 1, 0.22, 1) 1000ms, opacity 0ms cubic-bezier(0.19, 1, 0.22, 1) 1000ms;  
+}
+.nav-section.open .links li{
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+    opacity: 1;
+    transition: -webkit-transform 1000ms cubic-bezier(0.19, 1, 0.22, 1) 0ms, opacity 1000ms cubic-bezier(0.19, 1, 0.22, 1) 0ms;
+    transition: transform 1000ms cubic-bezier(0.14, 0.82, 0.2, 0.85) 0ms, opacity 1000ms cubic-bezier(0.19, 1, 0.22, 1) 0ms;
+}
+.nav-section.open .links li:nth-child(1){
+    transition-delay: 0ms;
+}
+.nav-section.open .links li:nth-child(2){
+    transition-delay: 50ms;
+}
+.nav-section.open .links li:nth-child(3){
+    transition-delay: 100ms;
+}
+.nav-section.open .links li:nth-child(4){
+    transition-delay: 150ms;
+}
+.nav-section.open .links li:nth-child(5){
+    transition-delay: 200ms;
+}
+.nav-mask .links a{
+    display: block;
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: 400;
+    color: #888;
+    margin-bottom: 10px;
+    transition: color 200ms;
+    text-align: center;
+}
+.nav-mask .links a:hover, .nav-mask .links a:focus{
+    color: #fff;
+}
+.nav-mask .links a + span{
+    color: #888;
+    font-size: 12px;
+    margin-top: -10px;
+    display: block;
+    text-align: center;
+    font-weight: 300;
+    margin-bottom: 15px;
+    transition: -webkit-transform 750ms cubic-bezier(0.19, 1, 0.22, 1) 0ms, opacity 750ms cubic-bezier(0.19, 1, 0.22, 1) 0ms;
+    transition: transform 750ms cubic-bezier(0.14, 0.82, 0.2, 0.85) 0ms, opacity 750ms cubic-bezier(0.19, 1, 0.22, 1) 0ms;
+}
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ========================== About Section ========================== */
+
+.about-section{
+    height: 100%;
+    width: 100%;
+    background-image: url(../img/main-mobile.html);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: top center;
+    z-index: 1;
+}
+
+#particles-js{
+    position: absolute;
+    display: inline-block;
+    height: 100%;
+    width: 50%;
+    float: left;
+    z-index: 2;
+    background: -moz-linear-gradient(left, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 0%, rgba(255,255,255,0.8) 100%);
+    background: -webkit-gradient(left top, right top, color-stop(0%, rgba(255,255,255,1)), color-stop(0%, rgba(255,255,255,1)), color-stop(100%, rgba(255,255,255,0.8)));
+    background: -webkit-linear-gradient(left, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 0%, rgba(255,255,255,0.8) 100%);
+    background: -o-linear-gradient(left, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 0%, rgba(255,255,255,0.8) 100%);
+    background: -ms-linear-gradient(left, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 0%, rgba(255,255,255,0.8) 100%);
+    background: linear-gradient(to right, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 0%, rgba(255,255,255,0.8) 100%);
+}
+
+.banner{
+    height: 100%;
+    width: 100%;
+    z-index: 5;
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.info{
+    display: inline-block;
+    width: 50%;
+    float: left;
+    align-self: center;
+}
+
+.info p{margin: 0;}
+
+.info .hi{
+    text-align: center;
+    font-size: 200px;
+    text-shadow: 0 0 50px #fff;
+    margin-top: -50px;
+    font-weight: 300;
+    /*font-family: "Work Sans", Helvetica, Arial, sans-serif;*/
+}
+
+.info .dis{
+    font-size: 22px;
+    text-align: center;
+    padding: 0 60px 50px 60px;
+    text-shadow: 0 0 20px #fff;
+}
+
+
+
+
+
+
+/* ========================== Edu Section ========================== */
+
+.edu-section{
+    width: 100%;
+    min-height: 100%;
+    top: 100%;
+    position: relative;
+    z-index: 20;
+    overflow: hidden;
+    background-color: rgb(15, 15, 15);
+}
+
+.edu-section .parallex-bike, .edu-section .parallex-motorbike{
+    color: #eee;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    font-size: 60px;
+    line-height: 48px;
+}
+
+.edu-section .parallex-gamepad{
+    position: absolute;
+    color: #eee;
+    font-size: 150px;
+    transform: rotate(30deg);
+    bottom: 40px;
+    left: 70% !important;
+    width: 190px;
+    height: 190px;
+}
+
+.edu-section .parallex-motorbike{
+    font-size: 50px;
+    line-height: 38px;
+}
+
+.info-container{
+    width: 100%;
+    float: left;
+    height: 100%;
+}
+
+.secondary-heading{
+    color: #fff;
+    font-size: 3.5em;
+    text-align: center;
+    margin: 20px 0;
+}
+
+.info-container ul{
+    color: #fff;
+    font-size: 1.5em;
+}
+
+.info-container li p{
+    margin-bottom: 0;
+}
+
+.info-container li span{
+    font-size: 16px;
+    display: block;
+}
+
+
+
+
+
+
+
+
+/* ========================== Chat Section ========================== */
+
+.contact-section{
+    width: 100%;
+    height: auto;
+    position: relative;
+    background-color: #fff;
+    z-index: 20;
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.contact-section .contact-info .current{
+    text-align: center;
+    color: #555;
+    font-size: 2em;
+    position: relative;
+    flex: 1 1 auto;
+    line-height: 90px;
+}
+
+.contact-section .contact-info .current:before{
+    content: '';
+    width: 80px;
+    height: 2px;
+    background-color: #555;
+    position: absolute;
+    left: 50%;
+    top: 110px;
+    transform-origin: center;
+    transform: rotate(-90deg) translateY(-40px);
+}
+
+.contact-section .contact-info .tools{
+    padding-top: 110px;
+    font-size: 20px;
+    max-width: 350px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.contact-info .tools .seprator{
+    padding: 5px
+}
+
+.contact-info .tools a{
+    text-decoration: none;
+    color: #007979;
+    transition: color 0.2s;
+}
+
+.contact-info .tools a:hover,.contact-info .tools a:focus{
+    color: #003c3c;
+}
+
+
+
+
+/* ==========================================================================
+   Helper classes
+   ========================================================================== */
+
+/*
+ * Hide visually and from screen readers
+ */
+
+.hidden {
+    display: none !important;
+}
+
+/*
+ * Hide only visually, but have it available for screen readers:
+ * http://snook.ca/archives/html_and_css/hiding-content-for-accessibility
+ */
+
+.visuallyhidden {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+}
+
+/*
+ * Extends the .visuallyhidden class to allow the element
+ * to be focusable when navigated to via the keyboard:
+ * https://www.drupal.org/node/897638
+ */
+
+.visuallyhidden.focusable:active,
+.visuallyhidden.focusable:focus {
+    clip: auto;
+    height: auto;
+    margin: 0;
+    overflow: visible;
+    position: static;
+    width: auto;
+}
+
+/*
+ * Hide visually and from screen readers, but maintain layout
+ */
+
+.invisible {
+    visibility: hidden;
+}
+
+/*
+ * Clearfix: contain floats
+ *
+ * For modern browsers
+ * 1. The space content is one way to avoid an Opera bug when the
+ *    `contenteditable` attribute is included anywhere else in the document.
+ *    Otherwise it causes space to appear at the top and bottom of elements
+ *    that receive the `clearfix` class.
+ * 2. The use of `table` rather than `block` is only necessary if using
+ *    `:before` to contain the top-margins of child elements.
+ */
+
+.clearfix:before,
+.clearfix:after {
+    content: " "; /* 1 */
+    display: table; /* 2 */
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+/* ==========================================================================
+   EXAMPLE Media Queries for Responsive Design.
+   These examples override the primary ('mobile first') styles.
+   Modify as content requires.
+   ========================================================================== */
+
+@media print,
+       (-webkit-min-device-pixel-ratio: 1.25),
+       (min-resolution: 1.25dppx),
+       (min-resolution: 120dpi) {
+    /* Style adjustments for high resolution devices */
+}
+
+/* ==========================================================================
+   Print styles.
+   Inlined to avoid the additional HTTP request:
+   http://www.phpied.com/delay-loading-your-print-css/
+   ========================================================================== */
+
+@media print {
+    *,
+    *:before,
+    *:after,
+    *:first-letter,
+    *:first-line {
+        background: transparent !important;
+        color: #000 !important; /* Black prints faster:
+                                   http://www.sanbeiji.com/archives/953 */
+        box-shadow: none !important;
+        text-shadow: none !important;
+    }
+
+    a,
+    a:visited {
+        text-decoration: underline;
+    }
+
+    a[href]:after {
+        content: " (" attr(href) ")";
+    }
+
+    abbr[title]:after {
+        content: " (" attr(title) ")";
+    }
+
+    /*
+     * Don't show links that are fragment identifiers,
+     * or use the `javascript:` pseudo protocol
+     */
+
+    a[href^="#"]:after,
+    a[href^="javascript:"]:after {
+        content: "";
+    }
+
+    pre,
+    blockquote {
+        border: 1px solid #999;
+        page-break-inside: avoid;
+    }
+
+    /*
+     * Printing Tables:
+     * http://css-discuss.incutio.com/wiki/Printing_Tables
+     */
+
+    thead {
+        display: table-header-group;
+    }
+
+    tr,
+    img {
+        page-break-inside: avoid;
+    }
+
+    img {
+        max-width: 100% !important;
+    }
+
+    p,
+    h2,
+    h3 {
+        orphans: 3;
+        widows: 3;
+    }
+
+    h2,
+    h3 {
+        page-break-after: avoid;
+    }
+}
+
