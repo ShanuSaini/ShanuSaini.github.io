@@ -20,46 +20,54 @@
     var poseNext = root.querySelector("#hsPoseNext");
     var expandedList = false;
 
+    function hsPromptLibrary_image(photoId, width, height, crop) {
+      var url = "https://images.unsplash.com/photo-" + photoId + "?w=" + width + "&h=" + height + "&fit=crop";
+      if (crop) {
+        url += "&crop=" + crop;
+      }
+      return url;
+    }
+
     var referencePoses = [
       {
         title: "Executive Seated",
-        image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=320&h=400&fit=crop&crop=faces",
-        download: "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=1200&fit=crop&crop=faces"
+        image: hsPromptLibrary_image("1556157382-97eda2d62296", 320, 400, "entropy"),
+        download: hsPromptLibrary_image("1556157382-97eda2d62296", 1200, 1600, "entropy")
       },
       {
         title: "Arms Crossed Executive",
-        image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=320&h=400&fit=crop&crop=faces",
-        download: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=1200&fit=crop&crop=faces"
+        image: hsPromptLibrary_image("1519085360753-af0119f7cbe7", 320, 400),
+        download: hsPromptLibrary_image("1519085360753-af0119f7cbe7", 1200, 1600)
       },
       {
         title: "Standing Executive",
-        image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=320&h=400&fit=crop&crop=faces",
-        download: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=1200&fit=crop&crop=faces"
+        image: hsPromptLibrary_image("1560250097-0b93528c311a", 320, 400, "faces"),
+        download: hsPromptLibrary_image("1560250097-0b93528c311a", 1200, 1600, "faces")
       },
       {
         title: "Confident Lean",
-        image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=320&h=400&fit=crop&crop=faces",
-        download: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1200&fit=crop&crop=faces"
+        image: hsPromptLibrary_image("1729106657786-ef318f75e365", 320, 400),
+        download: hsPromptLibrary_image("1729106657786-ef318f75e365", 1200, 1600)
       },
       {
         title: "Hands Together Executive",
-        image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=320&h=400&fit=crop&crop=faces",
-        download: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=1200&fit=crop&crop=faces"
+        image: hsPromptLibrary_image("1633332755192-727a05c4013d", 320, 400, "top"),
+        download: hsPromptLibrary_image("1633332755192-727a05c4013d", 1200, 1600, "top")
       },
       {
         title: "Looking Away Executive",
-        image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=320&h=400&fit=crop&crop=faces",
-        download: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=1200&fit=crop&crop=faces"
+        image: hsPromptLibrary_image("1472099645785-5658abf4ff4e", 320, 400, "faces"),
+        download: hsPromptLibrary_image("1472099645785-5658abf4ff4e", 1200, 1600, "faces")
       },
       {
         title: "CEO at Desk Pose",
-        image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=320&h=400&fit=crop&crop=faces",
-        download: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=1200&fit=crop&crop=faces"
+        image: hsPromptLibrary_image("1573496359142-b8d87734a5a2", 320, 400, "entropy"),
+        download: hsPromptLibrary_image("1573496359142-b8d87734a5a2", 1200, 1600, "entropy")
       },
       {
         title: "Window Light Portrait",
-        image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=320&h=400&fit=crop&crop=faces",
-        download: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=1200&fit=crop&crop=faces"
+        image: hsPromptLibrary_image("1544005313-94ddf0286df2", 320, 400, "faces"),
+        download: hsPromptLibrary_image("1544005313-94ddf0286df2", 1200, 1600, "faces")
       }
     ];
 
@@ -69,7 +77,7 @@
         tag: "Professional",
         tagClass: "hs-pill-pro",
         desc: "High-end executive portrait with a confident and authoritative presence.",
-        image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=160&h=160&fit=crop&crop=faces",
+        image: hsPromptLibrary_image("1560250097-0b93528c311a", 160, 160, "faces"),
         text: "Professional headshot of a confident executive, wearing a [OUTFIT], [POSE] pose, [BACKGROUND] background, [MOOD] expression, [STYLE] lighting, sharp focus on face, natural skin texture, corporate photography quality, 85mm lens look."
       },
       {
@@ -77,7 +85,7 @@
         tag: "Essential",
         tagClass: "hs-pill-essential",
         desc: "Clean, approachable portrait optimized for LinkedIn and professional profiles.",
-        image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=160&h=160&fit=crop&crop=faces",
+        image: hsPromptLibrary_image("1560250097-0b93528c311a", 160, 160, "faces"),
         text: "LinkedIn-ready professional headshot, [OUTFIT], [POSE] pose, [BACKGROUND] background, [MOOD] and approachable expression, [STYLE] style, soft flattering light, crisp detail, neutral color grading, suitable for business profile photo."
       },
       {
@@ -85,7 +93,7 @@
         tag: "Founder",
         tagClass: "hs-pill-founder",
         desc: "Modern founder look that feels visionary, credible, and investor-ready.",
-        image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=160&h=160&fit=crop&crop=faces",
+        image: hsPromptLibrary_image("1519085360753-af0119f7cbe7", 160, 160),
         text: "Startup founder headshot, [OUTFIT], [POSE] pose, [BACKGROUND] background, [MOOD] energy, [STYLE] aesthetic, contemporary business portrait, authentic and polished, subtle depth of field, premium editorial quality."
       },
       {
@@ -93,7 +101,7 @@
         tag: "Speaking",
         tagClass: "hs-pill-speaking",
         desc: "Dynamic speaker portrait with presence, warmth, and stage-ready charisma.",
-        image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=160&h=160&fit=crop&crop=faces",
+        image: hsPromptLibrary_image("1573496359142-b8d87734a5a2", 160, 160, "entropy"),
         text: "Professional speaker headshot, [OUTFIT], [POSE] pose, [BACKGROUND] background, [MOOD] charisma, [STYLE] lighting, engaging eye contact, polished yet human, conference speaker portrait style."
       },
       {
@@ -101,7 +109,7 @@
         tag: "Creative",
         tagClass: "hs-pill-creative",
         desc: "Stylish creative professional portrait with editorial flair.",
-        image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=160&h=160&fit=crop&crop=faces",
+        image: hsPromptLibrary_image("1729106657786-ef318f75e365", 160, 160),
         text: "Creative director headshot, [OUTFIT], [POSE] pose, [BACKGROUND] background, [MOOD] expression, [STYLE] mood, fashion-forward business portrait, refined styling, magazine-quality finish."
       },
       {
@@ -109,7 +117,7 @@
         tag: "Tech",
         tagClass: "hs-pill-tech",
         desc: "Sharp, modern portrait for engineering and product leadership roles.",
-        image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=160&h=160&fit=crop&crop=faces",
+        image: hsPromptLibrary_image("1633332755192-727a05c4013d", 160, 160, "top"),
         text: "Technology leader headshot, [OUTFIT], [POSE] pose, [BACKGROUND] background, [MOOD] confidence, [STYLE] lighting, clean modern aesthetic, minimal distractions, high clarity facial detail."
       },
       {
@@ -117,7 +125,7 @@
         tag: "Healthcare",
         tagClass: "hs-pill-health",
         desc: "Trustworthy clinical portrait with warmth and professional credibility.",
-        image: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=160&h=160&fit=crop&crop=faces",
+        image: hsPromptLibrary_image("1612349317150-e413f6a5b16d", 160, 160, "faces"),
         text: "Medical professional headshot, [OUTFIT], [POSE] pose, [BACKGROUND] background, [MOOD] reassuring expression, [STYLE] style, trustworthy and compassionate, clinic or hospital portrait quality."
       },
       {
@@ -125,7 +133,7 @@
         tag: "Sales",
         tagClass: "hs-pill-sales",
         desc: "Friendly, polished portrait that builds instant client trust.",
-        image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=160&h=160&fit=crop&crop=faces",
+        image: hsPromptLibrary_image("1544005313-94ddf0286df2", 160, 160, "faces"),
         text: "Real estate professional headshot, [OUTFIT], [POSE] pose, [BACKGROUND] background, [MOOD] welcoming smile, [STYLE] lighting, approachable and successful, bright clean portrait for marketing materials."
       },
       {
@@ -133,7 +141,7 @@
         tag: "Legal",
         tagClass: "hs-pill-legal",
         desc: "Authoritative legal portrait with gravitas and polish.",
-        image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=160&h=160&fit=crop&crop=faces",
+        image: hsPromptLibrary_image("1560250097-0b93528c311a", 160, 160, "faces"),
         text: "Attorney headshot, [OUTFIT], [POSE] pose, [BACKGROUND] background, [MOOD] composure, [STYLE] style, prestigious law firm portrait, sharp suit details, confident professional demeanor."
       },
       {
@@ -141,7 +149,7 @@
         tag: "Author",
         tagClass: "hs-pill-author",
         desc: "Thoughtful portrait for book covers, podcasts, and personal brands.",
-        image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=160&h=160&fit=crop&crop=faces",
+        image: hsPromptLibrary_image("1544005313-94ddf0286df2", 160, 160, "faces"),
         text: "Author headshot, [OUTFIT], [POSE] pose, [BACKGROUND] background, [MOOD] thoughtful expression, [STYLE] lighting, literary portrait aesthetic, subtle storytelling mood, premium publishing quality."
       },
       {
@@ -149,7 +157,7 @@
         tag: "Remote",
         tagClass: "hs-pill-remote",
         desc: "Relaxed yet professional look for remote teams and modern workplaces.",
-        image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=160&h=160&fit=crop&crop=faces",
+        image: hsPromptLibrary_image("1556157382-97eda2d62296", 160, 160, "entropy"),
         text: "Remote professional headshot, [OUTFIT], [POSE] pose, [BACKGROUND] background, [MOOD] friendly energy, [STYLE] style, smart casual business portrait, natural and authentic, home-office ready."
       },
       {
@@ -157,7 +165,7 @@
         tag: "Board",
         tagClass: "hs-pill-board",
         desc: "Elite boardroom portrait with understated power and sophistication.",
-        image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=160&h=160&fit=crop&crop=faces",
+        image: hsPromptLibrary_image("1519085360753-af0119f7cbe7", 160, 160),
         text: "Board member headshot, [OUTFIT], [POSE] pose, [BACKGROUND] background, [MOOD] gravitas, [STYLE] lighting, executive boardroom portrait, refined and timeless, premium corporate photography."
       }
     ];
