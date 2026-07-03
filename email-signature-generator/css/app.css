@@ -125,7 +125,7 @@ body {
 
 /* ── Page ── */
 .esg-page {
-  max-width: 1320px;
+  max-width: 1460px;
   margin: 0 auto;
   padding: 1.75rem 2rem 2.5rem;
 }
@@ -691,7 +691,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.65rem 1rem;
+  padding: 0.65rem 1rem 0;
   gap: 0.5rem;
 }
 
@@ -710,8 +710,8 @@ body {
 }
 
 .esg-card__name {
-  font-size: 0.82rem;
-  font-weight: 600;
+  font-size: 1rem;
+  font-weight: 700;
   color: var(--esg-text);
   white-space: nowrap;
   overflow: hidden;

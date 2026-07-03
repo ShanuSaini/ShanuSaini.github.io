@@ -281,6 +281,56 @@
     }
   };
 
+  /** HTML comment markers for AI prompt / template editing */
+  var htmlComments = {
+    wrap: function (label, html) {
+      if (!html || !String(html).trim()) return '';
+      return '<!-- ' + label + ' Start -->\n' + html + '\n<!-- ' + label + ' End -->';
+    },
+
+    iconLabel: function (iconName) {
+      var labels = {
+        phone: 'Phone Icon',
+        email: 'Email Icon',
+        website: 'Website Icon',
+        address: 'Address Icon',
+        linkedin: 'LinkedIn Icon',
+        youtube: 'YouTube Icon',
+        facebook: 'Facebook Icon',
+        instagram: 'Instagram Icon',
+        twitter: 'Twitter Icon',
+        pinterest: 'Pinterest Icon'
+      };
+      return labels[iconName] || iconName + ' Icon';
+    },
+
+    contactRowLabel: function (field) {
+      var labels = {
+        phone: 'Phone Contact',
+        email: 'Email Contact',
+        website: 'Website Contact',
+        address: 'Address Contact'
+      };
+      return labels[field] || field + ' Contact';
+    },
+
+    wrapContactBlock: function (html) {
+      return this.wrap('Contact Block', html);
+    },
+
+    wrapSocialIcons: function (html) {
+      return this.wrap('Social Icons', html);
+    },
+
+    wrapProfileImage: function (html) {
+      return this.wrap('Profile Image', html);
+    },
+
+    wrapCompanyLogo: function (html) {
+      return this.wrap('Company Logo', html);
+    }
+  };
+
   var iconHelper = {
     /** Template 02 (Modern Minimal) reference icon sizing */
     CONTACT_ICON_SIZE: 14,
@@ -368,7 +418,7 @@
       }
       var div = document.createElement('div');
       div.appendChild(clone);
-      return div.innerHTML;
+      return htmlComments.wrap(htmlComments.iconLabel(iconName), div.innerHTML);
     },
 
     /** Wrap icon in centered table cell (email-safe) */
@@ -399,27 +449,29 @@
 
       if (style === 'plain') {
         icon = this.getIconSvg(doc, key, accent, this.SOCIAL_ICON_SIZE, accent);
-        return (
+        return htmlComments.wrap(
+          htmlComments.iconLabel(key) + ' Link',
           '<a href="' +
-          escapeHtml(href) +
-          '" target="_blank" style="' +
-          linkStyle +
-          'padding:0 2px;">' +
-          icon +
-          '</a>'
+            escapeHtml(href) +
+            '" target="_blank" style="' +
+            linkStyle +
+            'padding:0 2px;">' +
+            icon +
+            '</a>'
         );
       }
 
       if (style === 'compact') {
         icon = this.getIconSvg(doc, key, accent, this.SOCIAL_ICON_SIZE, accent);
-        return (
+        return htmlComments.wrap(
+          htmlComments.iconLabel(key) + ' Link',
           '<a href="' +
-          escapeHtml(href) +
-          '" target="_blank" style="' +
-          linkStyle +
-          '">' +
-          icon +
-          '</a>'
+            escapeHtml(href) +
+            '" target="_blank" style="' +
+            linkStyle +
+            '">' +
+            icon +
+            '</a>'
         );
       }
 
@@ -465,22 +517,23 @@
         cellExtra = 'background:' + escapeHtml(accent) + ';border-radius:50%;';
       }
 
-      return (
+      return htmlComments.wrap(
+        htmlComments.iconLabel(key) + ' Link',
         '<a href="' +
-        escapeHtml(href) +
-        '" target="_blank" style="' +
-        linkStyle +
-        '">' +
-        '<table role="presentation" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;">' +
-        '<tr><td align="center" valign="middle" style="width:' +
-        box +
-        'px;height:' +
-        box +
-        'px;text-align:center;vertical-align:middle;line-height:0;mso-line-height-rule:exactly;' +
-        cellExtra +
-        '">' +
-        icon +
-        '</td></tr></table></a>'
+          escapeHtml(href) +
+          '" target="_blank" style="' +
+          linkStyle +
+          '">' +
+          '<table role="presentation" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;">' +
+          '<tr><td align="center" valign="middle" style="width:' +
+          box +
+          'px;height:' +
+          box +
+          'px;text-align:center;vertical-align:middle;line-height:0;mso-line-height-rule:exactly;' +
+          cellExtra +
+          '">' +
+          icon +
+          '</td></tr></table></a>'
       );
     },
 
@@ -506,11 +559,11 @@
       if (!cells.length) return '';
 
       if (style === 'compact') {
-        return (
+        return htmlComments.wrapSocialIcons(
           '<table role="presentation" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;">' +
-          '<tr><td style="vertical-align:middle;line-height:0;">' +
-          cells.join('<span style="color:#d1d5db;font-size:12px;padding:0 6px;">|</span>') +
-          '</td></tr></table>'
+            '<tr><td style="vertical-align:middle;line-height:0;">' +
+            cells.join('<span style="color:#d1d5db;font-size:12px;padding:0 6px;">|</span>') +
+            '</td></tr></table>'
         );
       }
 
@@ -521,7 +574,9 @@
             return '<tr><td style="padding:0 0 ' + vertGap + ' 0;line-height:0;">' + c + '</td></tr>';
           })
           .join('');
-        return '<table role="presentation" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;">' + rows + '</table>';
+        return htmlComments.wrapSocialIcons(
+          '<table role="presentation" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;">' + rows + '</table>'
+        );
       }
 
       var gap =
@@ -542,7 +597,9 @@
           return '<td style="vertical-align:middle;line-height:0;' + pad + '">' + c + '</td>';
         })
         .join('');
-      return '<table role="presentation" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;"><tr>' + tds + '</tr></table>';
+      return htmlComments.wrapSocialIcons(
+        '<table role="presentation" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;"><tr>' + tds + '</tr></table>'
+      );
     },
 
     /** Vertical social columns — max N icons per column (08 Profile Stack) */
@@ -590,10 +647,10 @@
           '</table></td>';
       }
 
-      return (
+      return htmlComments.wrapSocialIcons(
         '<table role="presentation" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;"><tr>' +
-        colTds +
-        '</tr></table>'
+          colTds +
+          '</tr></table>'
       );
     },
     buildSocialRowOutlineDots: function (doc, data) {
@@ -626,21 +683,22 @@
             ';font-size:14px;vertical-align:middle;font-family:Tahoma,Geneva,Arial,sans-serif;line-height:1;">&#8226;</td>';
         }
       }
-      return (
+      return htmlComments.wrapSocialIcons(
         '<table role="presentation" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;"><tr>' +
-        tds +
-        '</tr></table>'
+          tds +
+          '</tr></table>'
       );
     },
 
     /** Wrap social row for centered alignment in email clients */
     wrapSocialRowCenter: function (socialHtml) {
       if (!socialHtml) return '';
-      return (
+      return htmlComments.wrap(
+        'Social Icons Centered',
         '<table role="presentation" cellpadding="0" cellspacing="0" border="0" align="center" style="margin:0 auto;border-collapse:collapse;">' +
-        '<tr><td align="center" style="text-align:center;line-height:0;mso-line-height-rule:exactly;">' +
-        socialHtml +
-        '</td></tr></table>'
+          '<tr><td align="center" style="text-align:center;line-height:0;mso-line-height-rule:exactly;">' +
+          socialHtml +
+          '</td></tr></table>'
       );
     },
 
@@ -678,14 +736,15 @@
       } else {
         link = '<span style="color:#374151;">' + escapeHtml(val) + '</span>';
       }
-      return (
+      return htmlComments.wrap(
+        htmlComments.contactRowLabel(field),
         '<tr>' +
-        '<td style="padding:2px 6px 2px 0;vertical-align:middle;width:18px;line-height:0;">' +
-        icon +
-        '</td>' +
-        '<td style="padding:2px 0;font-family:Tahoma,Geneva,Arial,sans-serif;font-size:13px;vertical-align:middle;color:#374151;">' +
-        link +
-        '</td></tr>'
+          '<td style="padding:2px 6px 2px 0;vertical-align:middle;width:18px;line-height:0;">' +
+          icon +
+          '</td>' +
+          '<td style="padding:2px 0;font-family:Tahoma,Geneva,Arial,sans-serif;font-size:13px;vertical-align:middle;color:#374151;">' +
+          link +
+          '</td></tr>'
       );
     },
 
@@ -721,22 +780,23 @@
       } else {
         link = '<span style="color:#374151;">' + escapeHtml(val) + '</span>';
       }
-      return (
+      return htmlComments.wrap(
+        htmlComments.contactRowLabel(field),
         '<tr>' +
-        '<td style="padding:0 4px 0 0;vertical-align:middle;width:' +
-        box +
-        'px;line-height:0;mso-line-height-rule:exactly;">' +
-        '<table role="presentation" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;">' +
-        '<tr><td align="center" valign="middle" style="width:' +
-        box +
-        'px;height:' +
-        box +
-        'px;text-align:center;vertical-align:middle;line-height:0;mso-line-height-rule:exactly;background:#f3f4f6;border-radius:50%;">' +
-        icon +
-        '</td></tr></table></td>' +
-        '<td style="padding:0;font-family:Tahoma,Geneva,Arial,sans-serif;font-size:13px;vertical-align:middle;color:#374151;line-height:1.25;">' +
-        link +
-        '</td></tr>'
+          '<td style="padding:0 4px 0 0;vertical-align:middle;width:' +
+          box +
+          'px;line-height:0;mso-line-height-rule:exactly;">' +
+          '<table role="presentation" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;">' +
+          '<tr><td align="center" valign="middle" style="width:' +
+          box +
+          'px;height:' +
+          box +
+          'px;text-align:center;vertical-align:middle;line-height:0;mso-line-height-rule:exactly;background:#f3f4f6;border-radius:50%;">' +
+          icon +
+          '</td></tr></table></td>' +
+          '<td style="padding:0;font-family:Tahoma,Geneva,Arial,sans-serif;font-size:13px;vertical-align:middle;color:#374151;line-height:1.25;">' +
+          link +
+          '</td></tr>'
       );
     },
 
@@ -771,14 +831,15 @@
       } else {
         link = '<span style="color:#e5e7eb;">' + escapeHtml(val) + '</span>';
       }
-      return (
+      return htmlComments.wrap(
+        htmlComments.contactRowLabel(field),
         '<tr>' +
-        '<td style="padding:2px 6px 2px 0;vertical-align:middle;width:18px;line-height:0;">' +
-        icon +
-        '</td>' +
-        '<td style="padding:2px 0;font-family:Tahoma,Geneva,Arial,sans-serif;font-size:13px;vertical-align:middle;color:#e5e7eb;">' +
-        link +
-        '</td></tr>'
+          '<td style="padding:2px 6px 2px 0;vertical-align:middle;width:18px;line-height:0;">' +
+          icon +
+          '</td>' +
+          '<td style="padding:2px 0;font-family:Tahoma,Geneva,Arial,sans-serif;font-size:13px;vertical-align:middle;color:#e5e7eb;">' +
+          link +
+          '</td></tr>'
       );
     },
 
@@ -796,16 +857,16 @@
         count++;
       }
       if (!left && !right) return '';
-      return (
+      return htmlComments.wrapContactBlock(
         '<table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%"><tr>' +
-        '<td style="vertical-align:top;padding-right:12px;width:50%;">' +
-        '<table role="presentation" cellpadding="0" cellspacing="0" border="0">' +
-        left +
-        '</table></td>' +
-        '<td style="vertical-align:top;width:50%;">' +
-        '<table role="presentation" cellpadding="0" cellspacing="0" border="0">' +
-        right +
-        '</table></td></tr></table>'
+          '<td style="vertical-align:top;padding-right:12px;width:50%;">' +
+          '<table role="presentation" cellpadding="0" cellspacing="0" border="0">' +
+          left +
+          '</table></td>' +
+          '<td style="vertical-align:top;width:50%;">' +
+          '<table role="presentation" cellpadding="0" cellspacing="0" border="0">' +
+          right +
+          '</table></td></tr></table>'
       );
     },
 
@@ -844,11 +905,14 @@
           text = '<span style="color:#374151;font-size:12px;">' + escapeHtml(val) + '</span>';
         }
         items.push(
-          '<td style="padding:4px 12px 4px 0;vertical-align:middle;white-space:nowrap;">' +
-            icon +
-            ' <span style="padding-left:4px;">' +
-            text +
-            '</span></td>'
+          htmlComments.wrap(
+            htmlComments.contactRowLabel(fields[i]),
+            '<td style="padding:4px 12px 4px 0;vertical-align:middle;white-space:nowrap;">' +
+              icon +
+              ' <span style="padding-left:4px;">' +
+              text +
+              '</span></td>'
+          )
         );
       }
       if (!items.length) return '';
@@ -865,10 +929,10 @@
           (items[j + 1] || '<td></td>') +
           '</tr>';
       }
-      return (
+      return htmlComments.wrapContactBlock(
         '<table role="presentation" cellpadding="0" cellspacing="0" border="0" style="font-family:Tahoma,Geneva,Arial,sans-serif;">' +
-        rows +
-        '</table>'
+          rows +
+          '</table>'
       );
     },
 
@@ -921,15 +985,16 @@
       } else {
         link = '<span style="color:#444444;">' + escapeHtml(val) + '</span>';
       }
-      return (
+      return htmlComments.wrap(
+        htmlComments.contactRowLabel(field),
         '<tr>' +
-        '<td style="vertical-align:middle;width:18px;line-height:0;mso-line-height-rule:exactly;">' +
-        icon +
-        '</td>' +
-        '<td style="width:12px;font-size:0;line-height:0;mso-line-height-rule:exactly;">&nbsp;</td>' +
-        '<td style="vertical-align:middle;font-family:Tahoma,Geneva,Arial,sans-serif;font-size:14px;color:#444444;line-height:1.35;">' +
-        link +
-        '</td></tr>'
+          '<td style="vertical-align:middle;width:18px;line-height:0;mso-line-height-rule:exactly;">' +
+          icon +
+          '</td>' +
+          '<td style="width:12px;font-size:0;line-height:0;mso-line-height-rule:exactly;">&nbsp;</td>' +
+          '<td style="vertical-align:middle;font-family:Tahoma,Geneva,Arial,sans-serif;font-size:14px;color:#444444;line-height:1.35;">' +
+          link +
+          '</td></tr>'
       );
     },
 
@@ -949,10 +1014,10 @@
         added = true;
       }
       if (!rows) return '';
-      return (
+      return htmlComments.wrapContactBlock(
         '<table role="presentation" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;font-family:Tahoma,Geneva,Arial,sans-serif;">' +
-        rows +
-        '</table>'
+          rows +
+          '</table>'
       );
     },
 
@@ -987,14 +1052,15 @@
       } else {
         link = '<span style="color:#374151;">' + escapeHtml(val) + '</span>';
       }
-      return (
+      return htmlComments.wrap(
+        htmlComments.contactRowLabel(field),
         '<tr>' +
-        '<td style="padding:2px 6px 2px 0;vertical-align:middle;width:18px;line-height:0;mso-line-height-rule:exactly;">' +
-        icon +
-        '</td>' +
-        '<td style="padding:2px 0;font-family:Tahoma,Geneva,Arial,sans-serif;font-size:13px;vertical-align:middle;color:#374151;line-height:1.35;">' +
-        link +
-        '</td></tr>'
+          '<td style="padding:2px 6px 2px 0;vertical-align:middle;width:18px;line-height:0;mso-line-height-rule:exactly;">' +
+          icon +
+          '</td>' +
+          '<td style="padding:2px 0;font-family:Tahoma,Geneva,Arial,sans-serif;font-size:13px;vertical-align:middle;color:#374151;line-height:1.35;">' +
+          link +
+          '</td></tr>'
       );
     },
 
@@ -1037,13 +1103,14 @@
         text =
           '<span style="color:#374151;font-size:' + fs + 'px;">' + escapeHtml(val) + '</span>';
       }
-      return (
+      return htmlComments.wrap(
+        htmlComments.contactRowLabel(field),
         '<td style="vertical-align:middle;width:20px;line-height:0;mso-line-height-rule:exactly;">' +
-        icon +
-        '</td>' +
-        '<td style="padding-left:6px;vertical-align:middle;font-family:Tahoma,Geneva,Arial,sans-serif;">' +
-        text +
-        '</td>'
+          icon +
+          '</td>' +
+          '<td style="padding-left:6px;vertical-align:middle;font-family:Tahoma,Geneva,Arial,sans-serif;">' +
+          text +
+          '</td>'
       );
     },
 
@@ -1091,11 +1158,11 @@
       }
 
       if (!row1 && !row2) return '';
-      return (
+      return htmlComments.wrapContactBlock(
         '<table role="presentation" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;font-family:Tahoma,Geneva,Arial,sans-serif;">' +
-        row1 +
-        row2 +
-        '</table>'
+          row1 +
+          row2 +
+          '</table>'
       );
     },
 
@@ -1107,10 +1174,10 @@
         rows += this.contactLineSpaced(doc, fields[i], data);
       }
       if (!rows) return '';
-      return (
+      return htmlComments.wrapContactBlock(
         '<table role="presentation" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;font-family:Tahoma,Geneva,Arial,sans-serif;">' +
-        rows +
-        '</table>'
+          rows +
+          '</table>'
       );
     },
 
@@ -1152,16 +1219,17 @@
       } else {
         link = '<span style="color:#444444;font-size:13px;line-height:1.4rem;">' + escapeHtml(val) + '</span>';
       }
-      return (
+      return htmlComments.wrap(
+        htmlComments.contactRowLabel(field),
         '<tr>' +
-        '<td width="18" style="width:18px;vertical-align:middle;line-height:0;mso-line-height-rule:exactly;">' +
-        icon +
-        '</td>' +
-        this.contactIconGapCell() +
-        '<td style="font-size:13px;color:#444444;line-height:1.4rem;vertical-align:middle;font-family:Tahoma,Geneva,Arial,sans-serif;">' +
-        link +
-        '</td>' +
-        '</tr>'
+          '<td width="18" style="width:18px;vertical-align:middle;line-height:0;mso-line-height-rule:exactly;">' +
+          icon +
+          '</td>' +
+          this.contactIconGapCell() +
+          '<td style="font-size:13px;color:#444444;line-height:1.4rem;vertical-align:middle;font-family:Tahoma,Geneva,Arial,sans-serif;">' +
+          link +
+          '</td>' +
+          '</tr>'
       );
     },
 
@@ -1173,10 +1241,10 @@
         rows += this.contactLineStacked(doc, fields[i], data);
       }
       if (!rows) return '';
-      return (
+      return htmlComments.wrapContactBlock(
         '<table role="presentation" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;font-family:Tahoma,Geneva,Arial,sans-serif;">' +
-        rows +
-        '</table>'
+          rows +
+          '</table>'
       );
     },
 
@@ -1196,10 +1264,10 @@
         added = true;
       }
       if (!rows) return '';
-      return (
+      return htmlComments.wrapContactBlock(
         '<table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin-top:18px;border-collapse:collapse;font-family:Tahoma,Geneva,Arial,sans-serif;">' +
-        rows +
-        '</table>'
+          rows +
+          '</table>'
       );
     },
 
@@ -1236,23 +1304,24 @@
       } else {
         link = '<span style="color:#222222;font-size:14px;">' + escapeHtml(val) + '</span>';
       }
-      return (
+      return htmlComments.wrap(
+        htmlComments.contactRowLabel(field),
         '<tr>' +
-        '<td width="32" align="center" style="width:32px;text-align:center;vertical-align:middle;">' +
-        '<table role="presentation" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;margin:0 auto;">' +
-        '<tr><td align="center" valign="middle" style="width:' +
-        this.SOCIAL_BOX +
-        'px;height:' +
-        this.SOCIAL_BOX +
-        'px;border-radius:50%;background:' +
-        escapeHtml(lightBg) +
-        ';text-align:center;vertical-align:middle;line-height:0;mso-line-height-rule:exactly;">' +
-        icon +
-        '</td></tr></table></td>' +
-        this.contactIconGapCell() +
-        '<td style="padding:5px 0;vertical-align:middle;font-family:Tahoma,Geneva,Arial,sans-serif;">' +
-        link +
-        '</td></tr>'
+          '<td width="32" align="center" style="width:32px;text-align:center;vertical-align:middle;">' +
+          '<table role="presentation" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;margin:0 auto;">' +
+          '<tr><td align="center" valign="middle" style="width:' +
+          this.SOCIAL_BOX +
+          'px;height:' +
+          this.SOCIAL_BOX +
+          'px;border-radius:50%;background:' +
+          escapeHtml(lightBg) +
+          ';text-align:center;vertical-align:middle;line-height:0;mso-line-height-rule:exactly;">' +
+          icon +
+          '</td></tr></table></td>' +
+          this.contactIconGapCell() +
+          '<td style="padding:5px 0;vertical-align:middle;font-family:Tahoma,Geneva,Arial,sans-serif;">' +
+          link +
+          '</td></tr>'
       );
     },
 
@@ -1272,10 +1341,10 @@
         added = true;
       }
       if (!rows) return '';
-      return (
+      return htmlComments.wrapContactBlock(
         '<table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="margin-top:8px;border-collapse:collapse;font-family:Tahoma,Geneva,Arial,sans-serif;">' +
-        rows +
-        '</table>'
+          rows +
+          '</table>'
       );
     },
 
@@ -1285,33 +1354,35 @@
       if (!brand.line2) return '';
       var accent = data.accentColor || '#882B42';
       var secondary = this.deriveSecondary(accent);
-      return (
+      return htmlComments.wrap(
+        'Company Brand Divider',
         '<table role="presentation" cellpadding="0" cellspacing="0" border="0" align="center" style="margin-top:6px;border-collapse:collapse;">' +
-        '<tr>' +
-        '<td style="width:36px;border-top:1px solid ' +
-        escapeHtml(secondary) +
-        ';font-size:0;line-height:0;height:1px;">&nbsp;</td>' +
-        '<td style="padding:0 10px;font-family:' +
-        FONTS.name +
-        ';font-size:12px;font-weight:700;letter-spacing:4px;color:#111111;white-space:nowrap;">' +
-        escapeHtml(brand.line2) +
-        '</td>' +
-        '<td style="width:36px;border-top:1px solid ' +
-        escapeHtml(secondary) +
-        ';font-size:0;line-height:0;height:1px;">&nbsp;</td>' +
-        '</tr></table>'
+          '<tr>' +
+          '<td style="width:36px;border-top:1px solid ' +
+          escapeHtml(secondary) +
+          ';font-size:0;line-height:0;height:1px;">&nbsp;</td>' +
+          '<td style="padding:0 10px;font-family:' +
+          FONTS.name +
+          ';font-size:12px;font-weight:700;letter-spacing:4px;color:#111111;white-space:nowrap;">' +
+          escapeHtml(brand.line2) +
+          '</td>' +
+          '<td style="width:36px;border-top:1px solid ' +
+          escapeHtml(secondary) +
+          ';font-size:0;line-height:0;height:1px;">&nbsp;</td>' +
+          '</tr></table>'
       );
     },
 
     buildCompanyBrandLine2Block: function (data) {
       var brand = this.splitCompanyBrand(data.companyName);
       if (!brand.line2) return '';
-      return (
+      return htmlComments.wrap(
+        'Company Brand Line 2',
         '<p style="margin:6px 0 0;font-size:10px;letter-spacing:3px;color:#ffffff;font-weight:600;line-height:1.3;font-family:' +
-        FONTS.body +
-        ';">' +
-        escapeHtml(brand.line2) +
-        '</p>'
+          FONTS.body +
+          ';">' +
+          escapeHtml(brand.line2) +
+          '</p>'
       );
     },
 
@@ -1348,25 +1419,26 @@
       } else {
         link = '<span style="color:#222222;font-size:14px;">' + escapeHtml(val) + '</span>';
       }
-      return (
+      return htmlComments.wrap(
+        htmlComments.contactRowLabel(field),
         '<tr>' +
-        '<td width="32" align="center" style="width:32px;text-align:center;vertical-align:middle;">' +
-        '<table role="presentation" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;margin:0 auto;">' +
-        '<tr><td align="center" valign="middle" style="width:' +
-        this.SOCIAL_BOX +
-        'px;height:' +
-        this.SOCIAL_BOX +
-        'px;border-radius:50%;background:' +
-        escapeHtml(accent) +
-        ';text-align:center;vertical-align:middle;line-height:0;mso-line-height-rule:exactly;">' +
-        icon +
-        '</td></tr></table></td>' +
-        '<td width="16" align="center" style="width:16px;color:' +
-        escapeHtml(secondary) +
-        ';font-size:18px;vertical-align:middle;font-family:Tahoma,Geneva,Arial,sans-serif;">|</td>' +
-        '<td style="padding:10px 0;vertical-align:middle;font-family:Tahoma,Geneva,Arial,sans-serif;">' +
-        link +
-        '</td></tr>'
+          '<td width="32" align="center" style="width:32px;text-align:center;vertical-align:middle;">' +
+          '<table role="presentation" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;margin:0 auto;">' +
+          '<tr><td align="center" valign="middle" style="width:' +
+          this.SOCIAL_BOX +
+          'px;height:' +
+          this.SOCIAL_BOX +
+          'px;border-radius:50%;background:' +
+          escapeHtml(accent) +
+          ';text-align:center;vertical-align:middle;line-height:0;mso-line-height-rule:exactly;">' +
+          icon +
+          '</td></tr></table></td>' +
+          '<td width="16" align="center" style="width:16px;color:' +
+          escapeHtml(secondary) +
+          ';font-size:18px;vertical-align:middle;font-family:Tahoma,Geneva,Arial,sans-serif;">|</td>' +
+          '<td style="padding:10px 0;vertical-align:middle;font-family:Tahoma,Geneva,Arial,sans-serif;">' +
+          link +
+          '</td></tr>'
       );
     },
 
@@ -1387,10 +1459,10 @@
         }
         rows += lines[j];
       }
-      return (
+      return htmlComments.wrapContactBlock(
         '<table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="margin-top:20px;border-collapse:collapse;font-family:Tahoma,Geneva,Arial,sans-serif;">' +
-        rows +
-        '</table>'
+          rows +
+          '</table>'
       );
     },
 
@@ -1429,16 +1501,17 @@
         text = '<span style="color:#444444;font-size:14px;">' + escapeHtml(val) + '</span>';
       }
       var topBorder = withTopBorder ? 'border-top:1px solid #eeeeee;' : '';
-      return (
+      return htmlComments.wrap(
+        htmlComments.contactRowLabel(field),
         '<td align="center" style="' +
-        topBorder +
-        'padding:10px 12px;vertical-align:middle;font-family:Tahoma,Geneva,Arial,sans-serif;">' +
-        '<table role="presentation" cellpadding="0" cellspacing="0" border="0" align="center" style="border-collapse:collapse;margin:0 auto;">' +
-        '<tr><td style="vertical-align:middle;line-height:0;padding-right:6px;mso-line-height-rule:exactly;">' +
-        icon +
-        '</td><td style="vertical-align:middle;font-size:14px;color:#444444;line-height:1.35;">' +
-        text +
-        '</td></tr></table></td>'
+          topBorder +
+          'padding:10px 12px;vertical-align:middle;font-family:Tahoma,Geneva,Arial,sans-serif;">' +
+          '<table role="presentation" cellpadding="0" cellspacing="0" border="0" align="center" style="border-collapse:collapse;margin:0 auto;">' +
+          '<tr><td style="vertical-align:middle;line-height:0;padding-right:6px;mso-line-height-rule:exactly;">' +
+          icon +
+          '</td><td style="vertical-align:middle;font-size:14px;color:#444444;line-height:1.35;">' +
+          text +
+          '</td></tr></table></td>'
       );
     },
 
@@ -1467,13 +1540,13 @@
         this.centeredContactCell(doc, 'address', data, true) +
         '</tr>';
 
-      return (
+      return htmlComments.wrapContactBlock(
         '<table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="border:1px solid ' +
-        escapeHtml(accent) +
-        ';border-radius:14px;border-collapse:separate;border-spacing:0;font-family:Tahoma,Geneva,Arial,sans-serif;">' +
-        row1 +
-        row2 +
-        '</table>'
+          escapeHtml(accent) +
+          ';border-radius:14px;border-collapse:separate;border-spacing:0;font-family:Tahoma,Geneva,Arial,sans-serif;">' +
+          row1 +
+          row2 +
+          '</table>'
       );
     },
 
@@ -1509,12 +1582,13 @@
         company +
         '</text>' +
         '</svg>';
-      return (
+      return htmlComments.wrap(
+        'Gradient Accent Panel',
         '<img src="' +
-        this.svgToDataUri(svg) +
-        '" width="178" height="220" alt="' +
-        this.escapeXml(data.name || '') +
-        '" style="display:block;border:0;width:178px;height:220px;" />'
+          this.svgToDataUri(svg) +
+          '" width="178" height="220" alt="' +
+          this.escapeXml(data.name || '') +
+          '" style="display:block;border:0;width:178px;height:220px;" />'
       );
     },
 
@@ -1545,12 +1619,13 @@
         '</text>' +
         '<rect x="95" y="184" width="30" height="1" fill="#ffffff" opacity=".7"/>' +
         '</svg>';
-      return (
+      return htmlComments.wrap(
+        'Split Curve Panel',
         '<img src="' +
-        this.svgToDataUri(svg) +
-        '" width="220" height="210" alt="' +
-        this.escapeXml(data.name || '') +
-        '" style="display:block;border:0;width:220px;height:210px;" />'
+          this.svgToDataUri(svg) +
+          '" width="220" height="210" alt="' +
+          this.escapeXml(data.name || '') +
+          '" style="display:block;border:0;width:220px;height:210px;" />'
       );
     }
   };
@@ -1716,9 +1791,34 @@
           escapeHtml(secondary) +
           ';background:#ffffff;object-fit:cover;margin:0 auto;" />';
       }
+      if (luxuryHeroImage) {
+        luxuryHeroImage = data.logoBase64
+          ? htmlComments.wrapCompanyLogo(luxuryHeroImage)
+          : htmlComments.wrapProfileImage(luxuryHeroImage);
+      }
       var luxuryHeroBlock = luxuryHeroImage
-        ? '<div style="margin-top:-48px;line-height:0;mso-line-height-rule:exactly;">' + luxuryHeroImage + '</div>'
+        ? htmlComments.wrap(
+            'Hero Image Block',
+            '<div style="margin-top:-48px;line-height:0;mso-line-height-rule:exactly;">' + luxuryHeroImage + '</div>'
+          )
         : '';
+      profileImg = htmlComments.wrapProfileImage(profileImg);
+      profileImgLarge = htmlComments.wrapProfileImage(profileImgLarge);
+      profileImgMedium = htmlComments.wrapProfileImage(profileImgMedium);
+      profileImgCard = htmlComments.wrapProfileImage(profileImgCard);
+      profileSmall = htmlComments.wrapProfileImage(profileSmall);
+      profileImageStack = htmlComments.wrapProfileImage(profileImageStack);
+      profileImgLuxury = htmlComments.wrapProfileImage(profileImgLuxury);
+      logoImg = htmlComments.wrapCompanyLogo(logoImg);
+      logoImgLarge = htmlComments.wrapCompanyLogo(logoImgLarge);
+      logoImgBranding = htmlComments.wrapCompanyLogo(logoImgBranding);
+      logoImgBrandingElegant = htmlComments.wrapCompanyLogo(logoImgBrandingElegant);
+      logoImgBrandingLetterhead = htmlComments.wrapCompanyLogo(logoImgBrandingLetterhead);
+      logoImgDecor = htmlComments.wrapCompanyLogo(logoImgDecor);
+      logoImgCentered = htmlComments.wrapCompanyLogo(logoImgCentered);
+      if (logoOnWhite) {
+        logoOnWhite = htmlComments.wrap('Company Logo on White Background', logoOnWhite);
+      }
       var contactRows = '';
       contactRows += iconHelper.contactLine(doc, 'phone', data);
       contactRows += iconHelper.contactLine(doc, 'email', data);
@@ -1741,14 +1841,20 @@
         );
 
       var taglineBlock = data.tagline
-        ? '<p style="margin:4px 0 0;font-family:' + FONTS.body + ';font-size:12px;color:#64748b;line-height:1.4;">' +
-          escapeHtml(data.tagline) +
-          '</p>'
+        ? htmlComments.wrap(
+            'Tagline',
+            '<p style="margin:4px 0 0;font-family:' + FONTS.body + ';font-size:12px;color:#64748b;line-height:1.4;">' +
+              escapeHtml(data.tagline) +
+              '</p>'
+          )
         : '';
       var otherBlock = data.otherInfo
-        ? '<p style="margin:4px 0 0;font-family:' + FONTS.body + ';font-size:12px;color:#64748b;">' +
-          escapeHtml(data.otherInfo) +
-          '</p>'
+        ? htmlComments.wrap(
+            'Other Info',
+            '<p style="margin:4px 0 0;font-family:' + FONTS.body + ';font-size:12px;color:#64748b;">' +
+              escapeHtml(data.otherInfo) +
+              '</p>'
+          )
         : '';
       var companyBlock = data.companyName
         ? '<span style="font-family:' + FONTS.body + ';font-size:13px;color:' +
@@ -2036,36 +2142,63 @@
     }
   };
 
-  var buildAiPrompt = {
-    annotate: function (html) {
-      var annotated = html;
-      annotated = annotated.replace(
-        /(<img[^>]*alt="[^"]*"[^>]*width="96"[^>]*>)/i,
-        '<!-- USER_IMAGE_START: profile photo 96x96 -->\n$1\n<!-- USER_IMAGE_END -->'
+  var fileDownloadHelper = {
+    safeFilename: function (name) {
+      return (
+        String(name || 'signature')
+          .replace(/[^a-z0-9-_]+/gi, '-')
+          .replace(/^-+|-+$/g, '')
+          .toLowerCase() || 'signature'
       );
-      annotated = annotated.replace(
-        /(<img[^>]*width="120"[^>]*height="48"[^>]*>)/i,
-        '<!-- LOGO_START: company logo -->\n$1\n<!-- LOGO_END -->'
-      );
-      if (annotated.indexOf('USER_IMAGE_START') === -1 && html.indexOf('profileImage') === -1) {
-        annotated = '<!-- USER_IMAGE_START -->\n(none)\n<!-- USER_IMAGE_END -->\n' + annotated;
-      }
-      return annotated;
     },
 
-    build: function (data, templateName, renderedHtml) {
+    downloadText: function (filename, content) {
+      return this.downloadFile(filename, content, 'text/plain;charset=utf-8');
+    },
+
+    downloadHtml: function (filename, content) {
+      return this.downloadFile(filename, content, 'text/html;charset=utf-8');
+    },
+
+    downloadFile: function (filename, content, mimeType) {
+      return new Promise(function (resolve, reject) {
+        try {
+          var blob = new Blob([content], { type: mimeType });
+          var url = URL.createObjectURL(blob);
+          var link = document.createElement('a');
+          link.href = url;
+          link.download = filename;
+          link.style.display = 'none';
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+          URL.revokeObjectURL(url);
+          resolve();
+        } catch (err) {
+          reject(err);
+        }
+      });
+    }
+  };
+
+  var buildAiPrompt = {
+    PROMPT_INTRO:
+      'Act as a World-Class Email Signature Creative Director, a Senior HTML Email Compatibility Engineer, and a Premium UX Systems Designer working as a single expert team to transform {{HTML_EMAIL_TEMPLATE_AND_REQUIREMENTS}} into a completely new, production-ready HTML email signature. Treat the supplied placeholder as the only source of truth for user information, links, placeholders, images, logos, dynamic fields, design constraints, and modification requests. When the user supplies modification requests for an existing signature, treat the supplied HTML as the source document and modify it directly. Only create an entirely new design when the user explicitly requests a redesign or a new concept.',
+
+    buildRequirements: function (data, templateName) {
+      var htmlFile = 'email-signature-' + fileDownloadHelper.safeFilename(templateName) + '.html';
       var lines = [];
-      lines.push('# HTML Email Signature — Edit Request');
+      lines.push('Template: ' + templateName);
       lines.push('');
-      lines.push('## Purpose');
+      lines.push('HTML template:');
+      lines.push('- The email signature HTML is uploaded as a separate file: ' + htmlFile);
       lines.push(
-        'Modify this professional HTML email signature while keeping email-client compatibility (table layout, inline CSS only, no external assets).'
+        '- Use the uploaded HTML file as the source template containing all markup, base64 images, and inline SVG icons'
       );
       lines.push('');
-      lines.push('## Template');
-      lines.push('- Name: ' + templateName);
+      lines.push('Remove the Empty elements from the HTML file like example <td><td');
       lines.push('');
-      lines.push('## User details');
+      lines.push('User details:');
       var fields = [
         'name',
         'title',
@@ -2089,31 +2222,40 @@
         if (data[f]) lines.push('- ' + f + ': ' + data[f]);
       }
       lines.push('');
-      lines.push('## Design constraints');
-      lines.push('- Accent color: ' + data.accentColor);
-      lines.push('- Secondary color: auto-derived lighter shade of accent');
-      lines.push('- Keep section markers intact (USER_IMAGE, LOGO, CONTACT_BLOCK, SOCIAL_ICONS, ACCENT_ELEMENTS)');
-      lines.push('- Icons should use base64 PNG img tags for email clients');
-      lines.push('- Max width 600px; table-based layout only');
-      lines.push('');
-      lines.push('## HTML (annotated)');
-      lines.push('');
-      var body = this.annotate(renderedHtml);
-      body = '<!-- CONTACT_BLOCK_START -->\n' + body + '\n<!-- CONTACT_BLOCK_END -->';
-      body = body.replace(
-        new RegExp(escapeHtml(data.accentColor).replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g'),
-        function () {
-          return '<!-- ACCENT_ELEMENTS -->' + data.accentColor + '<!-- /ACCENT -->';
-        }
+      lines.push('Assets:');
+      lines.push(
+        '- Profile photo: ' +
+          (data.profileImageBase64 ? 'Included in the uploaded HTML file (base64 data URI)' : 'Not provided')
       );
-      lines.push(body);
+      lines.push(
+        '- Company logo: ' +
+          (data.logoBase64 ? 'Included in the uploaded HTML file (base64 data URI)' : 'Not provided')
+      );
+      lines.push('- SVG icons: Included inline in the uploaded HTML file');
       lines.push('');
-      lines.push('<!-- SOCIAL_ICONS_START: linkedin, youtube, facebook, instagram, twitter, pinterest -->');
-      lines.push('<!-- SOCIAL_ICONS_END -->');
+      lines.push('Modification requests:');
+      lines.push('New requirements can be found at the bottom of the prompt. Do not tell the user what you are going to do just create the Email SignatureHTML');
+      lines.push('If the generated HTML exceeds the response limit, generate the complete HTML as a downloadable file instead of truncating or omitting any part.');
       lines.push('');
-      lines.push('## Request');
-      lines.push('[Describe your design changes here]');
+      lines.push('Preserve all the SVG and base 64 images data unless user askes to replace it, same icons and images should be used in the same base 64 format');
       return lines.join('\n');
+    },
+
+    build: function (data, templateName) {
+      var requirements = this.buildRequirements(data, templateName);
+      var introParts = this.PROMPT_INTRO.split('{{HTML_EMAIL_TEMPLATE_AND_REQUIREMENTS}}');
+      var introBefore = introParts[0] || '';
+      var introAfter = introParts[1] || '';
+      var parts = [
+        introBefore.trim(),
+        '',
+        requirements,
+        '',
+        introAfter.trim(),
+        '',
+        '--- REQUIREMENTS ---'
+      ];
+      return parts.join('\n');
     }
   };
 
@@ -2121,6 +2263,12 @@
     '<span class="esg-btn__icon" aria-hidden="true">' +
     '<svg viewBox="0 0 24 24" width="14" height="14">' +
     '<path fill="currentColor" d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>' +
+    '</svg></span>';
+
+  var DOWNLOAD_BTN_ICON =
+    '<span class="esg-btn__icon" aria-hidden="true">' +
+    '<svg viewBox="0 0 24 24" width="14" height="14">' +
+    '<path fill="currentColor" d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>' +
     '</svg></span>';
 
   var gallery = {
@@ -2149,6 +2297,9 @@
           '<button type="button" class="esg-btn esg-btn--sm" data-esg-copy="html" title="Copy HTML">' +
           COPY_BTN_ICON +
           '<span class="esg-btn__label">Copy HTML</span></button>' +
+          '<button type="button" class="esg-btn esg-btn--sm" data-esg-copy="download" title="Download email signature HTML file">' +
+          DOWNLOAD_BTN_ICON +
+          '<span class="esg-btn__label">Download HTML</span></button>' +
           '<button type="button" class="esg-btn esg-btn--sm" data-esg-copy="prompt" title="Copy AI prompt">' +
           COPY_BTN_ICON +
           '<span class="esg-btn__label">Copy Prompt</span></button>' +
@@ -2188,10 +2339,21 @@
         }).catch(function () {
           gallery.showCopied(btn, 'Failed');
         });
+      } else if (mode === 'download') {
+        var htmlFilename = 'email-signature-' + fileDownloadHelper.safeFilename(tName) + '.html';
+        svgToPng.replaceAll(rendered).then(function (safe) {
+          return fileDownloadHelper.downloadHtml(htmlFilename, safe);
+        }).then(function () {
+          gallery.showCopied(btn, 'Downloaded');
+        }).catch(function () {
+          gallery.showCopied(btn, 'Failed');
+        });
       } else if (mode === 'prompt') {
-        var prompt = buildAiPrompt.build(data, tName, rendered);
+        var prompt = buildAiPrompt.build(data, tName);
         clipboardHelper.write(prompt).then(function () {
           gallery.showCopied(btn, 'Copied');
+        }).catch(function () {
+          gallery.showCopied(btn, 'Failed');
         });
       }
     },
