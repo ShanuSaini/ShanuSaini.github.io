@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Embedded Email Signature Generator</title>
+  <link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+  <!--
+    EMBED INSTRUCTIONS
+    1. Copy css/app.css, js/signature-generator.js, and the #esg-app block + hidden <template> tags from index.html
+    2. Include CSS and JS on your host page
+    3. Call EmailSignatureApp.init({ root: '#esg-app' });
+  -->
+  <p style="text-align:center;padding:1rem;font-family:Arial,sans-serif;color:#64748b;">
+    Example: generator embedded on a host page via <code>EmailSignatureApp.init()</code>
+  </p>
+
+  <!-- Paste the full #esg-app block from index.html here, or use an iframe to index.html -->
+  <iframe src="index.html" style="width:100%;min-height:900px;border:0;" title="Email Signature Generator"></iframe>
+
+  <script src="js/signature-generator.js"></script>
+</body>
+</html>

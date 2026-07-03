@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HTML Email Signature Generator</title>
+  <link rel="stylesheet" href="css/app.css?v=3">
+</head>
+<body>
+  <header class="esg-header">
+    <div class="esg-header__inner">
+      <div class="esg-header__icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+      </div>
+      <div class="esg-header__text">
+        <h1>HTML Email Signature Generator</h1>
+        <p>Fill in your details, pick an accent color, and generate 10 email-safe signature templates.</p>
+      </div>
+      <div class="esg-header__art" aria-hidden="true">
+        <svg viewBox="0 0 120 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="8" y="12" width="72" height="52" rx="6" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.25)" stroke-width="1.5"/>
+          <path d="M8 20l36 28 36-28" stroke="rgba(255,255,255,0.4)" stroke-width="1.5" fill="none"/>
+          <rect x="52" y="36" width="56" height="36" rx="5" fill="rgba(255,255,255,0.18)" stroke="rgba(255,255,255,0.3)" stroke-width="1.5"/>
+          <circle cx="66" cy="50" r="8" fill="rgba(255,255,255,0.25)"/>
+          <rect x="78" y="46" width="22" height="3" rx="1.5" fill="rgba(255,255,255,0.35)"/>
+          <rect x="78" y="52" width="16" height="2" rx="1" fill="rgba(255,255,255,0.2)"/>
+        </svg>
+      </div>
+    </div>
+  </header>
+
+  <div id="esg-app" class="esg-page">
+    <section class="esg-config-card">
+      <div class="esg-config-card__main">
+        <h2 class="esg-card-heading esg-card-heading--info"><span class="esg-card-heading__icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg></span> Your Information</h2>
+        <div class="esg-form-grid esg-form-grid--4col">
+          <div class="esg-field">
+            <label for="esg-name">Name</label>
+            <div class="esg-field__wrap">
+              <span class="esg-field__icon"><svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg></span>
+              <input type="text" id="esg-name" data-esg-field="name" placeholder="Your name">
+            </div>
+          </div>
+          <div class="esg-field">
+            <label for="esg-title">Title</label>
+            <div class="esg-field__wrap">
+              <span class="esg-field__icon"><svg viewBox="0 0 24 24"><path d="M20 6h-4V4c0-1.11-.89-2-2-2h-4c-1.11 0-2 .89-2 2v2H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-6 0h-4V4h4v2z"/></svg></span>
+              <input type="text" id="esg-title" data-esg-field="title" placeholder="Job title">
+            </div>
+          </div>
+          <div class="esg-field">
+            <label for="esg-company">Company</label>
+            <div class="esg-field__wrap">
+              <span class="esg-field__icon"><svg viewBox="0 0 24 24"><path d="M12 7V3H2v18h20V7H12zM6 19H4v-2h2v2zm0-4H4v-2h2v2zm0-4H4V9h2v2zm0-4H4V5h2v2zm4 12H8v-2h2v2zm0-4H8v-2h2v2zm0-4H8V9h2v2zm0-4H8V5h2v2zm10 12h-8v-2h2v-2h-2v-2h2v-2h-2V9h8v10zm-2-8h-2v2h2v-2zm0 4h-2v2h2v-2z"/></svg></span>
+              <input type="text" id="esg-company" data-esg-field="companyName" placeholder="Company name">
+            </div>
+          </div>
+          <div class="esg-field">
+            <label for="esg-email">Email</label>
+            <div class="esg-field__wrap">
+              <span class="esg-field__icon"><svg viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></span>
+              <input type="email" id="esg-email" data-esg-field="email" placeholder="you@company.com">
+            </div>
+          </div>
+          <div class="esg-field">
+            <label for="esg-phone">Phone</label>
+            <div class="esg-field__wrap">
+              <span class="esg-field__icon"><svg viewBox="0 0 24 24"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24 11.36 11.36 0 003.56.57 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1 11.36 11.36 0 00.57 3.56 1 1 0 01-.25 1.01l-2.2 2.22z"/></svg></span>
+              <input type="tel" id="esg-phone" data-esg-field="phone" placeholder="+1 234 567 8900">
+            </div>
+          </div>
+          <div class="esg-field">
+            <label for="esg-website">Website</label>
+            <div class="esg-field__wrap">
+              <span class="esg-field__icon"><svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM18.92 8h-2.95a15.65 15.65 0 00-1.26-3.71A8.003 8.003 0 0118.92 8zM12 4.04c.83 1.2 1.48 2.53 1.91 3.96h-3.82c.43-1.43 1.08-2.76 1.91-3.96zM4.26 14C4.1 13.36 4 12.69 4 12s.1-1.36.26-2h3.38c-.08.66-.14 1.32-.14 2 0 .68.06 1.34.14 2H4.26zm.82 2h2.95c.32 1.25.78 2.45 1.38 3.56A7.952 7.952 0 015.08 16zm2.95-8H5.08a7.952 7.952 0 014.33-3.56A15.65 15.65 0 008.03 8zM12 19.96c-.83-1.2-1.48-2.53-1.91-3.96h3.82c-.43 1.43-1.08 2.76-1.91 3.96zM14.34 14H9.66c-.09-.66-.16-1.32-.16-2 0-.68.07-1.34.16-2h4.68c.09.66.16 1.32.16 2 0 .68-.07 1.34-.16 2zm.25 5.56c.6-1.11 1.06-2.31 1.38-3.56h2.95a8.003 8.003 0 01-4.33 3.56zM16.36 14c.08-.66.14-1.32.14-2 0-.68-.06-1.34-.14-2h3.38c.16.64.26 1.31.26 2s-.1 1.36-.26 2h-3.38z"/></svg></span>
+              <input type="url" id="esg-website" data-esg-field="website" placeholder="yoursite.com">
+            </div>
+          </div>
+          <div class="esg-field">
+            <label for="esg-address">Address</label>
+            <div class="esg-field__wrap">
+              <span class="esg-field__icon"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 110-5 2.5 2.5 0 010 5z"/></svg></span>
+              <input type="text" id="esg-address" data-esg-field="address" placeholder="City, Country">
+            </div>
+          </div>
+          <div class="esg-field">
+            <label for="esg-tagline">Tagline / Bio</label>
+            <div class="esg-field__wrap esg-field__wrap--textarea">
+              <textarea id="esg-tagline" data-esg-field="tagline" placeholder="A short tagline or bio"></textarea>
+            </div>
+          </div>
+        </div>
+
+        <h3 class="esg-subheading">Social Profiles</h3>
+        <div class="esg-form-grid esg-form-grid--3col">
+          <div class="esg-field">
+            <label for="esg-linkedin">LinkedIn</label>
+            <div class="esg-field__wrap">
+              <span class="esg-field__icon"><svg viewBox="0 0 24 24"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.35-1.85 3.58 0 4.24 2.36 4.24 5.43v6.31zM5.34 7.43a2.06 2.06 0 110-4.12 2.06 2.06 0 010 4.12zm1.78 13.02H3.56V9h3.56v11.45z"/></svg></span>
+              <input type="url" id="esg-linkedin" data-esg-field="linkedin" placeholder="LinkedIn URL">
+            </div>
+          </div>
+          <div class="esg-field">
+            <label for="esg-youtube">YouTube</label>
+            <div class="esg-field__wrap">
+              <span class="esg-field__icon"><svg viewBox="0 0 24 24"><path d="M21.58 7.2a2.5 2.5 0 00-1.76-1.77C18.25 5 12 5 12 5s-6.25 0-7.82.43A2.5 2.5 0 002.42 7.2 26.3 26.3 0 002 12a26.3 26.3 0 00.42 4.8 2.5 2.5 0 001.76 1.77C5.75 19 12 19 12 19s6.25 0 7.82-.43a2.5 2.5 0 001.76-1.77A26.3 26.3 0 0022 12a26.3 26.3 0 00-.42-4.8zM10 15.5v-7l6 3.5-6 3.5z"/></svg></span>
+              <input type="url" id="esg-youtube" data-esg-field="youtube" placeholder="YouTube URL">
+            </div>
+          </div>
+          <div class="esg-field">
+            <label for="esg-facebook">Facebook</label>
+            <div class="esg-field__wrap">
+              <span class="esg-field__icon"><svg viewBox="0 0 24 24"><path d="M24 12.07C24 5.41 18.63 0 12 0S0 5.41 0 12.07c0 6.02 4.39 11.02 10.13 11.93v-8.44H7.08v-3.49h3.05V9.41c0-3.02 1.79-4.69 4.53-4.69 1.31 0 2.68.23 2.68.23v2.96h-1.51c-1.49 0-1.95.93-1.95 1.88v2.26h3.32l-.53 3.49h-2.79v8.44C19.61 23.09 24 18.09 24 12.07z"/></svg></span>
+              <input type="url" id="esg-facebook" data-esg-field="facebook" placeholder="Facebook URL">
+            </div>
+          </div>
+          <div class="esg-field">
+            <label for="esg-instagram">Instagram</label>
+            <div class="esg-field__wrap">
+              <span class="esg-field__icon"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></span>
+              <input type="url" id="esg-instagram" data-esg-field="instagram" placeholder="Instagram URL">
+            </div>
+          </div>
+          <div class="esg-field">
+            <label for="esg-twitter">Twitter / X</label>
+            <div class="esg-field__wrap">
+              <span class="esg-field__icon"><svg viewBox="0 0 24 24"><path d="M18.9 2H22l-6.8 7.77L23.2 22h-6.6l-5.17-6.77L5.5 22H2.4l7.28-8.33L1 2h6.77l4.67 6.11L18.9 2zm-2.32 18h1.77L7.03 4H5.17L16.58 20z"/></svg></span>
+              <input type="url" id="esg-twitter" data-esg-field="twitter" placeholder="X / Twitter URL">
+            </div>
+          </div>
+          <div class="esg-field">
+            <label for="esg-pinterest">Pinterest</label>
+            <div class="esg-field__wrap">
+              <span class="esg-field__icon"><svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.372 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 01.083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.631-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12 0-6.628-5.373-12-12-12z"/></svg></span>
+              <input type="url" id="esg-pinterest" data-esg-field="pinterest" placeholder="Pinterest URL">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <aside class="esg-config-card__side">
+        <div class="esg-field">
+          <div class="esg-color-label">Choose Accent Color</div>
+          <div class="esg-color-presets" data-esg-presets>
+            <button type="button" class="esg-swatch esg-active" data-color="#222222" style="background:#222222" title="Charcoal"></button>
+            <button type="button" class="esg-swatch" data-color="#4f4f4f" style="background:#4f4f4f" title="Graphite"></button>
+            <button type="button" class="esg-swatch" data-color="#0f766e" style="background:#0f766e" title="Teal"></button>
+            <button type="button" class="esg-swatch" data-color="#1d4ed8" style="background:#1d4ed8" title="Blue"></button>
+            <button type="button" class="esg-swatch" data-color="#7c3aed" style="background:#7c3aed" title="Violet"></button>
+            <button type="button" class="esg-swatch" data-color="#be123c" style="background:#be123c" title="Rose"></button>
+            <button type="button" class="esg-swatch" data-color="#c2410c" style="background:#c2410c" title="Copper"></button>
+          </div>
+          <div class="esg-color-label esg-color-label--sub">Custom Color</div>
+          <div class="esg-color-row esg-color-row--picker">
+            <div class="esg-color-pick__controls">
+              <label class="esg-swatch esg-swatch--custom" title="Pick primary color">
+                <input type="color" data-esg-field="accentColor" value="#222222">
+              </label>
+              <input type="text" data-esg-field="accentColorText" value="#222222" placeholder="#222222">
+            </div>
+          </div>
+        </div>
+
+        <div class="esg-upload-section">
+          <div class="esg-field">
+            <label>Profile Photo</label>
+            <div class="esg-media-row" data-esg-media-row="profile">
+              <div class="esg-media-row__preview" data-esg-preview="profile"></div>
+              <div class="esg-upload esg-upload--profile">
+                <input type="file" accept="image/*" data-esg-upload="profile">
+                <span class="esg-upload__label">Click to upload photo</span>
+                <span class="esg-upload__hint">Recommended size: 300&times;300px</span>
+              </div>
+            </div>
+            <button type="button" class="esg-media-remove" data-esg-remove="profile" hidden>Remove photo</button>
+          </div>
+          <div class="esg-field">
+            <label>Company Logo</label>
+            <div class="esg-media-row" data-esg-media-row="logo">
+              <div class="esg-media-row__preview esg-media-row__preview--logo" data-esg-preview="logo"></div>
+              <div class="esg-upload esg-upload--logo">
+                <input type="file" accept="image/*" data-esg-upload="logo">
+                <span class="esg-upload__label">Click to upload logo</span>
+                <span class="esg-upload__hint">Recommended size: 240&times;120px</span>
+              </div>
+            </div>
+            <button type="button" class="esg-media-remove" data-esg-remove="logo" hidden>Remove logo</button>
+          </div>
+        </div>
+
+        <button type="button" class="esg-btn esg-btn--primary" data-esg-generate>
+          <span class="esg-btn__icon">&#10022;</span> Generate Templates
+        </button>
+        <p class="esg-side-hint">We&rsquo;ll generate beautiful, email-safe signatures ready to use in seconds.</p>
+        <p class="esg-error" data-esg-error></p>
+      </aside>
+    </section>
+
+    <section class="esg-gallery-section">
+      <div class="esg-gallery-section__head">
+        <div class="esg-gallery-section__head-left">
+          <h2>Generated Signatures</h2>
+          <span class="esg-badge">10 Templates</span>
+        </div>
+      </div>
+      <p class="esg-gallery-empty" data-esg-gallery-empty>Click &ldquo;Generate Templates&rdquo; to preview all signature designs.</p>
+      <div class="esg-gallery" data-esg-gallery></div>
+    </section>
+  </div>
+
+  <!-- Hidden icon templates -->
+  <div class="esg-hidden-templates" aria-hidden="true">
+    <template id="esg-icon-phone">
+      <svg data-icon="phone" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16"><path fill="currentColor" d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24 11.36 11.36 0 003.56.57 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1 11.36 11.36 0 00.57 3.56 1 1 0 01-.25 1.01l-2.2 2.22z"/></svg>
+    </template>
+    <template id="esg-icon-email">
+      <svg data-icon="email" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16"><path fill="currentColor" d="M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+    </template>
+    <template id="esg-icon-website">
+      <svg data-icon="website" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16"><path fill="currentColor" d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM18.92 8h-2.95a15.65 15.65 0 00-1.26-3.71A8.003 8.003 0 0118.92 8zM12 4.04c.83 1.2 1.48 2.53 1.91 3.96h-3.82c.43-1.43 1.08-2.76 1.91-3.96zM4.26 14C4.1 13.36 4 12.69 4 12s.1-1.36.26-2h3.38c-.08.66-.14 1.32-.14 2 0 .68.06 1.34.14 2H4.26zm.82 2h2.95c.32 1.25.78 2.45 1.38 3.56A7.952 7.952 0 015.08 16zm2.95-8H5.08a7.952 7.952 0 014.33-3.56A15.65 15.65 0 008.03 8zM12 19.96c-.83-1.2-1.48-2.53-1.91-3.96h3.82c-.43 1.43-1.08 2.76-1.91 3.96zM14.34 14H9.66c-.09-.66-.16-1.32-.16-2 0-.68.07-1.34.16-2h4.68c.09.66.16 1.32.16 2 0 .68-.07 1.34-.16 2zm.25 5.56c.6-1.11 1.06-2.31 1.38-3.56h2.95a8.003 8.003 0 01-4.33 3.56zM16.36 14c.08-.66.14-1.32.14-2 0-.68-.06-1.34-.14-2h3.38c.16.64.26 1.31.26 2s-.1 1.36-.26 2h-3.38z"/></svg>
+    </template>
+    <template id="esg-icon-address">
+      <svg data-icon="address" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16"><path fill="currentColor" d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 110-5 2.5 2.5 0 010 5z"/></svg>
+    </template>
+    <template id="esg-icon-linkedin">
+      <svg data-icon="linkedin" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.35-1.85 3.58 0 4.24 2.36 4.24 5.43v6.31zM5.34 7.43a2.06 2.06 0 110-4.12 2.06 2.06 0 010 4.12zm1.78 13.02H3.56V9h3.56v11.45z"/></svg>
+    </template>
+    <template id="esg-icon-youtube">
+      <svg data-icon="youtube" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M21.58 7.2a2.5 2.5 0 00-1.76-1.77C18.25 5 12 5 12 5s-6.25 0-7.82.43A2.5 2.5 0 002.42 7.2 26.3 26.3 0 002 12a26.3 26.3 0 00.42 4.8 2.5 2.5 0 001.76 1.77C5.75 19 12 19 12 19s6.25 0 7.82-.43a2.5 2.5 0 001.76-1.77A26.3 26.3 0 0022 12a26.3 26.3 0 00-.42-4.8zM10 15.5v-7l6 3.5-6 3.5z"/></svg>
+    </template>
+    <template id="esg-icon-facebook">
+      <svg data-icon="facebook" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M24 12.07C24 5.41 18.63 0 12 0S0 5.41 0 12.07c0 6.02 4.39 11.02 10.13 11.93v-8.44H7.08v-3.49h3.05V9.41c0-3.02 1.79-4.69 4.53-4.69 1.31 0 2.68.23 2.68.23v2.96h-1.51c-1.49 0-1.95.93-1.95 1.88v2.26h3.32l-.53 3.49h-2.79v8.44C19.61 23.09 24 18.09 24 12.07z"/></svg>
+    </template>
+    <template id="esg-icon-instagram">
+      <svg data-icon="instagram" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+    </template>
+    <template id="esg-icon-twitter">
+      <svg data-icon="twitter" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M18.9 2H22l-6.8 7.77L23.2 22h-6.6l-5.17-6.77L5.5 22H2.4l7.28-8.33L1 2h6.77l4.67 6.11L18.9 2zm-2.32 18h1.77L7.03 4H5.17L16.58 20z"/></svg>
+    </template>
+    <template id="esg-icon-pinterest">
+      <svg data-icon="pinterest" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M12 0C5.373 0 0 5.372 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 01.083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.631-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12 0-6.628-5.373-12-12-12z"/></svg>
+    </template>
+  </div>
+
+  <!-- 10 signature templates -->
+  <div class="esg-hidden-templates" aria-hidden="true">
+
+    <!-- Vertical Card -->
+    <template id="esg-sig-01" data-name="Vertical Card">
+<table role="presentation" cellpadding="0" cellspacing="0" border="0" style="font-family:{{fontBody}};border-collapse:collapse;">
+  <tr>
+    <td valign="middle" style="padding-right:28px;width:140px;vertical-align:middle;line-height:0;" data-esg-if="profileImageBase64">
+      {{profileImageLarge}}
+    </td>
+    <td style="width:1px;min-width:1px;max-width:1px;background:{{accentColor}};font-size:0;line-height:0;mso-line-height-rule:exactly;">&nbsp;</td>
+    <td valign="top" style="padding-left:28px;vertical-align:top;">
+      <p style="margin:0;font-size:19px;font-weight:bold;color:{{accentColor}};line-height:1.2;font-family:{{fontName}};">{{name}}</p>
+      <p style="margin:4px 0 2px;font-size:14px;color:#374151;line-height:1.3;font-family:{{fontBody}};">{{title}}</p>
+      <p style="margin:0 0 12px;font-size:13px;font-weight:600;color:{{accentColor}};line-height:1.3;font-family:{{fontBody}};" data-esg-if="companyName">{{companyName}}</p>
+      {{verticalCardContactBlock}}
+      <div style="padding-top:12px;line-height:0;">{{socialRow}}</div>
+    </td>
+  </tr>
+</table>
+    </template>
+
+    <!-- Modern Minimal -->
+    <template id="esg-sig-02" data-name="Modern Minimal">
+<table role="presentation" cellpadding="0" cellspacing="0" border="0" style="font-family:{{fontBody}};color:#333333;border-collapse:collapse;">
+  <tr>
+    <td valign="middle" align="center" style="width:150px;padding-right:28px;vertical-align:middle;text-align:center;line-height:0;" data-esg-if="profileImageBase64">
+      {{profileImageMedium}}
+    </td>
+    <td style="width:1px;min-width:1px;max-width:1px;background:{{accentColor}};font-size:0;line-height:0;mso-line-height-rule:exactly;">&nbsp;</td>
+    <td valign="top" style="padding-left:28px;vertical-align:top;">
+      <p style="margin:0;font-size:19px;font-weight:bold;color:{{accentColor}};line-height:1.2;font-family:{{fontName}};">{{name}}</p>
+      <p style="margin:4px 0 2px;font-size:14px;color:#374151;line-height:1.3;font-family:{{fontBody}};">{{title}}</p>
+      <p style="margin:0 0 12px;font-size:13px;font-weight:600;color:{{accentColor}};line-height:1.3;font-family:{{fontBody}};" data-esg-if="companyName">{{companyName}}</p>
+      <div style="height:12px;font-size:0;line-height:0;mso-line-height-rule:exactly;">&nbsp;</div>
+      {{modernMinimalContactBlock}}
+      <div style="height:12px;font-size:0;line-height:0;mso-line-height-rule:exactly;">&nbsp;</div>
+      <div style="line-height:0;">{{socialRowOutlineLight}}</div>
+    </td>
+  </tr>
+</table>
+    </template>
+
+    <!-- Dark Profile Card -->
+    <template id="esg-sig-03" data-name="Dark Profile Card">
+<table role="presentation" cellpadding="0" cellspacing="0" border="0" style="font-family:{{fontBody}};border-collapse:collapse;">
+  <tr>
+    <td valign="top" style="vertical-align:top;">
+      <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="background:{{accentColor}};border-radius:14px;width:210px;border-collapse:collapse;">
+        <tr>
+          <td align="center" style="padding:18px 18px 16px;text-align:center;">
+            <div data-esg-if="profileImageBase64" style="line-height:0;">{{profileImageCard}}</div>
+            <div style="height:16px;font-size:0;line-height:0;mso-line-height-rule:exactly;" data-esg-if="profileImageBase64">&nbsp;</div>
+            <p style="margin:0;font-size:17px;font-weight:700;color:#ffffff;letter-spacing:0.5px;line-height:1.2;font-family:{{fontName}};">{{nameUppercase}}</p>
+            <table role="presentation" cellpadding="0" cellspacing="0" border="0" align="center" style="margin:12px auto;border-collapse:collapse;"><tr><td style="width:44px;height:1px;background:#ffffff;font-size:0;line-height:0;mso-line-height-rule:exactly;">&nbsp;</td></tr></table>
+            <p style="margin:0;font-size:12px;color:#ffffff;line-height:18px;font-family:{{fontBody}};">{{title}}</p>
+            <p style="margin:6px 0 0;font-size:14px;color:#ffffff;font-weight:700;line-height:1.3;font-family:{{fontBody}};" data-esg-if="companyName">{{companyName}}</p>
+          </td>
+        </tr>
+      </table>
+    </td>
+    <td style="width:34px;font-size:0;line-height:0;mso-line-height-rule:exactly;">&nbsp;</td>
+    <td valign="middle" style="vertical-align:middle;">
+      {{cardContactBlock}}
+      <div style="height:18px;font-size:0;line-height:0;mso-line-height-rule:exactly;">&nbsp;</div>
+      <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="border-collapse:collapse;"><tr><td style="border-top:1px solid #b7b7b7;height:1px;font-size:0;line-height:0;mso-line-height-rule:exactly;">&nbsp;</td></tr></table>
+      <div style="height:18px;font-size:0;line-height:0;mso-line-height-rule:exactly;">&nbsp;</div>
+      <div style="line-height:0;">{{socialRowLarge}}</div>
+    </td>
+  </tr>
+</table>
+    </template>
+
+    <!-- Elegant Card -->
+    <template id="esg-sig-04" data-name="Elegant Card">
+<table role="presentation" cellpadding="0" cellspacing="0" border="0" style="font-family:{{fontBody}};border:1px solid #e3e3e3;border-radius:18px;overflow:hidden;background:#ffffff;border-collapse:collapse;">
+  <tr>
+    <td width="180" valign="top" style="width:180px;vertical-align:top;background:{{accentColor}};background-image:linear-gradient(180deg,{{accentColor}},{{accentDark}});padding:30px 20px;text-align:center;">
+      <!--[if mso]><v:rect xmlns:v="urn:schemas-microsoft-com:vml" fill="true" stroke="false" style="width:180px;"><v:fill type="gradient" color="{{accentColor}}" color2="{{accentDark}}" angle="180" /><![endif]-->
+      <div data-esg-if="logoBase64" style="line-height:0;margin-bottom:18px;">{{logoImageBrandingElegant}}</div>
+      <p style="margin:0;font-size:17px;letter-spacing:5px;color:#ffffff;font-weight:300;line-height:1.2;font-family:{{fontName}};" data-esg-if="companyName">{{companyBrandLine1}}</p>
+      {{companyBrandLine2Block}}
+    </td>
+    <td valign="top" style="padding:22px 28px;vertical-align:top;">
+      <p style="margin:0;font-size:19px;font-weight:bold;color:{{accentColor}};line-height:1.2;font-family:{{fontName}};">{{name}}</p>
+      <p style="margin:4px 0 0;font-size:14px;color:#333333;line-height:1.3;font-family:{{fontBody}};">{{title}}</p>
+      <p style="margin:10px 0 0;font-size:13px;font-weight:bold;color:{{accentColor}};line-height:1.3;font-family:{{fontBody}};" data-esg-if="companyName">{{companyName}}</p>
+      {{elegantCardContactBlock}}
+      <div style="margin-top:22px;line-height:0;">{{socialRowOutlineMedium}}</div>
+    </td>
+  </tr>
+</table>
+    </template>
+
+    <!-- Luxury Split -->
+    <template id="esg-sig-05" data-name="Luxury Split">
+<table role="presentation" cellpadding="0" cellspacing="0" border="0" style="font-family:{{fontBody}};border-collapse:collapse;">
+  <tr>
+    <td width="190" align="center" valign="top" style="width:190px;padding-right:16px;text-align:center;vertical-align:top;">
+      <div data-esg-if="profileImageBase64" style="line-height:0;">{{profileImageLuxury}}</div>
+      <div data-esg-if="logoBase64" style="margin-top:12px;line-height:0;">{{logoImageDecor}}</div>
+      <p style="margin:10px 0 0;font-size:18px;letter-spacing:4px;color:{{accentColor}};line-height:1.15;font-family:{{fontName}};font-weight:700;" data-esg-if="companyName">{{companyBrandLine1}}</p>
+      {{companyJewelryDivider}}
+    </td>
+    <td width="1" style="width:1px;background:{{accentColor}};font-size:0;line-height:0;mso-line-height-rule:exactly;">&nbsp;</td>
+    <td width="18" style="width:18px;font-size:0;line-height:0;">&nbsp;</td>
+    <td valign="top" style="vertical-align:top;">
+      <p style="margin:0;font-size:19px;font-weight:bold;color:{{accentColor}};line-height:1.2;font-family:{{fontName}};">{{name}}</p>
+      <p style="margin:4px 0 0;font-size:14px;color:#2e3440;line-height:1.3;font-family:{{fontBody}};">{{title}}</p>
+      <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin:8px 0;border-collapse:collapse;"><tr><td style="width:70px;height:1px;background:{{accentColor}};font-size:0;line-height:0;">&nbsp;</td></tr></table>
+      <p style="margin:0;font-size:13px;font-weight:bold;color:{{accentColor}};line-height:1.3;font-family:{{fontBody}};" data-esg-if="companyName">{{companyName}}</p>
+      {{luxuryContactBlock}}
+      <div style="margin-top:10px;line-height:0;">{{socialRow}}</div>
+    </td>
+  </tr>
+</table>
+    </template>
+
+    <!-- Centered Card -->
+    <template id="esg-sig-06" data-name="Centered Card">
+<table role="presentation" cellpadding="0" cellspacing="0" border="0" align="center" style="font-family:{{fontBody}};max-width:520px;text-align:center;color:#333333;border-collapse:collapse;margin:0 auto;">
+  <tr data-esg-if="logoBase64">
+    <td align="center" style="padding-bottom:12px;text-align:center;">
+      {{logoImageCentered}}
+    </td>
+  </tr>
+  <tr>
+    <td align="center" style="font-size:16px;font-weight:700;color:{{accentColor}};line-height:1.2;font-family:{{fontName}};">{{name}}</td>
+  </tr>
+  <tr>
+    <td align="center" style="padding-top:6px;font-size:13px;color:#333333;line-height:1.3;font-family:{{fontBody}};">{{title}}</td>
+  </tr>
+  <tr>
+    <td align="center" style="padding-top:8px;padding-bottom:18px;font-size:15px;font-weight:bold;color:{{accentColor}};line-height:1.3;font-family:{{fontBody}};" data-esg-if="companyName">{{companyName}}</td>
+  </tr>
+  <tr>
+    <td align="center">{{centeredContactBox}}</td>
+  </tr>
+  <tr>
+    <td align="center" style="padding-top:16px;text-align:center;">
+      {{socialRowLargeCentered}}
+    </td>
+  </tr>
+</table>
+    </template>
+
+    <!-- Luxury Banner -->
+    <template id="esg-sig-07" data-name="Luxury Banner">
+<table role="presentation" cellpadding="0" cellspacing="0" border="0" style="font-family:{{fontBody}};border:1px solid #e8e2df;border-radius:24px;overflow:hidden;background:#ffffff;border-collapse:separate;border-spacing:0;">
+  <tr>
+    <td width="220" valign="top" align="center" style="width:220px;padding:0;background:#fcfbfa;text-align:center;vertical-align:top;">
+      <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="border-collapse:collapse;">
+        <tr><td style="height:80px;background:{{accentColor}};font-size:0;line-height:0;mso-line-height-rule:exactly;">&nbsp;</td></tr>
+      </table>
+      {{luxuryHeroBlock}}
+      <p style="margin:14px 0 0;font-size:16px;color:{{secondaryColor}};line-height:1;font-family:{{fontBody}};">&#9671;</p>
+      <p style="margin:8px 0 0;font-family:{{fontName}};font-size:20px;font-weight:500;letter-spacing:6px;color:{{accentColor}};line-height:1.2;" data-esg-if="companyName">{{companyBrandLine1}}</p>
+      {{companyJewelryDivider}}
+      <div style="height:32px;font-size:0;line-height:0;">&nbsp;</div>
+    </td>
+    <td width="1" style="width:1px;background:{{secondaryColor}};font-size:0;line-height:0;mso-line-height-rule:exactly;">&nbsp;</td>
+    <td valign="top" style="padding:28px 32px;vertical-align:top;">
+      <p style="margin:0;font-family:{{fontName}};font-size:22px;font-weight:700;color:{{accentColor}};line-height:1.15;">{{name}}</p>
+      <p style="margin:10px 0 0;font-family:{{fontBody}};font-size:13px;letter-spacing:2px;color:#222222;line-height:1.3;text-transform:uppercase;">{{titleUppercase}}</p>
+      <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin:16px 0;border-collapse:collapse;"><tr><td style="width:70px;height:1px;background:{{secondaryColor}};font-size:0;line-height:0;">&nbsp;</td></tr></table>
+      <p style="margin:0;font-family:{{fontBody}};font-size:13px;letter-spacing:3px;color:{{accentColor}};line-height:1.3;text-transform:uppercase;font-weight:600;" data-esg-if="companyName">{{companyNameUppercase}}</p>
+      {{luxuryPanelContactBlock}}
+      <div style="margin-top:20px;line-height:0;">{{socialRowOutlineDots}}</div>
+    </td>
+  </tr>
+</table>
+    </template>
+
+    <!-- Profile Stack -->
+    <template id="esg-sig-08" data-name="Profile Stack">
+<table role="presentation" cellpadding="0" cellspacing="0" border="0" style="font-family:{{fontBody}};max-width:620px;background:#ffffff;border-collapse:collapse;">
+  <tr>
+    <td valign="top" style="padding-right:20px;vertical-align:top;line-height:0;" data-esg-if="profileImageBase64">
+      {{profileImageStack}}
+    </td>
+    <td valign="top" style="padding-right:50px;vertical-align:top;">
+      <div style="font-size:20px;font-weight:700;color:#222222;line-height:24px;font-family:{{fontName}};">{{name}}</div>
+      <div style="font-size:13px;color:#444444;line-height:1.4rem;padding-top:4px;font-family:{{fontBody}};">{{title}}</div>
+      <div style="font-size:13px;font-weight:600;color:{{accentColor}};line-height:1.4rem;padding-top:6px;font-family:{{fontBody}};" data-esg-if="companyName">{{companyName}}</div>
+      <div style="height:14px;font-size:0;line-height:0;mso-line-height-rule:exactly;">&nbsp;</div>
+      {{profileStackContactBlock}}
+    </td>
+    <td valign="middle" style="vertical-align:middle;line-height:0;">
+      {{socialRowLargeVertical}}
+    </td>
+  </tr>
+</table>
+    </template>
+
+    <!-- Corporate Letterhead -->
+    <template id="esg-sig-09" data-name="Corporate Letterhead">
+<table role="presentation" cellpadding="0" cellspacing="0" border="0" width="520" style="width:520px;max-width:520px;font-family:{{fontBody}};border:1px solid #e8e8e8;border-radius:10px;border-collapse:separate;border-spacing:0;background:#ffffff;overflow:hidden;">
+  <tr>
+    <td style="height:4px;background:{{accentColor}};font-size:0;line-height:0;mso-line-height-rule:exactly;">&nbsp;</td>
+  </tr>
+  <tr>
+    <td style="padding:20px 24px 18px;">
+      <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="border-collapse:collapse;">
+        <tr>
+          <td valign="middle" style="width:120px;padding-right:20px;vertical-align:middle;line-height:0;" data-esg-if="logoBase64">{{logoImageBrandingLetterhead}}</td>
+          <td valign="middle" style="vertical-align:middle;">
+            <p style="margin:0;font-size:19px;font-weight:bold;color:{{accentColor}};line-height:1.2;font-family:{{fontName}};">{{name}}</p>
+            <p style="margin:4px 0 0;font-size:14px;color:#374151;line-height:1.3;font-family:{{fontBody}};">{{title}}</p>
+            <p style="margin:6px 0 0;font-size:13px;font-weight:600;color:{{accentColor}};line-height:1.3;font-family:{{fontBody}};" data-esg-if="companyName">{{companyName}}</p>
+          </td>
+        </tr>
+      </table>
+      <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="margin:16px 0 0;border-collapse:collapse;"><tr><td style="border-top:1px solid #e5e7eb;height:1px;font-size:0;line-height:0;mso-line-height-rule:exactly;">&nbsp;</td></tr></table>
+      <div style="margin-top:14px;">{{verticalCardContactBlock}}</div>
+      <div style="padding-top:14px;line-height:0;">{{socialRowOutlineLight}}</div>
+    </td>
+  </tr>
+</table>
+    </template>
+
+    <!-- Accent Header -->
+    <template id="esg-sig-10" data-name="Accent Header">
+<table role="presentation" cellpadding="0" cellspacing="0" border="0" width="500" style="width:500px;max-width:500px;font-family:{{fontBody}};border:1px solid #e8e8e8;border-radius:10px;border-collapse:separate;border-spacing:0;background:#ffffff;overflow:hidden;">
+  <tr>
+    <td style="padding:18px 22px;background:{{accentColor}};background-image:linear-gradient(135deg,{{accentColor}},{{accentDark}});">
+      <!--[if mso]><v:rect xmlns:v="urn:schemas-microsoft-com:vml" fill="true" stroke="false" style="width:500px;"><v:fill type="gradient" color="{{accentColor}}" color2="{{accentDark}}" angle="135" /><![endif]-->
+      <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="border-collapse:collapse;">
+        <tr>
+          <td valign="middle" style="padding-right:14px;vertical-align:middle;line-height:0;" data-esg-if="profileImageBase64">
+            <div style="border:1px solid #ffffff;border-radius:50%;display:inline-block;line-height:0;">{{profileImageSmall}}</div>
+          </td>
+          <td valign="middle" style="padding-right:14px;vertical-align:middle;line-height:0;" data-esg-if="logoBase64">{{logoOnWhite}}</td>
+          <td valign="middle" style="vertical-align:middle;font-family:{{fontBody}};">
+            <p style="margin:0;font-size:18px;font-weight:bold;color:#ffffff;line-height:1.2;font-family:{{fontName}};">{{name}}</p>
+            <p style="margin:4px 0 0;font-size:13px;color:#f3f4f6;line-height:1.3;">{{title}}</p>
+            <p style="margin:6px 0 0;font-size:12px;font-weight:600;color:#ffffff;line-height:1.3;letter-spacing:0.3px;" data-esg-if="companyName">{{companyName}}</p>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr>
+    <td style="padding:16px 22px 18px;">
+      {{modernMinimalContactBlock}}
+      <div style="padding-top:12px;line-height:0;">{{socialRowOutlineLight}}</div>
+    </td>
+  </tr>
+</table>
+    </template>
+
+  </div>
+
+  <script src="js/signature-generator.js?v=43"></script>
+  <script src="js/demo-data.js?v=2"></script>
+  <script>EmailSignatureApp.init({ demo: true });</script>
+</body>
+</html>
