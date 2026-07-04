@@ -1,0 +1,1061 @@
+<style>
+  .hs-widget {
+    --hs-accent: #ffb800;
+    --hs-accent-dark: #e6a600;
+    --hs-accent-soft: #fffbeb;
+    --hs-ink: #111827;
+    --hs-text: #253247;
+    --hs-muted: #667085;
+    --hs-line: #e8ecf0;
+    --hs-soft: #f9f9f9;
+    --hs-card: #ffffff;
+    width: 100%;
+    margin: 0;
+    color: var(--hs-text);
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+    background: #fff;
+    border-radius: 0;
+    box-shadow: 0 22px 70px rgba(15, 23, 42, 0.08);
+    overflow: hidden;
+  }
+
+  .hs-widget * {
+    box-sizing: border-box;
+  }
+
+  .hs-container {
+    max-width: 1180px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hs-hero {
+    position: relative;
+    padding: 34px 42px 48px;
+    background: #fff;
+    border-bottom: 1px solid var(--hs-line);
+  }
+
+  .hs-hero-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+  }
+
+  .hs-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 0;
+  }
+
+  .hs-mark {
+    display: grid;
+    width: 40px;
+    height: 40px;
+    place-items: center;
+    border-radius: 10px;
+    color: #111;
+    background: var(--hs-accent);
+    box-shadow: 0 8px 22px rgba(255, 184, 0, 0.35);
+  }
+
+  .hs-mark svg {
+    width: 22px;
+    height: 22px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .hs-brand span {
+    display: block;
+    color: var(--hs-ink);
+    font-size: 15px;
+    font-weight: 800;
+    letter-spacing: 0.01em;
+    white-space: nowrap;
+  }
+
+  .hs-tools {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 8px;
+  }
+
+  .hs-tools a {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    min-height: 32px;
+    padding: 6px 12px;
+    border: 1px solid var(--hs-line);
+    border-radius: 999px;
+    color: var(--hs-text);
+    font-size: 12px;
+    font-weight: 700;
+    text-decoration: none;
+    background: #fff;
+  }
+
+  .hs-tools a:hover {
+    border-color: var(--hs-accent);
+    color: var(--hs-ink);
+    background: var(--hs-accent-soft);
+  }
+
+  .hs-tool-dot {
+    display: inline-grid;
+    width: 18px;
+    height: 18px;
+    place-items: center;
+    border-radius: 50%;
+    color: #fff;
+    background: #374151;
+    font-size: 9px;
+    font-weight: 800;
+  }
+
+  .hs-hero-body {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(260px, 380px);
+    gap: 32px;
+    align-items: center;
+    margin-top: 42px;
+  }
+
+  .hs-kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 14px;
+    color: var(--hs-muted);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .hs-kicker svg {
+    width: 14px;
+    height: 14px;
+    fill: none;
+    stroke: var(--hs-accent);
+    stroke-width: 2;
+  }
+
+  .hs-hero h1 {
+    margin: 0;
+    color: var(--hs-ink);
+    font-size: clamp(34px, 4.5vw, 52px);
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+  }
+
+  .hs-hero h1 span {
+    color: var(--hs-accent);
+  }
+
+  .hs-hero p {
+    max-width: 520px;
+    margin: 18px 0 0;
+    color: var(--hs-muted);
+    font-size: 16px;
+    line-height: 1.65;
+  }
+
+  .hs-hero-art {
+    position: relative;
+    min-height: 220px;
+  }
+
+  .hs-art-card {
+    position: absolute;
+    right: 40px;
+    top: 20px;
+    width: 220px;
+    min-height: 170px;
+    border: 1px solid var(--hs-line);
+    border-radius: 18px;
+    background: linear-gradient(145deg, #fff, #fafafa);
+    box-shadow: 0 24px 60px rgba(15, 23, 42, 0.1);
+  }
+
+  .hs-art-camera {
+    position: absolute;
+    top: 24px;
+    left: 24px;
+    display: grid;
+    width: 44px;
+    height: 44px;
+    place-items: center;
+    border-radius: 12px;
+    color: #111;
+    background: var(--hs-accent);
+  }
+
+  .hs-art-camera svg,
+  .hs-float svg,
+  .hs-icon {
+    width: 20px;
+    height: 20px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .hs-art-lines {
+    position: absolute;
+    top: 84px;
+    left: 24px;
+    right: 24px;
+    display: grid;
+    gap: 10px;
+  }
+
+  .hs-art-lines i {
+    display: block;
+    height: 7px;
+    border-radius: 999px;
+    background: #e5e7eb;
+  }
+
+  .hs-art-lines i:nth-child(1) { width: 38%; }
+  .hs-art-lines i:nth-child(2) { width: 72%; }
+  .hs-art-lines i:nth-child(3) { width: 58%; }
+
+  .hs-float {
+    position: absolute;
+    display: grid;
+    width: 56px;
+    height: 56px;
+    place-items: center;
+    border: 1px solid var(--hs-line);
+    border-radius: 14px;
+    color: var(--hs-accent-dark);
+    background: #fff;
+    box-shadow: 0 14px 34px rgba(15, 23, 42, 0.08);
+  }
+
+  .hs-float-quote { left: 0; top: 60px; font-size: 24px; font-weight: 900; line-height: 1; }
+  .hs-float-spark { right: 10px; top: 0; color: var(--hs-accent); }
+  .hs-float-user { right: 0; bottom: 0; }
+
+  .hs-panel {
+    padding: 34px 42px 40px;
+    background: #fff;
+  }
+
+  .hs-section-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    margin-bottom: 26px;
+    color: var(--hs-ink);
+    font-size: 12px;
+    font-weight: 850;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  .hs-section-title::before,
+  .hs-section-title::after {
+    content: "";
+    width: min(110px, 18vw);
+    height: 1px;
+    background: var(--hs-line);
+  }
+
+  .hs-sparkle {
+    color: var(--hs-accent);
+    letter-spacing: 0;
+  }
+
+  .hs-form {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(140px, 1fr)) auto auto;
+    gap: 14px;
+    align-items: end;
+  }
+
+  .hs-field {
+    display: grid;
+    gap: 8px;
+    min-width: 0;
+  }
+
+  .hs-field label {
+    color: var(--hs-muted);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .hs-select-wrap {
+    position: relative;
+  }
+
+  .hs-select-wrap::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 16px;
+    width: 8px;
+    height: 8px;
+    border-right: 2px solid #6b7280;
+    border-bottom: 2px solid #6b7280;
+    transform: translateY(-70%) rotate(45deg);
+    pointer-events: none;
+  }
+
+  .hs-widget select {
+    width: 100%;
+    height: 50px;
+    appearance: none;
+    border: 1px solid #d1d5db;
+    border-radius: 10px;
+    padding: 0 40px 0 14px;
+    color: var(--hs-ink);
+    font: inherit;
+    font-size: 14px;
+    background: #fff;
+    outline: none;
+  }
+
+  .hs-widget select:focus {
+    border-color: var(--hs-accent);
+    box-shadow: 0 0 0 3px rgba(255, 184, 0, 0.18);
+  }
+
+  .hs-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    height: 50px;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    padding: 0 22px;
+    color: #111;
+    font: inherit;
+    font-size: 14px;
+    font-weight: 800;
+    white-space: nowrap;
+    cursor: pointer;
+    background: var(--hs-accent);
+    box-shadow: 0 10px 24px rgba(255, 184, 0, 0.28);
+    transition: transform 160ms ease, background 160ms ease;
+  }
+
+  .hs-btn:hover {
+    transform: translateY(-1px);
+    background: var(--hs-accent-dark);
+  }
+
+  .hs-btn-secondary {
+    color: var(--hs-text);
+    border-color: #d1d5db;
+    background: #fff;
+    box-shadow: none;
+  }
+
+  .hs-btn-secondary:hover {
+    border-color: var(--hs-accent);
+    background: var(--hs-accent-soft);
+    box-shadow: none;
+  }
+
+  .hs-tip {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-top: 22px;
+    padding: 14px 18px;
+    border-radius: 10px;
+    color: #92400e;
+    font-size: 14px;
+    line-height: 1.55;
+    background: var(--hs-accent-soft);
+  }
+
+  .hs-tip-icon {
+    display: grid;
+    width: 36px;
+    height: 36px;
+    place-items: center;
+    flex: 0 0 auto;
+    border-radius: 50%;
+    color: var(--hs-accent-dark);
+    background: #fff;
+  }
+
+  .hs-pose-section {
+    margin-top: 36px;
+    padding-top: 32px;
+    border-top: 1px solid var(--hs-line);
+  }
+
+  .hs-pose-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 18px;
+  }
+
+  .hs-pose-header h2 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0;
+    color: var(--hs-ink);
+    font-size: 12px;
+    font-weight: 850;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .hs-pose-nav {
+    display: flex;
+    gap: 8px;
+  }
+
+  .hs-pose-nav button {
+    display: grid;
+    width: 36px;
+    height: 36px;
+    place-items: center;
+    border: 1px solid var(--hs-line);
+    border-radius: 8px;
+    color: var(--hs-text);
+    cursor: pointer;
+    background: #fff;
+  }
+
+  .hs-pose-nav button:hover {
+    border-color: var(--hs-accent);
+    color: var(--hs-accent-dark);
+    background: var(--hs-accent-soft);
+  }
+
+  .hs-pose-track {
+    display: flex;
+    gap: 16px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding-bottom: 8px;
+    scrollbar-width: thin;
+  }
+
+  .hs-pose-card {
+    flex: 0 0 172px;
+    scroll-snap-align: start;
+  }
+
+  .hs-pose-image {
+    overflow: hidden;
+    border: 1px solid var(--hs-line);
+    border-radius: 12px;
+    background: var(--hs-soft);
+  }
+
+  .hs-pose-image img {
+    display: block;
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+  }
+
+  .hs-pose-card h4 {
+    margin: 10px 0 6px;
+    color: var(--hs-ink);
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1.35;
+    min-height: 2.7em;
+  }
+
+  .hs-pose-download {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--hs-accent-dark);
+    font-size: 11px;
+    font-weight: 700;
+    line-height: 1.2;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  .hs-pose-download:hover {
+    text-decoration: underline;
+  }
+
+  .hs-pose-download svg {
+    width: 14px;
+    height: 14px;
+  }
+
+  .hs-library-section {
+    margin-top: 36px;
+    padding-top: 32px;
+    border-top: 1px solid var(--hs-line);
+  }
+
+  .hs-library-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    color: var(--hs-ink);
+    font-size: 12px;
+    font-weight: 850;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .hs-list {
+    display: grid;
+    gap: 14px;
+  }
+
+  .hs-prompt-card {
+    display: grid;
+    grid-template-columns: 88px minmax(0, 1fr) auto;
+    gap: 18px;
+    align-items: start;
+    padding: 20px 22px;
+    border: 1px solid var(--hs-line);
+    border-radius: 12px;
+    background: #fff;
+    box-shadow: 0 8px 24px rgba(16, 24, 40, 0.04);
+  }
+
+  .hs-prompt-card.is-hidden {
+    display: none;
+  }
+
+  .hs-card-thumb {
+    overflow: hidden;
+    border-radius: 10px;
+    border: 1px solid var(--hs-line);
+  }
+
+  .hs-card-thumb img {
+    display: block;
+    width: 88px;
+    height: 88px;
+    object-fit: cover;
+  }
+
+  .hs-card-head {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    min-width: 0;
+  }
+
+  .hs-number {
+    display: grid;
+    width: 28px;
+    height: 28px;
+    place-items: center;
+    border-radius: 8px;
+    color: #111;
+    font-size: 13px;
+    font-weight: 850;
+    background: var(--hs-accent);
+  }
+
+  .hs-card-head h3 {
+    margin: 0;
+    color: var(--hs-ink);
+    font-size: 17px;
+    line-height: 1.25;
+  }
+
+  .hs-pill {
+    display: inline-flex;
+    align-items: center;
+    min-height: 24px;
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 750;
+    white-space: nowrap;
+  }
+
+  .hs-pill-pro { color: #92400e; background: #fef3c7; }
+  .hs-pill-essential { color: #9a3412; background: #ffedd5; }
+  .hs-pill-founder { color: #c2410c; background: #fff7ed; }
+  .hs-pill-speaking { color: #1d4ed8; background: #dbeafe; }
+  .hs-pill-creative { color: #7c3aed; background: #ede9fe; }
+  .hs-pill-tech { color: #0369a1; background: #e0f2fe; }
+  .hs-pill-health { color: #047857; background: #d1fae5; }
+  .hs-pill-sales { color: #be185d; background: #fce7f3; }
+  .hs-pill-legal { color: #374151; background: #f3f4f6; }
+  .hs-pill-author { color: #6d28d9; background: #f3e8ff; }
+  .hs-pill-remote { color: #0f766e; background: #ccfbf1; }
+  .hs-pill-board { color: #111827; background: #e5e7eb; }
+
+  .hs-card-desc {
+    margin: 8px 0 14px;
+    color: var(--hs-muted);
+    font-size: 14px;
+    line-height: 1.55;
+  }
+
+  .hs-prompt-text {
+    position: relative;
+    min-height: 68px;
+    padding: 14px 16px 14px 52px;
+    border: 1px solid #fde68a;
+    border-radius: 10px;
+    color: #374151;
+    font-size: 14px;
+    line-height: 1.62;
+    background: var(--hs-accent-soft);
+  }
+
+  .hs-quote {
+    position: absolute;
+    top: 12px;
+    left: 16px;
+    color: var(--hs-accent);
+    font-size: 24px;
+    font-weight: 900;
+    line-height: 1;
+  }
+
+  .hs-card-actions {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 4px;
+    padding-top: 4px;
+  }
+
+  .hs-copy,
+  .hs-toggle {
+    display: inline-grid;
+    width: 36px;
+    height: 36px;
+    place-items: center;
+    border: 1px solid var(--hs-line);
+    border-radius: 8px;
+    color: var(--hs-text);
+    cursor: pointer;
+    background: #fff;
+    transition: border-color 160ms ease, background 160ms ease, color 160ms ease;
+  }
+
+  .hs-copy:hover,
+  .hs-toggle:hover {
+    border-color: var(--hs-accent);
+    color: var(--hs-accent-dark);
+    background: var(--hs-accent-soft);
+  }
+
+  .hs-copy.is-copied {
+    color: #15803d;
+    border-color: #22c55e;
+    background: #f0fdf4;
+  }
+
+  .hs-prompt-card.is-collapsed .hs-prompt-text {
+    display: none;
+  }
+
+  .hs-prompt-card.is-collapsed .hs-toggle svg {
+    transform: rotate(180deg);
+  }
+
+  .hs-show-wrap {
+    display: flex;
+    justify-content: center;
+    margin-top: 24px;
+  }
+
+  .hs-show-more {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    min-height: 44px;
+    border: 1px solid var(--hs-line);
+    border-radius: 10px;
+    padding: 0 22px;
+    color: var(--hs-ink);
+    font: inherit;
+    font-size: 14px;
+    font-weight: 800;
+    cursor: pointer;
+    background: #fff;
+  }
+
+  .hs-show-more:hover {
+    border-color: var(--hs-accent);
+    background: var(--hs-accent-soft);
+  }
+
+  @media (max-width: 1100px) {
+    .hs-form {
+      grid-template-columns: repeat(3, minmax(140px, 1fr));
+    }
+
+    .hs-btn {
+      grid-column: span 1;
+    }
+  }
+
+  @media (max-width: 900px) {
+    .hs-hero {
+      padding: 28px 24px 36px;
+    }
+
+    .hs-hero-top {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .hs-tools {
+      justify-content: flex-start;
+    }
+
+    .hs-hero-body {
+      grid-template-columns: 1fr;
+    }
+
+    .hs-hero-art {
+      min-height: 180px;
+    }
+
+    .hs-panel {
+      padding: 28px 24px 36px;
+    }
+
+    .hs-form {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .hs-btn {
+      width: 100%;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .hs-hero-art {
+      display: none;
+    }
+
+    .hs-form,
+    .hs-prompt-card {
+      grid-template-columns: 1fr;
+    }
+
+    .hs-card-thumb {
+      width: 72px;
+    }
+
+    .hs-card-thumb img {
+      width: 72px;
+      height: 72px;
+    }
+
+    .hs-card-actions {
+      flex-direction: row;
+      justify-content: flex-end;
+    }
+
+    .hs-prompt-card {
+      padding: 18px;
+    }
+  }
+</style>
+
+<div class="hs-widget" id="headshotPromptLibrary">
+  <section class="hs-hero">
+    <div class="hs-container">
+      <div class="hs-hero-top">
+        <div class="hs-brand">
+          <div class="hs-mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
+          </div>
+          <span>Professional Headshot Studio</span>
+        </div>
+        <nav class="hs-tools" aria-label="Popular AI tools">
+          <a href="https://chat.openai.com/" target="_blank" rel="noopener"><span class="hs-tool-dot">G</span>ChatGPT</a>
+          <a href="https://claude.ai/" target="_blank" rel="noopener"><span class="hs-tool-dot">C</span>Claude</a>
+          <a href="https://gemini.google.com/" target="_blank" rel="noopener"><span class="hs-tool-dot">G</span>Gemini</a>
+          <a href="https://grok.com/" target="_blank" rel="noopener"><span class="hs-tool-dot">X</span>Grok</a>
+          <a href="https://www.perplexity.ai/" target="_blank" rel="noopener"><span class="hs-tool-dot">P</span>Perplexity</a>
+          <a href="https://www.midjourney.com/" target="_blank" rel="noopener"><span class="hs-tool-dot">M</span>Midjourney</a>
+          <a href="https://openai.com/dall-e" target="_blank" rel="noopener"><span class="hs-tool-dot">D</span>DALL-E</a>
+          <a href="https://www.canva.com/" target="_blank" rel="noopener"><span class="hs-tool-dot">C</span>Canva</a>
+          <a href="https://ideogram.ai/" target="_blank" rel="noopener"><span class="hs-tool-dot">I</span>Ideogram</a>
+          <a href="https://blackforestlabs.ai/" target="_blank" rel="noopener"><span class="hs-tool-dot">F</span>Flux</a>
+        </nav>
+      </div>
+
+      <div class="hs-hero-body">
+        <div class="hs-hero-copy">
+          <div class="hs-kicker">
+            <svg viewBox="0 0 24 24"><path d="M12 3l1.7 5.1L19 10l-5.3 1.9L12 17l-1.7-5.1L5 10l5.3-1.9z"></path></svg>
+            AI Headshot Prompt Library
+          </div>
+          <h1>Professional <span>Prompt Library</span></h1>
+          <p>Copy expertly crafted prompts to create stunning, professional headshots for any purpose.</p>
+        </div>
+
+        <div class="hs-hero-art" aria-hidden="true">
+          <div class="hs-art-card">
+            <div class="hs-art-camera">
+              <svg viewBox="0 0 24 24"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
+            </div>
+            <div class="hs-art-lines"><i></i><i></i><i></i></div>
+          </div>
+          <div class="hs-float hs-float-quote">&ldquo;</div>
+          <div class="hs-float hs-float-spark">
+            <svg viewBox="0 0 24 24"><path d="M12 3l1.7 5.1L19 10l-5.3 1.9L12 17l-1.7-5.1L5 10l5.3-1.9z"></path></svg>
+          </div>
+          <div class="hs-float hs-float-user">
+            <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="hs-panel hs-container" aria-label="Headshot prompt generator">
+    <div class="hs-section-title"><span class="hs-sparkle">*</span> Build Your Prompt Set</div>
+
+    <div class="hs-form">
+      <div class="hs-field">
+        <label for="hsStyle">Headshot Style</label>
+        <div class="hs-select-wrap">
+          <select id="hsStyle">
+            <option value="cinematic">Cinematic</option>
+            <option value="natural_light">Natural Light</option>
+            <option value="studio_classic">Studio Classic</option>
+            <option value="editorial">Editorial</option>
+            <option value="high_key">High Key</option>
+            <option value="low_key">Low Key</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="hs-field">
+        <label for="hsPose">Pose Category</label>
+        <div class="hs-select-wrap">
+          <select id="hsPose">
+            <option value="executive">Executive</option>
+            <option value="casual_professional">Casual Professional</option>
+            <option value="creative">Creative</option>
+            <option value="speaker">Speaker</option>
+            <option value="seated">Seated</option>
+            <option value="standing">Standing</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="hs-field">
+        <label for="hsBackground">Background</label>
+        <div class="hs-select-wrap">
+          <select id="hsBackground">
+            <option value="studio_dark">Studio Dark</option>
+            <option value="studio_light">Studio Light</option>
+            <option value="office_blur">Office Blur</option>
+            <option value="outdoor_blur">Outdoor Blur</option>
+            <option value="neutral_gray">Neutral Gray</option>
+            <option value="gradient">Soft Gradient</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="hs-field">
+        <label for="hsOutfit">Outfit</label>
+        <div class="hs-select-wrap">
+          <select id="hsOutfit">
+            <option value="suit_blazer">Suit &amp; Blazer</option>
+            <option value="business_casual">Business Casual</option>
+            <option value="smart_casual">Smart Casual</option>
+            <option value="blazer_only">Blazer Only</option>
+            <option value="formal_dress">Formal Dress</option>
+            <option value="medical_coat">Medical Coat</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="hs-field">
+        <label for="hsMood">Mood</label>
+        <div class="hs-select-wrap">
+          <select id="hsMood">
+            <option value="confident">Confident</option>
+            <option value="approachable">Approachable</option>
+            <option value="bold">Bold</option>
+            <option value="warm">Warm</option>
+            <option value="authoritative">Authoritative</option>
+            <option value="friendly">Friendly</option>
+          </select>
+        </div>
+      </div>
+
+      <button class="hs-btn" id="hsGenerate" type="button">
+        <svg class="hs-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14"></path><path d="M5 12h14"></path></svg>
+        Generate Prompt
+      </button>
+      <button class="hs-btn hs-btn-secondary" id="hsClear" type="button">
+        <svg class="hs-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12a9 9 0 1 1-2.64-6.36"></path><path d="M21 3v6h-6"></path></svg>
+        Clear
+      </button>
+    </div>
+
+    <div class="hs-tip">
+      <div class="hs-tip-icon">
+        <svg class="hs-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18h6"></path><path d="M10 22h4"></path><path d="M12 2a7 7 0 0 0-4 12.74V16h8v-1.26A7 7 0 0 0 12 2z"></path></svg>
+      </div>
+      <div><strong>Tip:</strong> Upload both your original photo and a matching pose reference image for significantly more consistent professional results.</div>
+    </div>
+
+    <div class="hs-pose-section">
+      <div class="hs-pose-header">
+        <h2>
+          <svg class="hs-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><path d="M21 15l-5-5L5 21"></path></svg>
+          Reference Pose Library
+        </h2>
+        <div class="hs-pose-nav">
+          <button id="hsPosePrev" type="button" aria-label="Scroll poses left">
+            <svg class="hs-icon" viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"></path></svg>
+          </button>
+          <button id="hsPoseNext" type="button" aria-label="Scroll poses right">
+            <svg class="hs-icon" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"></path></svg>
+          </button>
+        </div>
+      </div>
+      <div class="hs-pose-track" id="hsPoseTrack" aria-label="Reference pose cards"></div>
+    </div>
+
+    <div class="hs-library-section">
+      <div class="hs-library-header">
+        <svg class="hs-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><path d="M14 2v6h6"></path></svg>
+        Prompt Library
+      </div>
+
+      <div class="hs-list" id="hsPromptList" aria-live="polite">
+        <article class="hs-prompt-card">
+          <div class="hs-card-thumb"><img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=160&h=160&fit=crop&crop=faces" alt="" width="88" height="88"></div>
+          <div class="hs-card-main">
+            <div class="hs-card-head">
+              <span class="hs-number">1</span>
+              <h3>Corporate Executive Headshot</h3>
+              <span class="hs-pill hs-pill-pro">Professional</span>
+            </div>
+            <p class="hs-card-desc">High-end executive portrait with a confident and authoritative presence.</p>
+            <div class="hs-prompt-text">
+              <span class="hs-quote">&quot;</span>
+              Professional headshot of a confident executive, wearing a suit &amp; blazer, executive pose, studio dark background, confident expression, cinematic lighting, sharp focus on face, natural skin texture, corporate photography quality, 85mm lens look.
+            </div>
+          </div>
+          <div class="hs-card-actions">
+            <button class="hs-copy" type="button" aria-label="Copy prompt">
+              <svg class="hs-icon hs-copy-symbol" viewBox="0 0 24 24"><rect width="14" height="14" x="8" y="8" rx="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg>
+            </button>
+            <button class="hs-toggle" type="button" aria-label="Collapse prompt">
+              <svg class="hs-icon" viewBox="0 0 24 24"><path d="M18 15l-6-6-6 6"></path></svg>
+            </button>
+          </div>
+        </article>
+
+        <article class="hs-prompt-card">
+          <div class="hs-card-thumb"><img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=160&h=160&fit=crop&crop=faces" alt="" width="88" height="88"></div>
+          <div class="hs-card-main">
+            <div class="hs-card-head">
+              <span class="hs-number">2</span>
+              <h3>LinkedIn Professional</h3>
+              <span class="hs-pill hs-pill-essential">Essential</span>
+            </div>
+            <p class="hs-card-desc">Clean, approachable portrait optimized for LinkedIn and professional profiles.</p>
+            <div class="hs-prompt-text">
+              <span class="hs-quote">&quot;</span>
+              LinkedIn-ready professional headshot, suit &amp; blazer, executive pose, studio dark background, confident and approachable expression, cinematic style, soft flattering light, crisp detail, neutral color grading, suitable for business profile photo.
+            </div>
+          </div>
+          <div class="hs-card-actions">
+            <button class="hs-copy" type="button" aria-label="Copy prompt">
+              <svg class="hs-icon hs-copy-symbol" viewBox="0 0 24 24"><rect width="14" height="14" x="8" y="8" rx="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg>
+            </button>
+            <button class="hs-toggle" type="button" aria-label="Collapse prompt">
+              <svg class="hs-icon" viewBox="0 0 24 24"><path d="M18 15l-6-6-6 6"></path></svg>
+            </button>
+          </div>
+        </article>
+
+        <article class="hs-prompt-card">
+          <div class="hs-card-thumb"><img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=160&h=160&fit=crop&crop=faces" alt="" width="88" height="88"></div>
+          <div class="hs-card-main">
+            <div class="hs-card-head">
+              <span class="hs-number">3</span>
+              <h3>Startup Founder Portrait</h3>
+              <span class="hs-pill hs-pill-founder">Founder</span>
+            </div>
+            <p class="hs-card-desc">Modern founder look that feels visionary, credible, and investor-ready.</p>
+            <div class="hs-prompt-text">
+              <span class="hs-quote">&quot;</span>
+              Startup founder headshot, suit &amp; blazer, executive pose, studio dark background, confident energy, cinematic aesthetic, contemporary business portrait, authentic and polished, subtle depth of field, premium editorial quality.
+            </div>
+          </div>
+          <div class="hs-card-actions">
+            <button class="hs-copy" type="button" aria-label="Copy prompt">
+              <svg class="hs-icon hs-copy-symbol" viewBox="0 0 24 24"><rect width="14" height="14" x="8" y="8" rx="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg>
+            </button>
+            <button class="hs-toggle" type="button" aria-label="Collapse prompt">
+              <svg class="hs-icon" viewBox="0 0 24 24"><path d="M18 15l-6-6-6 6"></path></svg>
+            </button>
+          </div>
+        </article>
+
+        <article class="hs-prompt-card">
+          <div class="hs-card-thumb"><img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=160&h=160&fit=crop&crop=faces" alt="" width="88" height="88"></div>
+          <div class="hs-card-main">
+            <div class="hs-card-head">
+              <span class="hs-number">4</span>
+              <h3>TED Speaker Portrait</h3>
+              <span class="hs-pill hs-pill-speaking">Speaking</span>
+            </div>
+            <p class="hs-card-desc">Dynamic speaker portrait with presence, warmth, and stage-ready charisma.</p>
+            <div class="hs-prompt-text">
+              <span class="hs-quote">&quot;</span>
+              Professional speaker headshot, suit &amp; blazer, executive pose, studio dark background, confident charisma, cinematic lighting, engaging eye contact, polished yet human, conference speaker portrait style.
+            </div>
+          </div>
+          <div class="hs-card-actions">
+            <button class="hs-copy" type="button" aria-label="Copy prompt">
+              <svg class="hs-icon hs-copy-symbol" viewBox="0 0 24 24"><rect width="14" height="14" x="8" y="8" rx="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg>
+            </button>
+            <button class="hs-toggle" type="button" aria-label="Collapse prompt">
+              <svg class="hs-icon" viewBox="0 0 24 24"><path d="M18 15l-6-6-6 6"></path></svg>
+            </button>
+          </div>
+        </article>
+      </div>
+
+      <div class="hs-show-wrap">
+        <button class="hs-show-more" id="hsShowMore" type="button">
+          <span>Show 8 More Prompts</span>
+          <svg class="hs-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg>
+        </button>
+      </div>
+    </div>
+  </section>
+</div>
+
+<script src="https://shanusaini.github.io/headshot-prompt-library.js"></script>
