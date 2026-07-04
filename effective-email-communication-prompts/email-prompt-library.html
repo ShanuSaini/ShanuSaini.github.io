@@ -1,0 +1,1074 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Email Template Library</title>
+</head>
+<body>
+  <style>
+    body {
+      margin: 0;
+    }
+    .ee-widget {
+      --ee-blue: #0d9488;
+      --ee-blue-2: #14b8a6;
+      --ee-blue-3: #5b6cff;
+      --ee-ink: #111827;
+      --ee-text: #253247;
+      --ee-muted: #667085;
+      --ee-line: #d9e4f2;
+      --ee-soft: #f7fbff;
+      --ee-card: #ffffff;
+      --ee-purple: #7357ff;
+      --ee-green: #16a34a;
+      margin: 0 auto;
+      color: var(--ee-text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      background: #fff;
+      box-shadow: 0 22px 70px rgba(15, 23, 42, 0.13);
+      overflow: hidden;
+    }
+
+    .ee-widget * {
+      box-sizing: border-box;
+    }
+
+    .ee-hero {
+      position: relative;
+      min-height: 430px;
+      padding: 34px 42px 76px;
+      color: #fff;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 67% 73%, rgba(168, 85, 247, 0.62), transparent 16%),
+        radial-gradient(circle at 83% 24%, rgba(37, 99, 235, 0.33), transparent 24%),
+        linear-gradient(125deg, #030916 0%, #071226 45%, #060a1b 100%);
+    }
+
+    .ee-hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      opacity: 0.45;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+      background-size: 46px 46px;
+      mask-image: linear-gradient(90deg, #000, transparent 88%);
+    }
+
+    .ee-hero-top,
+    .ee-hero-copy,
+    .ee-hero-art {
+      position: relative;
+      z-index: 1;
+    }
+
+    .ee-hero-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .ee-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .ee-mark {
+      display: grid;
+      width: 40px;
+      height: 40px;
+      place-items: center;
+      border-radius: 7px;
+      color: #fff;
+      font-size: 22px;
+      font-weight: 800;
+      line-height: 1;
+      background: linear-gradient(135deg, #0d9488, #1c86ff);
+      box-shadow: 0 10px 28px rgba(10, 102, 194, 0.45);
+    }
+
+    .ee-brand span {
+      display: block;
+      color: rgba(255, 255, 255, 0.78);
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .ee-tools {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 10px;
+    }
+
+    .ee-tools a {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      min-height: 34px;
+      padding: 8px 12px;
+      border: 1px solid rgba(255, 255, 255, 0.24);
+      border-radius: 999px;
+      color: rgba(255, 255, 255, 0.88);
+      font-size: 13px;
+      font-weight: 700;
+      text-decoration: none;
+      background: rgba(255, 255, 255, 0.06);
+      backdrop-filter: blur(14px);
+    }
+
+    .ee-tools a:hover {
+      border-color: rgba(86, 154, 255, 0.85);
+      color: #fff;
+      background: rgba(40, 120, 255, 0.24);
+    }
+
+    .ee-tool-dot {
+      display: inline-grid;
+      width: 18px;
+      height: 18px;
+      place-items: center;
+      border-radius: 50%;
+      color: #fff;
+      background: #101b34;
+      border: 1px solid rgba(255, 255, 255, 0.22);
+    }
+
+    .ee-tool-dot svg {
+      width: 14px;
+      height: 14px;
+      display: block;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .ee-tool-chatgpt { color: #d1fae5; }
+    .ee-tool-claude { color: #ffb86b; }
+    .ee-tool-gemini { color: #9db8ff; }
+    .ee-tool-perplexity { color: #7dd3fc; }
+    .ee-tool-canva { color: #8be9ff; }
+    .ee-tool-notion { color: #ffffff; }
+
+    .ee-hero-copy {
+      width: min(520px, 55%);
+      margin-top: 54px;
+    }
+
+    .ee-hero h1 {
+      margin: 0;
+      color: #fff;
+      font-size: clamp(34px, 4.8vw, 58px);
+      line-height: 1.08;
+      letter-spacing: 0;
+    }
+
+    .ee-hero h1 span {
+      color: #2dd4bf;
+    }
+
+    .ee-hero h2 {
+      margin: 24px 0 0;
+      color: rgba(255, 255, 255, 0.86);
+      font-size: clamp(20px, 2.6vw, 31px);
+      font-weight: 650;
+      line-height: 1.35;
+      letter-spacing: 0;
+    }
+
+    .ee-hero p {
+      max-width: 520px;
+      margin: 18px 0 0;
+      color: rgba(255, 255, 255, 0.74);
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    .ee-hero-art {
+      position: absolute;
+      right: 44px;
+      top: 118px;
+      width: min(420px, 42%);
+      min-height: 260px;
+    }
+
+    .ee-glass-card {
+      position: absolute;
+      right: 58px;
+      top: 10px;
+      width: 285px;
+      min-height: 210px;
+      border: 1px solid rgba(104, 141, 255, 0.38);
+      border-radius: 22px;
+      background: linear-gradient(145deg, rgba(20, 43, 119, 0.62), rgba(10, 18, 51, 0.44));
+      box-shadow: 0 30px 70px rgba(35, 78, 255, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.09);
+      backdrop-filter: blur(16px);
+    }
+
+    .ee-mini-in {
+      position: absolute;
+      top: 30px;
+      left: 30px;
+      display: grid;
+      width: 44px;
+      height: 44px;
+      place-items: center;
+      border-radius: 8px;
+      color: #dbeafe;
+      font-size: 26px;
+      font-weight: 800;
+      background: rgba(47, 140, 255, 0.24);
+    }
+
+    .ee-lines {
+      position: absolute;
+      top: 92px;
+      left: 30px;
+      right: 36px;
+      display: grid;
+      gap: 12px;
+    }
+
+    .ee-lines i {
+      display: block;
+      height: 8px;
+      border-radius: 999px;
+      background: rgba(185, 205, 255, 0.26);
+    }
+
+    .ee-lines i:nth-child(1) { width: 34%; }
+    .ee-lines i:nth-child(2) { width: 76%; }
+    .ee-lines i:nth-child(3) { width: 88%; }
+    .ee-lines i:nth-child(4) { width: 64%; }
+
+    .ee-float {
+      position: absolute;
+      display: grid;
+      width: 68px;
+      height: 68px;
+      place-items: center;
+      border: 1px solid rgba(104, 141, 255, 0.36);
+      border-radius: 16px;
+      color: #dbeafe;
+      background: rgba(37, 58, 123, 0.42);
+      backdrop-filter: blur(14px);
+      box-shadow: 0 18px 45px rgba(23, 37, 84, 0.32);
+    }
+
+    .ee-float-mail { left: 0; top: 78px; }
+    .ee-float-reply { right: 8px; top: 0; }
+    .ee-float-send { right: 0; bottom: 2px; }
+
+    .ee-panel {
+      position: relative;
+      z-index: 3;
+      margin: -50px 42px 0;
+      padding: 34px 40px 30px;
+      border: 1px solid var(--ee-line);
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.98);
+      box-shadow: 0 20px 58px rgba(20, 38, 75, 0.12);
+    }
+
+    .ee-section-title {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      margin-bottom: 26px;
+      color: #0f766e;
+      font-size: 13px;
+      font-weight: 850;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+
+    .ee-section-title::before,
+    .ee-section-title::after {
+      content: "";
+      width: min(110px, 18vw);
+      height: 1px;
+      background: #d9e4f2;
+    }
+
+    .ee-sparkle {
+      color: #7b8ba4;
+      letter-spacing: 0;
+    }
+
+    .ee-filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 16px 24px;
+    }
+
+    .ee-filter-field label {
+      color: #536078;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+      display: block;
+    }
+
+    .ee-template-count {
+      margin: 0;
+      color: #536078;
+      font-size: 14px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .ee-field {
+      display: grid;
+      gap: 10px;
+      min-width: 0;
+    }
+
+    .ee-field label {
+      color: #536078;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .ee-input-wrap,
+    .ee-select-wrap {
+      position: relative;
+    }
+
+    .ee-input-wrap svg,
+    .ee-select-wrap svg.ee-leading {
+      position: absolute;
+      top: 50%;
+      left: 16px;
+      width: 18px;
+      height: 18px;
+      transform: translateY(-50%);
+      color: #60708a;
+      pointer-events: none;
+    }
+
+    .ee-widget input,
+    .ee-widget select {
+      width: 100%;
+      height: 56px;
+      border: 1px solid #cfdbea;
+      border-radius: 8px;
+      color: #18243a;
+      font: inherit;
+      font-size: 15px;
+      font-weight: 400;
+      background: #fff;
+      outline: none;
+      box-shadow: 0 1px 0 rgba(15, 23, 42, 0.02);
+    }
+
+    .ee-widget input {
+      padding: 0 16px 0 48px;
+    }
+
+    .ee-widget select {
+      appearance: none;
+      padding: 0 44px 0 48px;
+    }
+
+    .ee-select-wrap::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      right: 18px;
+      width: 8px;
+      height: 8px;
+      border-right: 2px solid #0f4e95;
+      border-bottom: 2px solid #0f4e95;
+      transform: translateY(-70%) rotate(45deg);
+      pointer-events: none;
+    }
+
+    .ee-widget input:focus,
+    .ee-widget select:focus {
+      border-color: #7cb4ff;
+      box-shadow: 0 0 0 4px rgba(47, 140, 255, 0.13);
+    }
+
+    .ee-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      height: 56px;
+      border: 1px solid transparent;
+      border-radius: 8px;
+      padding: 0 24px;
+      color: #fff;
+      font: inherit;
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: 0.01em;
+      white-space: nowrap;
+      cursor: pointer;
+      background: linear-gradient(135deg, #0d9488, #14b8a6);
+      box-shadow: 0 14px 28px rgba(10, 102, 194, 0.22);
+      transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease;
+    }
+
+    .ee-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 18px 34px rgba(10, 102, 194, 0.28);
+    }
+
+    .ee-btn-secondary {
+      color: #344054;
+      border-color: #cfdbea;
+      background: #fff;
+      box-shadow: none;
+    }
+
+    .ee-btn-secondary:hover {
+      color: #0d9488;
+      border-color: #7cb4ff;
+      background: #f7fbff;
+      box-shadow: none;
+    }
+
+    .ee-icon {
+      width: 18px;
+      height: 18px;
+      flex: 0 0 auto;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .ee-list {
+      display: grid;
+      gap: 14px;
+      margin-top: 28px;
+    }
+
+    .ee-prompt-card {
+      display: grid;
+      grid-template-columns: 46px minmax(0, 1fr) 122px;
+      gap: 18px;
+      align-items: start;
+      padding: 24px 30px;
+      border: 1px solid var(--ee-line);
+      border-radius: 14px;
+      background: #fff;
+      box-shadow: 0 10px 30px rgba(16, 24, 40, 0.04);
+    }
+
+    .ee-prompt-card.is-hidden {
+      display: none;
+    }
+
+    .ee-number {
+      display: grid;
+      width: 40px;
+      height: 40px;
+      place-items: center;
+      border-radius: 12px;
+      color: #0d9488;
+      font-size: 20px;
+      font-weight: 850;
+      background: #eef6ff;
+    }
+
+    .ee-card-head {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .ee-card-head h3 {
+      margin: 0;
+      color: #111827;
+      font-size: 18px;
+      line-height: 1.25;
+      letter-spacing: 0;
+    }
+
+    .ee-pill {
+      display: inline-flex;
+      align-items: center;
+      min-height: 26px;
+      padding: 5px 12px;
+      border-radius: 999px;
+      color: #6446e8;
+      font-size: 12px;
+      font-weight: 750;
+      background: #f0edff;
+      white-space: nowrap;
+    }
+
+    .ee-card-desc {
+      margin: 8px 0 12px;
+      color: #46546a;
+      font-size: 14px;
+      line-height: 1.55;
+    }
+
+    .ee-subject-line {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 10px;
+      padding: 12px 16px;
+      border: 1px solid #b8e0db;
+      border-radius: 8px;
+      color: #0f766e;
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1.5;
+      background: #f0fdfa;
+    }
+
+    .ee-subject-main {
+      flex: 1;
+      min-width: 0;
+      display: grid;
+      gap: 4px;
+    }
+
+    .ee-subject-copy {
+      position: relative;
+      display: block;
+      width: 100%;
+      margin: 0;
+      padding: 0;
+      border: 0;
+      color: inherit;
+      font: inherit;
+      font-weight: 700;
+      line-height: 1.5;
+      text-align: left;
+      cursor: pointer;
+      background: transparent;
+    }
+
+    .ee-subject-copy:hover .ee-subject-text {
+      text-decoration: underline;
+      text-decoration-color: rgba(13, 148, 136, 0.45);
+    }
+
+    .ee-subject-copy.is-copied .ee-subject-text {
+      color: #13843f;
+    }
+
+    .ee-subject-text {
+      font-weight: 700;
+    }
+
+    .ee-copy-tip {
+      position: absolute;
+      left: 50%;
+      bottom: calc(100% + 8px);
+      z-index: 2;
+      display: inline-flex;
+      align-items: center;
+      min-height: 24px;
+      padding: 4px 8px;
+      border-radius: 6px;
+      color: #fff;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      white-space: nowrap;
+      pointer-events: none;
+      opacity: 0;
+      visibility: hidden;
+      background: #111827;
+      transform: translateX(-50%) translateY(4px);
+      transition: opacity 140ms ease, transform 140ms ease, visibility 140ms ease;
+    }
+
+    .ee-copy-tip::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      width: 8px;
+      height: 8px;
+      background: #111827;
+      transform: translateX(-50%) translateY(-4px) rotate(45deg);
+    }
+
+    .ee-subject-copy:hover .ee-copy-tip,
+    .ee-subject-copy:focus-visible .ee-copy-tip,
+    .ee-alt-subject:hover .ee-copy-tip,
+    .ee-alt-subject:focus-visible .ee-copy-tip,
+    .ee-subject-copy.is-copied .ee-copy-tip,
+    .ee-alt-subject.is-copied .ee-copy-tip {
+      opacity: 1;
+      visibility: visible;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    .ee-subject-alt-toggle {
+      display: inline-grid;
+      width: 28px;
+      height: 28px;
+      flex: 0 0 auto;
+      align-self: center;
+      place-items: center;
+      border: 1px solid #99d5cf;
+      border-radius: 6px;
+      color: #0f766e;
+      cursor: pointer;
+      background: #fff;
+      transition: transform 160ms ease, background 160ms ease, border-color 160ms ease;
+      padding: 0;
+    }
+
+    .ee-subject-alt-toggle .ee-icon {
+      width: 16px;
+      height: 16px;
+    }
+
+    .ee-subject-alt-toggle:hover {
+      border-color: #0d9488;
+      background: #ecfdf5;
+    }
+
+    .ee-subject-alt-toggle[aria-expanded="true"] {
+      color: #fff;
+      border-color: #0d9488;
+      background: #0d9488;
+    }
+
+    .ee-subject-alt-toggle[aria-expanded="true"] svg {
+      transform: rotate(45deg);
+    }
+
+    .ee-alt-subjects {
+      margin-bottom: 10px;
+      padding: 14px 16px;
+      border: 1px dashed #b8e0db;
+      border-radius: 8px;
+      background: #f8fffe;
+    }
+
+    .ee-alt-subjects-label {
+      margin-bottom: 10px;
+      color: #536078;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .ee-alt-subjects-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 8px;
+    }
+
+    .ee-alt-subject {
+      position: relative;
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid #d1eae6;
+      border-radius: 8px;
+      color: #0f766e;
+      font: inherit;
+      font-size: 13px;
+      font-weight: 650;
+      line-height: 1.45;
+      text-align: left;
+      cursor: pointer;
+      background: #fff;
+      transition: border-color 160ms ease, background 160ms ease, color 160ms ease;
+    }
+
+    .ee-alt-subject .ee-copy-tip {
+      left: auto;
+      right: 12px;
+      bottom: calc(100% + 6px);
+      transform: translateY(4px);
+    }
+
+    .ee-alt-subject:hover .ee-copy-tip,
+    .ee-alt-subject:focus-visible .ee-copy-tip,
+    .ee-alt-subject.is-copied .ee-copy-tip {
+      transform: translateY(0);
+    }
+
+    .ee-alt-subject:hover {
+      border-color: #0d9488;
+      background: #f0fdfa;
+    }
+
+    .ee-alt-subject.is-copied {
+      color: #13843f;
+      border-color: #22c55e;
+      background: #f0fdf4;
+    }
+
+    .ee-subject-label {
+      color: #536078;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      font-size: 11px;
+    }
+
+    .ee-prompt-text {
+      position: relative;
+      min-height: 74px;
+      padding: 17px 20px;
+      border: 1px solid #cfdbea;
+      border-radius: 8px;
+      color: #344054;
+      font-size: 14px;
+      line-height: 1.62;
+      white-space: pre-wrap;
+      background: linear-gradient(135deg, #f8fafc, #ffffff);
+    }
+
+    .ee-empty-state {
+      display: none;
+      margin-top: 28px;
+      padding: 28px 24px;
+      border: 1px dashed #cfdbea;
+      border-radius: 14px;
+      color: #536078;
+      font-size: 15px;
+      line-height: 1.6;
+      text-align: center;
+      background: #f8fafc;
+    }
+
+    .ee-card-actions {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-end;
+      justify-content: flex-end;
+      gap: 10px;
+      padding-top: 4px;
+    }
+
+    .ee-toggle {
+      display: inline-grid;
+      width: 32px;
+      height: 32px;
+      place-items: center;
+      border: 0;
+      color: #111827;
+      cursor: pointer;
+      background: transparent;
+    }
+
+    .ee-copy {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      min-width: 82px;
+      height: 36px;
+      border: 1px solid #0d9488;
+      border-radius: 8px;
+      color: #0d9488;
+      font: inherit;
+      font-size: 12px;
+      font-weight: 800;
+      cursor: pointer;
+      background: #fff;
+      transition: transform 160ms ease, border-color 160ms ease, color 160ms ease, background 160ms ease;
+    }
+
+    .ee-copy:hover {
+      transform: translateY(-1px);
+      background: #f7fbff;
+    }
+
+    .ee-copy.is-copied {
+      color: #13843f;
+      border-color: #22c55e;
+      background: #f0fdf4;
+      animation: eeCopied 540ms ease;
+    }
+
+    .ee-prompt-card.is-collapsed .ee-card-details {
+      display: none;
+    }
+
+    .ee-prompt-card.is-collapsed .ee-card-actions {
+      gap: 10px;
+    }
+
+    .ee-prompt-card.is-collapsed .ee-toggle svg {
+      transform: rotate(180deg);
+    }
+
+    .ee-show-wrap {
+      display: flex;
+      justify-content: center;
+      margin-top: 24px;
+    }
+
+    .ee-show-more {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      min-height: 46px;
+      border: 1px solid #cfdbea;
+      border-radius: 8px;
+      padding: 0 22px;
+      color: #0d9488;
+      font: inherit;
+      font-size: 15px;
+      font-weight: 800;
+      cursor: pointer;
+      background: #fff;
+    }
+
+    .ee-tip {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-top: 28px;
+      padding: 18px 22px;
+      border: 1px solid var(--ee-line);
+      border-radius: 14px;
+      color: #344054;
+      font-size: 14px;
+      line-height: 1.55;
+      background: linear-gradient(135deg, #ffffff, #f8fbff);
+    }
+
+    .ee-tip-icon {
+      display: grid;
+      width: 42px;
+      height: 42px;
+      place-items: center;
+      flex: 0 0 auto;
+      border-radius: 50%;
+      color: #4f46e5;
+      background: #eef2ff;
+    }
+
+    @keyframes eeCopied {
+      0% { transform: scale(1); }
+      45% { transform: scale(1.06); }
+      100% { transform: scale(1); }
+    }
+
+    @media (max-width: 1020px) {
+      .ee-hero {
+        padding: 30px 28px 72px;
+      }
+
+      .ee-hero-top {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .ee-tools {
+        justify-content: flex-start;
+      }
+
+      .ee-hero-copy {
+        width: 100%;
+        margin-top: 38px;
+      }
+
+      .ee-hero-art {
+        opacity: 0.36;
+        right: 4px;
+      }
+
+      .ee-panel {
+        margin-right: 22px;
+        margin-left: 22px;
+        padding: 28px 24px;
+      }
+
+      .ee-prompt-card {
+        grid-template-columns: 42px minmax(0, 1fr);
+      }
+
+      .ee-card-actions {
+        grid-column: 2;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 10px;
+        padding-top: 0;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .ee-widget {
+        width: 100%;
+        margin: 0;
+        border-radius: 0;
+        border-right: 0;
+        border-left: 0;
+      }
+
+      .ee-hero {
+        min-height: 0;
+        padding: 26px 18px 86px;
+      }
+
+      .ee-hero h1 {
+        font-size: 36px;
+      }
+
+      .ee-hero h2 {
+        font-size: 21px;
+      }
+
+      .ee-hero-art {
+        display: none;
+      }
+
+      .ee-tools a {
+        font-size: 12px;
+      }
+
+      .ee-panel {
+        margin: -56px 12px 0;
+        padding: 24px 16px;
+        border-radius: 16px;
+      }
+
+      .ee-prompt-card {
+        grid-template-columns: 1fr;
+      }
+
+      .ee-number {
+        width: 38px;
+        height: 38px;
+      }
+
+      .ee-card-actions {
+        grid-column: auto;
+      }
+
+      .ee-card-head {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .ee-prompt-card {
+        padding: 20px;
+      }
+
+    }
+  </style>
+
+  <div class="ee-widget" id="emailPromptLibrary">
+    <section class="ee-hero">
+      <div class="ee-hero-top">
+        <div class="ee-brand">
+          <div class="ee-mark">@</div>
+          <span>Template Library</span>
+        </div>
+        <nav class="ee-tools" aria-label="Popular AI tools">
+          <a href="https://chat.openai.com/" target="_blank" rel="noopener"><span class="ee-tool-dot ee-tool-chatgpt"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.2a4.3 4.3 0 0 1 4.1 3"></path><path d="M18.4 7.4a4.3 4.3 0 0 1 .2 5.1"></path><path d="M17.1 15.7a4.3 4.3 0 0 1-4.8 2.3"></path><path d="M8.1 17.2a4.3 4.3 0 0 1-3-4.1"></path><path d="M5.8 10.2a4.3 4.3 0 0 1 3.7-3.8"></path><path d="M9 8l6 3.5v5"></path><path d="M15 8.2l-6 3.5v4.9"></path></svg></span>ChatGPT</a>
+          <a href="https://claude.ai/" target="_blank" rel="noopener"><span class="ee-tool-dot ee-tool-claude"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v18"></path><path d="M3 12h18"></path><path d="M5.6 5.6l12.8 12.8"></path><path d="M18.4 5.6L5.6 18.4"></path><circle cx="12" cy="12" r="3"></circle></svg></span>Claude</a>
+          <a href="https://gemini.google.com/" target="_blank" rel="noopener"><span class="ee-tool-dot ee-tool-gemini"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.4 7.6L22 12l-7.6 2.4L12 22l-2.4-7.6L2 12l7.6-2.4z"></path></svg></span>Gemini</a>
+          <a href="https://www.perplexity.ai/" target="_blank" rel="noopener"><span class="ee-tool-dot ee-tool-perplexity"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4v16"></path><path d="M18 4v16"></path><path d="M6 8h12"></path><path d="M6 16h12"></path><path d="M10 8l-4 4 4 4"></path><path d="M14 8l4 4-4 4"></path></svg></span>Perplexity</a>
+          <a href="https://www.canva.com/" target="_blank" rel="noopener"><span class="ee-tool-dot ee-tool-canva"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.5 8.2a5.8 5.8 0 1 0 .8 7.2"></path><path d="M14.8 10.2a3 3 0 1 0 .5 3.7"></path><path d="M17.5 12h3"></path></svg></span>Canva</a>
+          <a href="https://www.notion.so/product/ai" target="_blank" rel="noopener"><span class="ee-tool-dot ee-tool-notion"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4l10-1 4 3v14l-10 1-4-3z"></path><path d="M9 8h2l4 7V8h2"></path><path d="M9 16h2"></path></svg></span>Notion AI</a>
+        </nav>
+      </div>
+
+      <div class="ee-hero-copy">
+        <h1>Effective Email <span>Templates</span></h1>
+        <h2>Copy-ready professional emails for every situation.</h2>
+        <p>Browse by category, copy a template, and replace the placeholders with your details.</p>
+      </div>
+
+      <div class="ee-hero-art" aria-hidden="true">
+        <div class="ee-glass-card">
+          <div class="ee-mini-in">@</div>
+          <div class="ee-lines"><i></i><i></i><i></i><i></i></div>
+        </div>
+        <div class="ee-float ee-float-mail">
+          <svg class="ee-icon" viewBox="0 0 24 24"><path d="M21 15a4 4 0 0 1-4 4H8l-5 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4z"></path><path d="M8 10h.01"></path><path d="M12 10h.01"></path><path d="M16 10h.01"></path></svg>
+        </div>
+        <div class="ee-float ee-float-reply">
+          <svg class="ee-icon" viewBox="0 0 24 24"><path d="M21 15a4 4 0 0 1-4 4H8l-5 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4z"></path><path d="M8 10h8"></path><path d="M8 14h5"></path></svg>
+        </div>
+        <div class="ee-float ee-float-send">
+          <svg class="ee-icon" viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 8-8"></path><path d="M14 7h7v7"></path></svg>
+        </div>
+      </div>
+    </section>
+
+    <section class="ee-panel" aria-label="Email template library">
+      <div class="ee-filter-bar">
+        <div class="ee-filter-field">
+          <label for="eeCategory">Category</label>
+          <div class="ee-select-wrap">
+            <svg class="ee-icon ee-leading" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h6v6H4z"></path><path d="M14 4h6v6h-6z"></path><path d="M4 14h6v6H4z"></path><path d="M14 14h6v6h-6z"></path></svg>
+            <select id="eeCategory">
+              <option value="any">All categories</option>
+              <option value="career_growth">Career growth</option>
+              <option value="personal_branding">Personal branding</option>
+              <option value="networking">Networking</option>
+              <option value="leadership">Leadership</option>
+              <option value="opportunity">Opportunity</option>
+              <option value="reputation">Reputation</option>
+              <option value="prospecting">Prospecting &amp; lead generation</option>
+              <option value="client_management">Project &amp; client management</option>
+              <option value="money_matters">Money matters</option>
+              <option value="relationships">Building relationships</option>
+              <option value="conflict_resolution">Conflict resolution</option>
+              <option value="influence">Influence building</option>
+            </select>
+          </div>
+        </div>
+        <p class="ee-template-count" id="eeTemplateCount">60 templates</p>
+      </div>
+
+      <div class="ee-tip">
+        <div class="ee-tip-icon"><svg class="ee-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18h6"></path><path d="M10 22h4"></path><path d="M12 2a7 7 0 0 0-4 12.74V16h8v-1.26A7 7 0 0 0 12 2z"></path></svg></div>
+        <div><strong>Tip:</strong> Expand a template, then hover any subject line to see <strong>Copy</strong>. Click the main or alternative subject to copy it. Use the <strong>+</strong> button for more subject options.</div>
+      </div>
+
+      <div class="ee-empty-state" id="eeEmptyState">No templates match this category yet.</div>
+
+      <div class="ee-list" id="eePromptList" aria-live="polite"></div>
+
+      <div class="ee-show-wrap">
+        <button class="ee-show-more" id="eeShowMore" type="button" style="display:none;">
+          <span>Show More Templates</span>
+          <svg class="ee-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg>
+        </button>
+      </div>
+
+    </section>
+  </div>
+  <script src="email-templates-data.js"></script>
+  <script src="email-alt-subjects-data.js"></script>
+  <script src="email-prompt-library-custom-js.js"></script>
+</body>
+</html>
+
+
+
