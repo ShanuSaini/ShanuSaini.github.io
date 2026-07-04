@@ -18,6 +18,9 @@ EMBED HTML (widget + external script)
 ================================================================
 
   <style>
+    body {
+      margin: 0;
+    }
     .ee-widget {
       --ee-blue: #0d9488;
       --ee-blue-2: #14b8a6;
@@ -30,13 +33,10 @@ EMBED HTML (widget + external script)
       --ee-card: #ffffff;
       --ee-purple: #7357ff;
       --ee-green: #16a34a;
-      width: min(1180px, calc(100% - 32px));
-      margin: 20px auto;
+      margin: 0 auto;
       color: var(--ee-text);
       font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
       background: #fff;
-      border: 1px solid var(--ee-line);
-      border-radius: 8px;
       box-shadow: 0 22px 70px rgba(15, 23, 42, 0.13);
       overflow: hidden;
     }
@@ -285,9 +285,9 @@ EMBED HTML (widget + external script)
       position: relative;
       z-index: 3;
       margin: -50px 42px 0;
-      padding: 34px 40px 30px;
+      padding: 22px 28px 20px;
       border: 1px solid var(--ee-line);
-      border-radius: 18px;
+      border-radius: 16px;
       background: rgba(255, 255, 255, 0.98);
       box-shadow: 0 20px 58px rgba(20, 38, 75, 0.12);
     }
@@ -323,21 +323,28 @@ EMBED HTML (widget + external script)
       flex-wrap: wrap;
       align-items: flex-end;
       justify-content: space-between;
-      gap: 16px 24px;
+      gap: 10px 16px;
+    }
+
+    .ee-filter-field {
+      min-width: min(100%, 280px);
+      flex: 1 1 220px;
     }
 
     .ee-filter-field label {
       color: #536078;
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 800;
       letter-spacing: 0.08em;
       text-transform: uppercase;
+      margin-bottom: 6px;
+      display: block;
     }
 
     .ee-template-count {
       margin: 0;
       color: #536078;
-      font-size: 14px;
+      font-size: 13px;
       font-weight: 700;
       white-space: nowrap;
     }
@@ -365,9 +372,9 @@ EMBED HTML (widget + external script)
     .ee-select-wrap svg.ee-leading {
       position: absolute;
       top: 50%;
-      left: 16px;
-      width: 18px;
-      height: 18px;
+      left: 12px;
+      width: 16px;
+      height: 16px;
       transform: translateY(-50%);
       color: #60708a;
       pointer-events: none;
@@ -376,12 +383,12 @@ EMBED HTML (widget + external script)
     .ee-widget input,
     .ee-widget select {
       width: 100%;
-      height: 56px;
+      height: 44px;
       border: 1px solid #cfdbea;
       border-radius: 8px;
       color: #18243a;
       font: inherit;
-      font-size: 15px;
+      font-size: 14px;
       font-weight: 400;
       background: #fff;
       outline: none;
@@ -389,21 +396,21 @@ EMBED HTML (widget + external script)
     }
 
     .ee-widget input {
-      padding: 0 16px 0 48px;
+      padding: 0 14px 0 40px;
     }
 
     .ee-widget select {
       appearance: none;
-      padding: 0 44px 0 48px;
+      padding: 0 36px 0 40px;
     }
 
     .ee-select-wrap::after {
       content: "";
       position: absolute;
       top: 50%;
-      right: 18px;
-      width: 8px;
-      height: 8px;
+      right: 14px;
+      width: 7px;
+      height: 7px;
       border-right: 2px solid #0f4e95;
       border-bottom: 2px solid #0f4e95;
       transform: translateY(-70%) rotate(45deg);
@@ -469,20 +476,20 @@ EMBED HTML (widget + external script)
 
     .ee-list {
       display: grid;
-      gap: 14px;
-      margin-top: 28px;
+      gap: 10px;
+      margin-top: 16px;
     }
 
     .ee-prompt-card {
       display: grid;
-      grid-template-columns: 46px minmax(0, 1fr) 122px;
-      gap: 18px;
+      grid-template-columns: 36px minmax(0, 1fr) 100px;
+      gap: 12px;
       align-items: start;
-      padding: 24px 30px;
+      padding: 14px 16px;
       border: 1px solid var(--ee-line);
-      border-radius: 14px;
+      border-radius: 12px;
       background: #fff;
-      box-shadow: 0 10px 30px rgba(16, 24, 40, 0.04);
+      box-shadow: 0 6px 18px rgba(16, 24, 40, 0.04);
     }
 
     .ee-prompt-card.is-hidden {
@@ -491,12 +498,12 @@ EMBED HTML (widget + external script)
 
     .ee-number {
       display: grid;
-      width: 40px;
-      height: 40px;
+      width: 32px;
+      height: 32px;
       place-items: center;
-      border-radius: 12px;
+      border-radius: 10px;
       color: #0d9488;
-      font-size: 20px;
+      font-size: 16px;
       font-weight: 850;
       background: #eef6ff;
     }
@@ -504,51 +511,51 @@ EMBED HTML (widget + external script)
     .ee-card-head {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 8px;
       min-width: 0;
     }
 
     .ee-card-head h3 {
       margin: 0;
       color: #111827;
-      font-size: 18px;
-      line-height: 1.25;
+      font-size: 16px;
+      line-height: 1.3;
       letter-spacing: 0;
     }
 
     .ee-pill {
       display: inline-flex;
       align-items: center;
-      min-height: 26px;
-      padding: 5px 12px;
+      min-height: 22px;
+      padding: 3px 10px;
       border-radius: 999px;
       color: #6446e8;
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 750;
       background: #f0edff;
       white-space: nowrap;
     }
 
     .ee-card-desc {
-      margin: 8px 0 12px;
+      margin: 4px 0 0;
       color: #46546a;
-      font-size: 14px;
-      line-height: 1.55;
+      font-size: 13px;
+      line-height: 1.45;
     }
 
     .ee-subject-line {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 10px;
-      margin-bottom: 10px;
-      padding: 12px 16px;
+      gap: 8px;
+      margin-bottom: 8px;
+      padding: 10px 12px;
       border: 1px solid #b8e0db;
       border-radius: 8px;
       color: #0f766e;
-      font-size: 14px;
+      font-size: 13px;
       font-weight: 700;
-      line-height: 1.5;
+      line-height: 1.45;
       background: #f0fdfa;
     }
 
@@ -556,7 +563,7 @@ EMBED HTML (widget + external script)
       flex: 1;
       min-width: 0;
       display: grid;
-      gap: 4px;
+      gap: 2px;
     }
 
     .ee-subject-copy {
@@ -635,8 +642,8 @@ EMBED HTML (widget + external script)
 
     .ee-subject-alt-toggle {
       display: inline-grid;
-      width: 28px;
-      height: 28px;
+      width: 24px;
+      height: 24px;
       flex: 0 0 auto;
       align-self: center;
       place-items: center;
@@ -646,11 +653,12 @@ EMBED HTML (widget + external script)
       cursor: pointer;
       background: #fff;
       transition: transform 160ms ease, background 160ms ease, border-color 160ms ease;
+      padding: 0;
     }
 
     .ee-subject-alt-toggle .ee-icon {
-      width: 16px;
-      height: 16px;
+      width: 14px;
+      height: 14px;
     }
 
     .ee-subject-alt-toggle:hover {
@@ -669,17 +677,17 @@ EMBED HTML (widget + external script)
     }
 
     .ee-alt-subjects {
-      margin-bottom: 10px;
-      padding: 14px 16px;
+      margin-bottom: 8px;
+      padding: 10px 12px;
       border: 1px dashed #b8e0db;
       border-radius: 8px;
       background: #f8fffe;
     }
 
     .ee-alt-subjects-label {
-      margin-bottom: 10px;
+      margin-bottom: 8px;
       color: #536078;
-      font-size: 11px;
+      font-size: 10px;
       font-weight: 800;
       letter-spacing: 0.08em;
       text-transform: uppercase;
@@ -690,20 +698,20 @@ EMBED HTML (widget + external script)
       padding: 0;
       list-style: none;
       display: grid;
-      gap: 8px;
+      gap: 6px;
     }
 
     .ee-alt-subject {
       position: relative;
       width: 100%;
-      padding: 10px 12px;
+      padding: 8px 10px;
       border: 1px solid #d1eae6;
       border-radius: 8px;
       color: #0f766e;
       font: inherit;
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 650;
-      line-height: 1.45;
+      line-height: 1.4;
       text-align: left;
       cursor: pointer;
       background: #fff;
@@ -739,20 +747,24 @@ EMBED HTML (widget + external script)
       font-weight: 800;
       text-transform: uppercase;
       letter-spacing: 0.06em;
-      font-size: 11px;
+      font-size: 10px;
     }
 
     .ee-prompt-text {
       position: relative;
-      min-height: 74px;
-      padding: 17px 20px;
+      min-height: 48px;
+      padding: 12px 14px;
       border: 1px solid #cfdbea;
       border-radius: 8px;
       color: #344054;
-      font-size: 14px;
-      line-height: 1.62;
+      font-size: 13px;
+      line-height: 1.55;
       white-space: pre-wrap;
       background: linear-gradient(135deg, #f8fafc, #ffffff);
+    }
+
+    .ee-card-details {
+      margin-top: 10px;
     }
 
     .ee-empty-state {
@@ -773,14 +785,14 @@ EMBED HTML (widget + external script)
       flex-direction: row;
       align-items: flex-end;
       justify-content: flex-end;
-      gap: 10px;
-      padding-top: 4px;
+      gap: 8px;
+      padding-top: 0;
     }
 
     .ee-toggle {
       display: inline-grid;
-      width: 32px;
-      height: 32px;
+      width: 28px;
+      height: 28px;
       place-items: center;
       border: 0;
       color: #111827;
@@ -792,14 +804,14 @@ EMBED HTML (widget + external script)
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 6px;
-      min-width: 82px;
-      height: 36px;
-      border: 1px solid #6aa3ff;
+      gap: 5px;
+      min-width: 72px;
+      height: 32px;
+      border: 1px solid #0d9488;
       border-radius: 8px;
       color: #0d9488;
       font: inherit;
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 800;
       cursor: pointer;
       background: #fff;
@@ -818,6 +830,16 @@ EMBED HTML (widget + external script)
       animation: eeCopied 540ms ease;
     }
 
+    .ee-copy .ee-icon {
+      width: 14px;
+      height: 14px;
+    }
+
+    .ee-toggle .ee-icon {
+      width: 16px;
+      height: 16px;
+    }
+
     .ee-prompt-card.is-collapsed .ee-card-details {
       display: none;
     }
@@ -833,20 +855,20 @@ EMBED HTML (widget + external script)
     .ee-show-wrap {
       display: flex;
       justify-content: center;
-      margin-top: 24px;
+      margin-top: 16px;
     }
 
     .ee-show-more {
       display: inline-flex;
       align-items: center;
-      gap: 10px;
-      min-height: 46px;
+      gap: 8px;
+      min-height: 40px;
       border: 1px solid #cfdbea;
       border-radius: 8px;
-      padding: 0 22px;
+      padding: 0 18px;
       color: #0d9488;
       font: inherit;
-      font-size: 15px;
+      font-size: 14px;
       font-weight: 800;
       cursor: pointer;
       background: #fff;
@@ -855,26 +877,31 @@ EMBED HTML (widget + external script)
     .ee-tip {
       display: flex;
       align-items: center;
-      gap: 16px;
-      margin-top: 28px;
-      padding: 18px 22px;
+      gap: 12px;
+      margin-top: 14px;
+      padding: 12px 14px;
       border: 1px solid var(--ee-line);
-      border-radius: 14px;
+      border-radius: 10px;
       color: #344054;
-      font-size: 14px;
-      line-height: 1.55;
+      font-size: 13px;
+      line-height: 1.45;
       background: linear-gradient(135deg, #ffffff, #f8fbff);
     }
 
     .ee-tip-icon {
       display: grid;
-      width: 42px;
-      height: 42px;
+      width: 34px;
+      height: 34px;
       place-items: center;
       flex: 0 0 auto;
       border-radius: 50%;
       color: #4f46e5;
       background: #eef2ff;
+    }
+
+    .ee-tip-icon .ee-icon {
+      width: 16px;
+      height: 16px;
     }
 
     @keyframes eeCopied {
@@ -910,11 +937,11 @@ EMBED HTML (widget + external script)
       .ee-panel {
         margin-right: 22px;
         margin-left: 22px;
-        padding: 28px 24px;
+        padding: 18px 18px;
       }
 
       .ee-prompt-card {
-        grid-template-columns: 42px minmax(0, 1fr);
+        grid-template-columns: 32px minmax(0, 1fr);
       }
 
       .ee-card-actions {
@@ -959,17 +986,19 @@ EMBED HTML (widget + external script)
 
       .ee-panel {
         margin: -56px 12px 0;
-        padding: 24px 16px;
-        border-radius: 16px;
+        padding: 16px 14px;
+        border-radius: 14px;
       }
 
       .ee-prompt-card {
         grid-template-columns: 1fr;
+        padding: 12px 14px;
       }
 
       .ee-number {
-        width: 38px;
-        height: 38px;
+        width: 28px;
+        height: 28px;
+        font-size: 14px;
       }
 
       .ee-card-actions {
