@@ -171,7 +171,7 @@
         function lpPromptLibrary_cardHtml(item, index, promptText) {
           var hiddenClass = !expandedList && index > 3 ? " is-hidden" : "";
           return ''
-            + '<article class="lp-prompt-card' + hiddenClass + '">'
+            + '<article class="lp-prompt-card is-collapsed' + hiddenClass + '">'
             + '<div class="lp-number">' + (index + 1) + '</div>'
             + '<div class="lp-card-main">'
             + '<div class="lp-card-head">'
@@ -179,9 +179,11 @@
             + '<span class="lp-pill">' + lpPromptLibrary_escapeHtml(lpPromptLibrary_selectedCategoryTag(item)) + '</span>'
             + '</div>'
             + '<p class="lp-card-desc">' + lpPromptLibrary_escapeHtml(item.desc) + '</p>'
+            + '<div class="lp-card-details">'
             + '<div class="lp-prompt-text" data-prompt-text="' + lpPromptLibrary_escapeHtml(promptText) + '">'
             + '<span class="lp-quote">&quot;</span>'
             + lpPromptLibrary_escapeHtml(promptText)
+            + '</div>'
             + '</div>'
             + '</div>'
             + '<div class="lp-card-actions">'
@@ -189,7 +191,7 @@
             + '<svg class="lp-icon lp-copy-symbol" viewBox="0 0 24 24" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg>'
             + '<span>Copy</span>'
             + '</button>'
-            + '<button class="lp-toggle" type="button" aria-label="Collapse prompt">'
+            + '<button class="lp-toggle" type="button" aria-label="Expand prompt">'
             + '<svg class="lp-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 15l-6-6-6 6"></path></svg>'
             + '</button>'
             + '</div>'

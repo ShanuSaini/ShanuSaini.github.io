@@ -221,8 +221,8 @@
       var hiddenClass = !expandedList && index > 3 ? " is-hidden" : "";
       var tagClass = item.tagClass || "hs-pill-pro";
       return ""
-        + '<article class="hs-prompt-card' + hiddenClass + '">'
-        + '<div class="hs-card-thumb"><img src="' + hsPromptLibrary_escapeHtml(item.image) + '" alt="" loading="lazy" width="88" height="88"></div>'
+        + '<article class="hs-prompt-card is-collapsed' + hiddenClass + '">'
+        + '<div class="hs-card-thumb"><img src="' + hsPromptLibrary_escapeHtml(item.image) + '" alt="" loading="lazy" width="64" height="64"></div>'
         + '<div class="hs-card-main">'
         + '<div class="hs-card-head">'
         + '<span class="hs-number">' + (index + 1) + "</span>"
@@ -230,16 +230,18 @@
         + '<span class="hs-pill ' + tagClass + '">' + hsPromptLibrary_escapeHtml(item.tag) + "</span>"
         + "</div>"
         + '<p class="hs-card-desc">' + hsPromptLibrary_escapeHtml(item.desc) + "</p>"
+        + '<div class="hs-card-details">'
         + '<div class="hs-prompt-text" data-prompt-text="' + hsPromptLibrary_escapeHtml(promptText) + '">'
         + '<span class="hs-quote">&quot;</span>'
         + hsPromptLibrary_escapeHtml(promptText)
+        + "</div>"
         + "</div>"
         + "</div>"
         + '<div class="hs-card-actions">'
         + '<button class="hs-copy" type="button" aria-label="Copy prompt">'
         + '<svg class="hs-icon hs-copy-symbol" viewBox="0 0 24 24" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg>'
         + "</button>"
-        + '<button class="hs-toggle" type="button" aria-label="Collapse prompt">'
+        + '<button class="hs-toggle" type="button" aria-label="Expand prompt">'
         + '<svg class="hs-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 15l-6-6-6 6"></path></svg>'
         + "</button>"
         + "</div>"
