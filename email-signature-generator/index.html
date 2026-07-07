@@ -476,44 +476,32 @@
 <!-- Email Signature End -->
     </template>
 
-    <!-- Centered Card -->
-    <template id="esg-sig-06" data-name="Centered Card">
+    <!-- Classic Profile (template 06) -->
+    <template id="esg-sig-06" data-name="Classic Profile">
 <!-- Email Signature Start -->
-<table role="presentation" cellpadding="0" cellspacing="0" border="0" align="center" style="font-family:{{fontBody}};max-width:520px;text-align:center;color:#333333;border-collapse:collapse;margin:0 auto;">
-  <!-- Company Logo Row Start -->
-  <tr data-esg-if="logoBase64">
-    <td align="center" style="padding-bottom:12px;text-align:center;">
-      {{logoImageCentered}}
+<table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="max-width:520px;font-family:{{fontBody}};border-collapse:collapse;">
+  <!-- Profile Photo Start -->
+  <tr data-esg-if="profileImageBase64">
+    <td style="padding:0 0 14px;vertical-align:top;line-height:0;mso-line-height-rule:exactly;">
+      {{profileImageClassic}}
     </td>
   </tr>
-  <!-- Company Logo Row End -->
-  <!-- Name Row Start -->
+  <!-- Profile Photo End -->
   <tr>
-    <td align="center" style="font-size:16px;font-weight:700;color:{{accentColor}};line-height:1.2;font-family:{{fontName}};">{{name}}</td>
-  </tr>
-  <!-- Name Row End -->
-  <!-- Title Row Start -->
-  <tr>
-    <td align="center" style="padding-top:6px;font-size:13px;color:#333333;line-height:1.3;font-family:{{fontBody}};">{{title}}</td>
-  </tr>
-  <!-- Title Row End -->
-  <!-- Company Name Row Start -->
-  <tr>
-    <td align="center" style="padding-top:8px;padding-bottom:18px;font-size:15px;font-weight:bold;color:{{accentColor}};line-height:1.3;font-family:{{fontBody}};" data-esg-if="companyName">{{companyName}}</td>
-  </tr>
-  <!-- Company Name Row End -->
-  <!-- Contact Box Row Start -->
-  <tr>
-    <td align="center">{{centeredContactBox}}</td>
-  </tr>
-  <!-- Contact Box Row End -->
-  <!-- Social Icons Row Start -->
-  <tr>
-    <td align="center" style="padding-top:16px;text-align:center;">
-      {{socialRowLargeCentered}}
+    <td style="padding:0;vertical-align:top;">
+      <!-- Accent Line Start -->
+      <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;">
+        <tr><td style="width:36px;height:3px;background:{{accentColor}};font-size:0;line-height:0;mso-line-height-rule:exactly;">&nbsp;</td></tr>
+      </table>
+      <!-- Accent Line End -->
+      <!-- Name Start -->
+      <p style="margin:10px 0 0;font-family:{{fontName}};font-size:17px;font-weight:700;color:#111111;line-height:1.2;letter-spacing:0.5px;text-transform:uppercase;">{{nameUppercase}}</p>
+      <!-- Name End -->
+      {{titleCompanyClassicBlock}}
+      {{classicProfileContactBlock}}
+      {{classicProfileFooter}}
     </td>
   </tr>
-  <!-- Social Icons Row End -->
 </table>
 <!-- Email Signature End -->
     </template>
@@ -530,6 +518,9 @@
         <tr><td style="height:80px;background:{{accentColor}};font-size:0;line-height:0;mso-line-height-rule:exactly;">&nbsp;</td></tr>
       </table>
       <!-- Accent Header Bar End -->
+      <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="border-collapse:collapse;">
+        <tr>
+          <td align="center" style="padding:0 18px;text-align:center;vertical-align:top;">
       {{luxuryHeroBlock}}
       <!-- Decorative Icon Start -->
       <p style="margin:14px 0 0;font-size:16px;color:{{secondaryColor}};line-height:1;font-family:{{fontBody}};">&#9671;</p>
@@ -541,6 +532,9 @@
       <!-- Spacer Start -->
       <div style="height:32px;font-size:0;line-height:0;">&nbsp;</div>
       <!-- Spacer End -->
+          </td>
+        </tr>
+      </table>
     </td>
     <!-- Banner Sidebar End -->
     <!-- Accent Divider Start -->
@@ -709,7 +703,7 @@
 
   </div>
 
-  <script src="js/signature-generator.js?v=53"></script>
+  <script src="js/signature-generator.js?v=56"></script>
   <script src="js/demo-data.js?v=2"></script>
   <script>EmailSignatureApp.init({ demo: true });</script>
 </body>

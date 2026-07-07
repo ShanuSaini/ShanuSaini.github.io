@@ -487,6 +487,9 @@
       } else if (style === 'circle') {
         icon = this.getIconSvg(doc, key, accent, iconSize, '#ffffff');
         cellExtra = 'background:' + escapeHtml(accent) + ';border-radius:50%;';
+      } else if (style === 'circle-dark') {
+        icon = this.getIconSvg(doc, key, '#111111', iconSize, '#ffffff');
+        cellExtra = 'background:#111111;border-radius:50%;';
       } else if (style === 'circle-large') {
         icon = this.getIconSvg(doc, key, accent, iconSize, '#ffffff');
         cellExtra = 'background:' + escapeHtml(accent) + ';border-radius:50%;';
@@ -1515,6 +1518,195 @@
       );
     },
 
+    /** Stacked contact list for 06 Centered Card (Progress Partners style) */
+    buildCenteredContactStack: function (doc, data) {
+      var lines = [];
+      var accent = data.accentColor || '#0F766E';
+
+      if (data.phone) {
+        lines.push(
+          '☎ <a href="tel:' +
+            escapeHtml(data.phone.replace(/\s/g, '')) +
+            '" style="color:#334155;text-decoration:none;">' +
+            escapeHtml(data.phone) +
+            '</a>'
+        );
+      }
+      if (data.email) {
+        lines.push(
+          '✉ <a href="mailto:' +
+            escapeHtml(data.email) +
+            '" style="color:#334155;text-decoration:none;">' +
+            escapeHtml(data.email) +
+            '</a>'
+        );
+      }
+      if (data.website) {
+        lines.push(
+          '🌐 <a href="' +
+            escapeHtml(normalizeUrl(data.website)) +
+            '" style="color:' +
+            escapeHtml(accent) +
+            ';text-decoration:none;">' +
+            escapeHtml(displayWebsite(data.website)) +
+            '</a>'
+        );
+      }
+      if (data.address) {
+        lines.push(
+          '📍 <span style="color:#334155;">' + escapeHtml(data.address) + '</span>'
+        );
+      }
+      if (!lines.length) return '';
+
+      return htmlComments.wrapContactBlock(
+        '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border:1px solid #d9e2ec;border-radius:18px;border-collapse:separate;border-spacing:0;text-align:center;">' +
+          '<tr><td style="padding:18px 22px;font-size:14px;color:#334155;line-height:2;font-family:' +
+          FONTS.contact +
+          ';">' +
+          lines.join('<br>') +
+          '</td></tr></table>'
+      );
+    },
+
+    /** Logo image or uppercase company mark for 06 Centered Card header */
+    buildCenteredBrandHeader: function (data) {
+      var accent = data.accentColor || '#0F766E';
+      if (data.logoBase64) {
+        return htmlComments.wrapCompanyLogo(
+          '<img src="' +
+            data.logoBase64 +
+            '" alt="' +
+            escapeHtml(data.companyName || 'Logo') +
+            '" style="display:inline-block;border:0;max-width:280px;max-height:80px;width:auto;height:auto;" />'
+        );
+      }
+      if (data.companyName) {
+        return htmlComments.wrap(
+          'Company Brand Mark',
+          '<div style="display:inline-block;padding:14px 34px;border:2px solid ' +
+            escapeHtml(accent) +
+            ';border-radius:10px;color:#0F172A;font-weight:700;font-size:22px;letter-spacing:1px;font-family:' +
+            FONTS.body +
+            ';">' +
+            escapeHtml(data.companyName).toUpperCase() +
+            '</div>'
+        );
+      }
+      return '';
+    },
+
+    buildCenteredBrandSection: function (data) {
+      var inner = this.buildCenteredBrandHeader(data);
+      if (!inner) return '';
+      return (
+        '<tr><td align="center" style="padding:28px 20px 12px;text-align:center;">' +
+        inner +
+        '</td></tr>'
+      );
+    },
+
+    buildCenteredContactSection: function (doc, data) {
+      var inner = this.buildCenteredContactStack(doc, data);
+      if (!inner) return '';
+      return '<tr><td style="padding:0 30px 26px;">' + inner + '</td></tr>';
+    },
+
+    /** Title • company line for 06 Classic Profile */
+    buildTitleCompanyClassic: function (data) {
+      var parts = [];
+      if (data.title) parts.push(escapeHtml(data.title).toUpperCase());
+      if (data.companyName) parts.push(escapeHtml(data.companyName).toUpperCase());
+      if (!parts.length) return '';
+      return parts.join(' &nbsp;&bull;&nbsp; ');
+    },
+
+    buildTitleCompanyClassicBlock: function (data) {
+      var line = this.buildTitleCompanyClassic(data);
+      if (!line) return '';
+      return htmlComments.wrap(
+        'Title and Company',
+        '<p style="margin:6px 0 0;font-family:' +
+          FONTS.body +
+          ';font-size:13px;color:#888888;line-height:1.35;letter-spacing:0.3px;text-transform:uppercase;">' +
+          line +
+          '</p>'
+      );
+    },
+
+    /** Plain two-line contact for 06 Classic Profile */
+    buildClassicProfileContactBlock: function (data) {
+      var html = '';
+      var line1 = [];
+
+      if (data.phone) {
+        line1.push(
+          '<a href="tel:' +
+            escapeHtml(data.phone.replace(/\s/g, '')) +
+            '" style="color:#374151;text-decoration:none;">' +
+            escapeHtml(data.phone) +
+            '</a>'
+        );
+      }
+      if (data.email) {
+        line1.push(
+          '<a href="mailto:' +
+            escapeHtml(data.email) +
+            '" style="color:#374151;text-decoration:none;">' +
+            escapeHtml(data.email) +
+            '</a>'
+        );
+      }
+      if (line1.length) {
+        html +=
+          '<p style="margin:14px 0 0;font-family:' +
+          FONTS.contact +
+          ';font-size:14px;color:#374151;line-height:1.6;">' +
+          line1.join('&nbsp;&nbsp;&nbsp;&nbsp;') +
+          '</p>';
+      }
+      if (data.address) {
+        html +=
+          '<p style="margin:4px 0 0;font-family:' +
+          FONTS.contact +
+          ';font-size:14px;color:#374151;line-height:1.6;">' +
+          escapeHtml(data.address) +
+          '</p>';
+      }
+      if (!html) return '';
+      return htmlComments.wrapContactBlock(html);
+    },
+
+    /** Social icons left + website right for 06 Classic Profile */
+    buildClassicProfileFooter: function (doc, data) {
+      var social = this.buildSocialRow(doc, data, 'circle-dark', 'horizontal');
+      var website = '';
+      if (data.website) {
+        website =
+          '<a href="' +
+          escapeHtml(normalizeUrl(data.website)) +
+          '" style="color:#111111;font-family:' +
+          FONTS.body +
+          ';font-size:11px;font-weight:600;letter-spacing:2px;text-decoration:none;text-transform:uppercase;white-space:nowrap;">' +
+          escapeHtml(displayWebsite(data.website).toUpperCase()) +
+          '</a>';
+      }
+      if (!social && !website) return '';
+      return htmlComments.wrap(
+        'Footer Row',
+        '<table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="margin-top:18px;border-collapse:collapse;">' +
+          '<tr><td colspan="2" style="border-top:2px solid #111111;font-size:0;line-height:0;mso-line-height-rule:exactly;padding-bottom:12px;">&nbsp;</td></tr>' +
+          '<tr>' +
+          '<td align="left" valign="middle" style="vertical-align:middle;line-height:0;">' +
+          (social || '&nbsp;') +
+          '</td>' +
+          '<td align="right" valign="middle" style="vertical-align:middle;padding-left:16px;line-height:1.2;">' +
+          website +
+          '</td>' +
+          '</tr></table>'
+      );
+    },
+
     /** 2x2 bordered contact grid for 06 Centered Card */
     buildCenteredContactBox: function (doc, data) {
       var accent = data.accentColor;
@@ -1675,6 +1867,15 @@
           escapeHtml(data.name) +
           '" width="78" height="78" style="display:block;border-radius:50%;border:0;object-fit:cover;background:#ffffff;margin:0 auto;" />';
       }
+      var profileImageClassic = '';
+      if (data.profileImageBase64) {
+        profileImageClassic =
+          '<img src="' +
+          data.profileImageBase64 +
+          '" alt="' +
+          escapeHtml(data.name) +
+          '" width="76" height="76" style="display:block;border-radius:50%;border:0;object-fit:cover;" />';
+      }
       var logoImg = '';
       if (data.logoBase64) {
         logoImg =
@@ -1806,6 +2007,7 @@
       profileImgLarge = htmlComments.wrapProfileImage(profileImgLarge);
       profileImgMedium = htmlComments.wrapProfileImage(profileImgMedium);
       profileImgCard = htmlComments.wrapProfileImage(profileImgCard);
+      profileImageClassic = htmlComments.wrapProfileImage(profileImageClassic);
       profileSmall = htmlComments.wrapProfileImage(profileSmall);
       profileImageStack = htmlComments.wrapProfileImage(profileImageStack);
       profileImgLuxury = htmlComments.wrapProfileImage(profileImgLuxury);
@@ -1871,6 +2073,12 @@
       var companyJewelryDivider = iconHelper.buildCompanyJewelryDivider(data);
       var companyBrandLine2Block = iconHelper.buildCompanyBrandLine2Block(data);
       var centeredContactBox = iconHelper.buildCenteredContactBox(doc, data);
+      var centeredContactStack = iconHelper.buildCenteredContactStack(doc, data);
+      var centeredBrandSection = iconHelper.buildCenteredBrandSection(data);
+      var centeredContactSection = iconHelper.buildCenteredContactSection(doc, data);
+      var titleCompanyClassicBlock = iconHelper.buildTitleCompanyClassicBlock(data);
+      var classicProfileContactBlock = iconHelper.buildClassicProfileContactBlock(data);
+      var classicProfileFooter = iconHelper.buildClassicProfileFooter(doc, data);
       var luxuryPanelContactBlock = iconHelper.buildLuxuryPanelContactBlock(doc, data);
       var socialRowOutlineDots = iconHelper.buildSocialRowOutlineDots(doc, data);
       var gradientAccentPanel = iconHelper.buildGradientAccentPanel(data);
@@ -1879,7 +2087,7 @@
       var socialRowOutlineLight = iconHelper.buildSocialRow(doc, data, 'circle-outline-light', 'horizontal');
       var socialRowOutlineMedium = iconHelper.buildSocialRow(doc, data, 'circle-outline-medium', 'horizontal');
       var socialRowOutlineXl = iconHelper.buildSocialRow(doc, data, 'circle-outline-xl', 'horizontal');
-      var socialRowLargeCentered = iconHelper.buildSocialRowCentered(doc, data, 'circle-large');
+      var socialRowLargeCentered = iconHelper.buildSocialRowCentered(doc, data, 'circle-outline-light');
       var socialRowLargeVertical = iconHelper.buildSocialRowVerticalColumns(doc, data, 'circle-large', 3);
       var profileStackContactBlock = iconHelper.buildProfileStackContactBlock(doc, data);
 
@@ -1911,6 +2119,7 @@
         '{{profileImageLarge}}': profileImgLarge,
         '{{profileImageMedium}}': profileImgMedium,
         '{{profileImageCard}}': profileImgCard,
+        '{{profileImageClassic}}': profileImageClassic,
         '{{profileImageLuxury}}': profileImgLuxury,
         '{{luxuryHeroImage}}': luxuryHeroImage,
         '{{luxuryHeroBlock}}': luxuryHeroBlock,
@@ -1955,6 +2164,12 @@
         '{{elegantCardContactBlock}}': elegantCardContactBlock,
         '{{luxuryContactBlock}}': luxuryContactBlock,
         '{{centeredContactBox}}': centeredContactBox,
+        '{{centeredContactStack}}': centeredContactStack,
+        '{{centeredBrandSection}}': centeredBrandSection,
+        '{{centeredContactSection}}': centeredContactSection,
+        '{{titleCompanyClassicBlock}}': titleCompanyClassicBlock,
+        '{{classicProfileContactBlock}}': classicProfileContactBlock,
+        '{{classicProfileFooter}}': classicProfileFooter,
         '{{profileStackContactBlock}}': profileStackContactBlock,
         '{{luxuryPanelContactBlock}}': luxuryPanelContactBlock,
         '{{contactInline}}': contactInline.join(' &nbsp;|&nbsp; '),
