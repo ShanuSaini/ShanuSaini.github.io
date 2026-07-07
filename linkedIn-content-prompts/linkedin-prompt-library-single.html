@@ -19,13 +19,13 @@
       --lp-card: #ffffff;
       --lp-purple: #7357ff;
       --lp-green: #16a34a;
-      width: min(1180px, calc(100% - 32px));
-      margin: 20px auto;
+      width: 100%;
+      margin: 0;
       color: var(--lp-text);
       font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
       background: #fff;
-      border: 1px solid var(--lp-line);
-      border-radius: 8px;
+      border: none;
+      border-radius: 0;
       box-shadow: 0 22px 70px rgba(15, 23, 42, 0.13);
       overflow: hidden;
     }
@@ -34,10 +34,21 @@
       box-sizing: border-box;
     }
 
+    .lp-container {
+      position: relative;
+      width: 100%;
+      max-width: 1260px;
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: 30px;
+      padding-right: 30px;
+    }
+
     .lp-hero {
       position: relative;
+      width: 100%;
       min-height: 430px;
-      padding: 34px 42px 76px;
+      padding: 34px 0 76px;
       color: #fff;
       overflow: hidden;
       background:
@@ -197,7 +208,7 @@
 
     .lp-hero-art {
       position: absolute;
-      right: 44px;
+      right: 0;
       top: 118px;
       width: min(420px, 42%);
       min-height: 260px;
@@ -273,7 +284,14 @@
     .lp-panel {
       position: relative;
       z-index: 3;
-      margin: -50px 42px 0;
+      width: 100%;
+      max-width: 1260px;
+      margin: -50px auto 0;
+      padding: 0 30px;
+      box-sizing: border-box;
+    }
+
+    .lp-panel-inner {
       padding: 34px 40px 30px;
       border: 1px solid var(--lp-line);
       border-radius: 18px;
@@ -647,7 +665,7 @@
 
     @media (max-width: 1020px) {
       .lp-hero {
-        padding: 30px 28px 72px;
+        padding: 30px 0 72px;
       }
 
       .lp-hero-top {
@@ -666,13 +684,11 @@
 
       .lp-hero-art {
         opacity: 0.36;
-        right: 4px;
+        right: 0;
       }
 
       .lp-panel {
-        margin-right: 22px;
-        margin-left: 22px;
-        padding: 28px 24px;
+        margin-top: -50px;
       }
 
       .lp-form {
@@ -706,9 +722,15 @@
         border-left: 0;
       }
 
+      .lp-container,
+      .lp-panel {
+        padding-left: 18px;
+        padding-right: 18px;
+      }
+
       .lp-hero {
         min-height: 0;
-        padding: 26px 18px 86px;
+        padding: 26px 0 86px;
       }
 
       .lp-hero h1 {
@@ -728,7 +750,10 @@
       }
 
       .lp-panel {
-        margin: -56px 12px 0;
+        margin-top: -56px;
+      }
+
+      .lp-panel-inner {
         padding: 24px 16px;
         border-radius: 16px;
       }
@@ -768,6 +793,7 @@
 
   <div class="lp-widget" id="linkedinPromptLibrary">
     <section class="lp-hero">
+      <div class="lp-container">
       <div class="lp-hero-top">
         <div class="lp-brand">
           <div class="lp-mark">in</div>
@@ -779,7 +805,6 @@
           <a href="https://gemini.google.com/" target="_blank" rel="noopener"><span class="lp-tool-dot lp-tool-gemini"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.4 7.6L22 12l-7.6 2.4L12 22l-2.4-7.6L2 12l7.6-2.4z"></path></svg></span>Gemini</a>
           <a href="https://www.perplexity.ai/" target="_blank" rel="noopener"><span class="lp-tool-dot lp-tool-perplexity"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4v16"></path><path d="M18 4v16"></path><path d="M6 8h12"></path><path d="M6 16h12"></path><path d="M10 8l-4 4 4 4"></path><path d="M14 8l4 4-4 4"></path></svg></span>Perplexity</a>
           <a href="https://www.canva.com/" target="_blank" rel="noopener"><span class="lp-tool-dot lp-tool-canva"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.5 8.2a5.8 5.8 0 1 0 .8 7.2"></path><path d="M14.8 10.2a3 3 0 1 0 .5 3.7"></path><path d="M17.5 12h3"></path></svg></span>Canva</a>
-          <a href="https://www.notion.so/product/ai" target="_blank" rel="noopener"><span class="lp-tool-dot lp-tool-notion"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4l10-1 4 3v14l-10 1-4-3z"></path><path d="M9 8h2l4 7V8h2"></path><path d="M9 16h2"></path></svg></span>Notion AI</a>
         </nav>
       </div>
 
@@ -804,9 +829,11 @@
           <svg class="lp-icon" viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 8-8"></path><path d="M14 7h7v7"></path></svg>
         </div>
       </div>
+      </div>
     </section>
 
     <section class="lp-panel" aria-label="LinkedIn prompt generator">
+      <div class="lp-panel-inner">
       <div class="lp-section-title"><span class="lp-sparkle">*</span> Build Your Prompt Set</div>
 
       <div class="lp-form">
@@ -969,6 +996,8 @@
           <span>Show 8 More Prompts</span>
           <svg class="lp-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg>
         </button>
+      </div>
+
       </div>
 
     </section>

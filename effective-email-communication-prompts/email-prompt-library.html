@@ -22,6 +22,7 @@
       --ee-card: #ffffff;
       --ee-purple: #7357ff;
       --ee-green: #16a34a;
+      width: 100%;
       margin: 0 auto;
       color: var(--ee-text);
       font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
@@ -34,10 +35,21 @@
       box-sizing: border-box;
     }
 
+    .ee-container {
+      position: relative;
+      width: 100%;
+      max-width: 1260px;
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: 30px;
+      padding-right: 30px;
+    }
+
     .ee-hero {
       position: relative;
+      width: 100%;
       min-height: 430px;
-      padding: 34px 42px 76px;
+      padding: 34px 0 76px;
       color: #fff;
       overflow: hidden;
       background:
@@ -158,8 +170,7 @@
     .ee-tool-claude { color: #ffb86b; }
     .ee-tool-gemini { color: #9db8ff; }
     .ee-tool-perplexity { color: #7dd3fc; }
-    .ee-tool-canva { color: #8be9ff; }
-    .ee-tool-notion { color: #ffffff; }
+    .ee-tool-grok { color: #e5e7eb; }
 
     .ee-hero-copy {
       width: min(520px, 55%);
@@ -197,7 +208,7 @@
 
     .ee-hero-art {
       position: absolute;
-      right: 44px;
+      right: 0;
       top: 118px;
       width: min(420px, 42%);
       min-height: 260px;
@@ -273,7 +284,14 @@
     .ee-panel {
       position: relative;
       z-index: 3;
-      margin: -50px 42px 0;
+      width: 100%;
+      max-width: 1260px;
+      margin: -50px auto 0;
+      padding: 0 30px;
+      box-sizing: border-box;
+    }
+
+    .ee-panel-inner {
       padding: 22px 28px 20px;
       border: 1px solid var(--ee-line);
       border-radius: 16px;
@@ -897,7 +915,7 @@
 
     @media (max-width: 1020px) {
       .ee-hero {
-        padding: 30px 28px 72px;
+        padding: 30px 0 72px;
       }
 
       .ee-hero-top {
@@ -916,13 +934,11 @@
 
       .ee-hero-art {
         opacity: 0.36;
-        right: 4px;
+        right: 0;
       }
 
       .ee-panel {
-        margin-right: 22px;
-        margin-left: 22px;
-        padding: 18px 18px;
+        margin-top: -50px;
       }
 
       .ee-prompt-card {
@@ -948,9 +964,15 @@
         border-left: 0;
       }
 
+      .ee-container,
+      .ee-panel {
+        padding-left: 18px;
+        padding-right: 18px;
+      }
+
       .ee-hero {
         min-height: 0;
-        padding: 26px 18px 86px;
+        padding: 26px 0 86px;
       }
 
       .ee-hero h1 {
@@ -970,7 +992,10 @@
       }
 
       .ee-panel {
-        margin: -56px 12px 0;
+        margin-top: -56px;
+      }
+
+      .ee-panel-inner {
         padding: 16px 14px;
         border-radius: 14px;
       }
@@ -1004,6 +1029,7 @@
 
   <div class="ee-widget" id="emailPromptLibrary">
     <section class="ee-hero">
+      <div class="ee-container">
       <div class="ee-hero-top">
         <div class="ee-brand">
           <div class="ee-mark">@</div>
@@ -1013,9 +1039,8 @@
           <a href="https://chat.openai.com/" target="_blank" rel="noopener"><span class="ee-tool-dot ee-tool-chatgpt"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.2a4.3 4.3 0 0 1 4.1 3"></path><path d="M18.4 7.4a4.3 4.3 0 0 1 .2 5.1"></path><path d="M17.1 15.7a4.3 4.3 0 0 1-4.8 2.3"></path><path d="M8.1 17.2a4.3 4.3 0 0 1-3-4.1"></path><path d="M5.8 10.2a4.3 4.3 0 0 1 3.7-3.8"></path><path d="M9 8l6 3.5v5"></path><path d="M15 8.2l-6 3.5v4.9"></path></svg></span>ChatGPT</a>
           <a href="https://claude.ai/" target="_blank" rel="noopener"><span class="ee-tool-dot ee-tool-claude"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v18"></path><path d="M3 12h18"></path><path d="M5.6 5.6l12.8 12.8"></path><path d="M18.4 5.6L5.6 18.4"></path><circle cx="12" cy="12" r="3"></circle></svg></span>Claude</a>
           <a href="https://gemini.google.com/" target="_blank" rel="noopener"><span class="ee-tool-dot ee-tool-gemini"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.4 7.6L22 12l-7.6 2.4L12 22l-2.4-7.6L2 12l7.6-2.4z"></path></svg></span>Gemini</a>
+          <a href="https://grok.com/" target="_blank" rel="noopener"><span class="ee-tool-dot ee-tool-grok"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12"></path><path d="M18 6L6 18"></path></svg></span>Grok</a>
           <a href="https://www.perplexity.ai/" target="_blank" rel="noopener"><span class="ee-tool-dot ee-tool-perplexity"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4v16"></path><path d="M18 4v16"></path><path d="M6 8h12"></path><path d="M6 16h12"></path><path d="M10 8l-4 4 4 4"></path><path d="M14 8l4 4-4 4"></path></svg></span>Perplexity</a>
-          <a href="https://www.canva.com/" target="_blank" rel="noopener"><span class="ee-tool-dot ee-tool-canva"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.5 8.2a5.8 5.8 0 1 0 .8 7.2"></path><path d="M14.8 10.2a3 3 0 1 0 .5 3.7"></path><path d="M17.5 12h3"></path></svg></span>Canva</a>
-          <a href="https://www.notion.so/product/ai" target="_blank" rel="noopener"><span class="ee-tool-dot ee-tool-notion"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4l10-1 4 3v14l-10 1-4-3z"></path><path d="M9 8h2l4 7V8h2"></path><path d="M9 16h2"></path></svg></span>Notion AI</a>
         </nav>
       </div>
 
@@ -1040,9 +1065,11 @@
           <svg class="ee-icon" viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 8-8"></path><path d="M14 7h7v7"></path></svg>
         </div>
       </div>
+      </div>
     </section>
 
     <section class="ee-panel" aria-label="Email template library">
+      <div class="ee-panel-inner">
       <div class="ee-filter-bar">
         <div class="ee-filter-field">
           <label for="eeCategory">Category</label>
@@ -1082,6 +1109,8 @@
           <span>Show More Templates</span>
           <svg class="ee-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg>
         </button>
+      </div>
+
       </div>
 
     </section>

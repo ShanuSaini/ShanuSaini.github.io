@@ -4,27 +4,44 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>HTML Email Signature Generator</title>
-  <link rel="stylesheet" href="css/app.css?v=3">
+  <link rel="stylesheet" href="css/app.css?v=5">
 </head>
 <body>
-  <header class="esg-header">
-    <div class="esg-header__inner">
-      <div class="esg-header__icon" aria-hidden="true">
-        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+  <header class="esg-hero">
+    <div class="esg-container">
+      <div class="esg-hero-top">
+        <div class="esg-brand">
+          <div class="esg-mark" aria-hidden="true">@</div>
+          <span>Signature Generator</span>
+        </div>
+        <nav class="esg-tools" aria-label="Popular AI tools">
+          <a href="https://chat.openai.com/" target="_blank" rel="noopener"><span class="esg-tool-dot esg-tool-chatgpt"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.2a4.3 4.3 0 0 1 4.1 3"></path><path d="M18.4 7.4a4.3 4.3 0 0 1 .2 5.1"></path><path d="M17.1 15.7a4.3 4.3 0 0 1-4.8 2.3"></path><path d="M8.1 17.2a4.3 4.3 0 0 1-3-4.1"></path><path d="M5.8 10.2a4.3 4.3 0 0 1 3.7-3.8"></path><path d="M9 8l6 3.5v5"></path><path d="M15 8.2l-6 3.5v4.9"></path></svg></span>ChatGPT</a>
+          <a href="https://claude.ai/" target="_blank" rel="noopener"><span class="esg-tool-dot esg-tool-claude"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v18"></path><path d="M3 12h18"></path><path d="M5.6 5.6l12.8 12.8"></path><path d="M18.4 5.6L5.6 18.4"></path><circle cx="12" cy="12" r="3"></circle></svg></span>Claude</a>
+          <a href="https://gemini.google.com/" target="_blank" rel="noopener"><span class="esg-tool-dot esg-tool-gemini"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.4 7.6L22 12l-7.6 2.4L12 22l-2.4-7.6L2 12l7.6-2.4z"></path></svg></span>Gemini</a>
+          <a href="https://grok.com/" target="_blank" rel="noopener"><span class="esg-tool-dot esg-tool-grok"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12"></path><path d="M18 6L6 18"></path></svg></span>Grok</a>
+          <a href="https://www.perplexity.ai/" target="_blank" rel="noopener"><span class="esg-tool-dot esg-tool-perplexity"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4v16"></path><path d="M18 4v16"></path><path d="M6 8h12"></path><path d="M6 16h12"></path><path d="M10 8l-4 4 4 4"></path><path d="M14 8l4 4-4 4"></path></svg></span>Perplexity</a>
+        </nav>
       </div>
-      <div class="esg-header__text">
-        <h1>HTML Email Signature Generator</h1>
-        <p>Fill in your details, pick an accent color, and generate 10 email-safe signature templates.</p>
+
+      <div class="esg-hero-copy">
+        <h1>HTML Email <span>Signature</span> Generator</h1>
+        <h2>Fill in your details, pick an accent color, and generate 10 email-safe signature templates.</h2>
       </div>
-      <div class="esg-header__art" aria-hidden="true">
-        <svg viewBox="0 0 120 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="8" y="12" width="72" height="52" rx="6" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.25)" stroke-width="1.5"/>
-          <path d="M8 20l36 28 36-28" stroke="rgba(255,255,255,0.4)" stroke-width="1.5" fill="none"/>
-          <rect x="52" y="36" width="56" height="36" rx="5" fill="rgba(255,255,255,0.18)" stroke="rgba(255,255,255,0.3)" stroke-width="1.5"/>
-          <circle cx="66" cy="50" r="8" fill="rgba(255,255,255,0.25)"/>
-          <rect x="78" y="46" width="22" height="3" rx="1.5" fill="rgba(255,255,255,0.35)"/>
-          <rect x="78" y="52" width="16" height="2" rx="1" fill="rgba(255,255,255,0.2)"/>
-        </svg>
+
+      <div class="esg-hero-art" aria-hidden="true">
+        <div class="esg-glass-card">
+          <div class="esg-mini-mail">@</div>
+          <div class="esg-lines"><i></i><i></i><i></i><i></i></div>
+        </div>
+        <div class="esg-float esg-float-mail">
+          <svg class="esg-icon" viewBox="0 0 24 24"><path d="M21 15a4 4 0 0 1-4 4H8l-5 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4z"></path><path d="M8 10h.01"></path><path d="M12 10h.01"></path><path d="M16 10h.01"></path></svg>
+        </div>
+        <div class="esg-float esg-float-reply">
+          <svg class="esg-icon" viewBox="0 0 24 24"><path d="M21 15a4 4 0 0 1-4 4H8l-5 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4z"></path><path d="M8 10h8"></path><path d="M8 14h5"></path></svg>
+        </div>
+        <div class="esg-float esg-float-send">
+          <svg class="esg-icon" viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 8-8"></path><path d="M14 7h7v7"></path></svg>
+        </div>
       </div>
     </div>
   </header>

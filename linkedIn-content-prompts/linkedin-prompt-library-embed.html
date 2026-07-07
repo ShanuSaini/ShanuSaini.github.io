@@ -25,10 +25,21 @@
       box-sizing: border-box;
     }
 
+    .lp-container {
+      position: relative;
+      width: 100%;
+      max-width: 1260px;
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: 30px;
+      padding-right: 30px;
+    }
+
     .lp-hero {
       position: relative;
+      width: 100%;
       min-height: 430px;
-      padding: 34px 42px 76px;
+      padding: 34px 0 76px;
       color: #fff;
       overflow: hidden;
       background:
@@ -188,7 +199,7 @@
 
     .lp-hero-art {
       position: absolute;
-      right: 44px;
+      right: 0;
       top: 118px;
       width: min(420px, 42%);
       min-height: 260px;
@@ -264,7 +275,14 @@
     .lp-panel {
       position: relative;
       z-index: 3;
-      margin: -50px 42px 40px;
+      width: 100%;
+      max-width: 1260px;
+      margin: -50px auto 0;
+      padding: 0 30px;
+      box-sizing: border-box;
+    }
+
+    .lp-panel-inner {
       padding: 34px 40px 30px;
       border: 1px solid var(--lp-line);
       border-radius: 18px;
@@ -630,13 +648,6 @@
       background: #eef2ff;
     }
 
-    .lp-hero-container {
-      max-width: 1180px;
-      margin-left: auto;
-      margin-right: auto;
-      position: relative;
-    }
-
     @keyframes lpCopied {
       0% { transform: scale(1); }
       45% { transform: scale(1.06); }
@@ -645,7 +656,7 @@
 
     @media (max-width: 1020px) {
       .lp-hero {
-        padding: 30px 28px 72px;
+        padding: 30px 0 72px;
       }
 
       .lp-hero-top {
@@ -664,13 +675,11 @@
 
       .lp-hero-art {
         opacity: 0.36;
-        right: 4px;
+        right: 0;
       }
 
       .lp-panel {
-        margin-right: 22px;
-        margin-left: 22px;
-        padding: 28px 24px;
+        margin-top: -50px;
       }
 
       .lp-form {
@@ -704,9 +713,15 @@
         border-left: 0;
       }
 
+      .lp-container,
+      .lp-panel {
+        padding-left: 18px;
+        padding-right: 18px;
+      }
+
       .lp-hero {
         min-height: 0;
-        padding: 26px 18px 86px;
+        padding: 26px 0 86px;
       }
 
       .lp-hero h1 {
@@ -726,7 +741,10 @@
       }
 
       .lp-panel {
-        margin: -56px 12px 0;
+        margin-top: -56px;
+      }
+
+      .lp-panel-inner {
         padding: 24px 16px;
         border-radius: 16px;
       }
@@ -766,7 +784,7 @@
 
   <div class="lp-widget" id="linkedinPromptLibrary">
     <section class="lp-hero">
-      <div class="lp-hero-container">
+      <div class="lp-container">
         <div class="lp-hero-top">
           <div class="lp-brand">
             <div class="lp-mark">in</div>
@@ -806,7 +824,8 @@
       </div>
     </section>
 
-    <section class="lp-panel lp-hero-container" aria-label="LinkedIn prompt generator">
+    <section class="lp-panel" aria-label="LinkedIn prompt generator">
+      <div class="lp-panel-inner">
       <div class="lp-section-title"><span class="lp-sparkle">*</span> Build Your Prompt Set</div>
 
       <div class="lp-form">
@@ -969,6 +988,8 @@
           <span>Show 8 More Prompts</span>
           <svg class="lp-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg>
         </button>
+      </div>
+
       </div>
 
     </section>
